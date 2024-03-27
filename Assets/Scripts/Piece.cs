@@ -14,6 +14,8 @@ public class Piece : MonoBehaviour
 {
 
     [SerializeField] Color _color;
+    [SerializeField] private Bubble _currBubble;
+
 
     // Start is called before the first frame update
     void Start()
