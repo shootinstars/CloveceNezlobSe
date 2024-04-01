@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public enum Color
@@ -13,8 +14,9 @@ public enum Color
 public class Piece : MonoBehaviour
 {
 
-    [SerializeField] Color _color;
-    [SerializeField] private Bubble _currBubble;
+    [SerializeField] private Color _color;
+    [SerializeField] private GameObject _currentTile;
+    [SerializeField] private GameObject _startTile;
 
 
     // Start is called before the first frame update
@@ -27,5 +29,11 @@ public class Piece : MonoBehaviour
     void Update()
     {
         
+    }
+
+    void Move(GameObject destination)
+    {
+        gameObject.transform.position = destination.transform.position;
+        _currentTile = destination;
     }
 }
