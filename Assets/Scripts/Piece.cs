@@ -5,9 +5,9 @@ using UnityEngine;
 
 public enum Color
 {
+    Blue,
     Red,
     Green,
-    Blue,
     Yellow
 }
 
@@ -35,5 +35,10 @@ public class Piece : MonoBehaviour
     {
         gameObject.transform.position = destination.transform.position;
         _currentTile = destination;
+    }
+
+    public Color GetColor()
+    {
+        return _color;
     }
 }

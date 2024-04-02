@@ -3,7 +3,20 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Board
+  - BluePiece
+  - GreenPiece
+  - RedPiece
+  - YellowPiece
+  - BlueStart
+  - BlueEnd
+  - RedStart
+  - RedEnd
+  - GreenStart
+  - GreenEnd
+  - YellowStart
+  - YellowEnd
   layers:
   - Default
   - TransparentFX
