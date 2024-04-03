@@ -1,9 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
@@ -11,12 +10,11 @@ public class GameManager : MonoBehaviour
     private bool _gameFinished = false;
     private bool _roundFinished = false;
     private TileManager _tileManager;
-    private Dictionary<Color, GameObject[]> _pieces = new Dictionary<Color, GameObject[]>();
+    private Dictionary<PieceColor, GameObject[]> _pieces = new Dictionary<PieceColor, GameObject[]>();
 
     // Start is called before the first frame update
     void Start()
     {
-        
         _tileManager = gameObject.GetComponent<TileManager>();
         InitializePiecesDict();
         StartCoroutine(PlayGame());
@@ -40,7 +38,7 @@ public class GameManager : MonoBehaviour
 
     private void InitializePiecesDict()
     {
-        foreach (Color color in (Color[]) Enum.GetValues(typeof(Color)))
+        foreach (var color in (PieceColor[]) Enum.GetValues(typeof(PieceColor)))
         {
             _pieces[color] = GameObject.FindGameObjectsWithTag($"{color}Piece");
             Debug.Log(_pieces[color].Length);
@@ -51,14 +49,14 @@ public class GameManager : MonoBehaviour
     {
         while (!_gameFinished)
         {
-            yield return PlayRound(Color.Blue);
-            yield return PlayRound(Color.Red);
-            yield return PlayRound(Color.Green);
-            yield return PlayRound(Color.Yellow);
+            yield return PlayRound(PieceColor.Blue);
+            yield return PlayRound(PieceColor.Red);
+            yield return PlayRound(PieceColor.Green);
+            yield return PlayRound(PieceColor.Yellow);
         }
     }
 
-    IEnumerator PlayRound(Color color)
+    IEnumerator PlayRound(PieceColor color)
     {
         _roundFinished = false;
         Debug.Log(color + " player is currently on turn");

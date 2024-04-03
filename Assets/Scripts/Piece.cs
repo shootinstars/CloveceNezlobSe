@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public enum Color
+public enum PieceColor
 {
     Blue,
     Red,
@@ -14,15 +14,15 @@ public enum Color
 public class Piece : MonoBehaviour
 {
 
-    [SerializeField] private Color _color;
-    [SerializeField] private GameObject _currentTile;
+    [SerializeField] private PieceColor _color;
     [SerializeField] private GameObject _startTile;
-
+    [SerializeField] private GameObject _occupiedHighlight;
+    private int _currentTile = -1;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        TurnHighlightOff();
     }
 
     // Update is called once per frame
@@ -31,13 +31,28 @@ public class Piece : MonoBehaviour
         
     }
 
-    void Move(GameObject destination)
+    public int GetCurrentTile()
     {
-        gameObject.transform.position = destination.transform.position;
-        _currentTile = destination;
+        return _currentTile;
     }
 
-    public Color GetColor()
+    public void ReturnHome()
+    {
+        gameObject.transform.position = _startTile.transform.position;
+        _currentTile = -1;
+    }
+
+    public void TurnHighlightOn()
+    {
+        _occupiedHighlight.SetActive(true);
+    }
+
+    public void TurnHighlightOff()
+    {
+        _occupiedHighlight.SetActive(false);
+    }
+
+    public PieceColor GetColor()
     {
         return _color;
     }

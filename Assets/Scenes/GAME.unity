@@ -258,8 +258,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _color: 0
-  _currentTile: {fileID: 0}
-  _startTile: {fileID: 0}
+  _startTile: {fileID: 804055956}
+  _occupiedHighlight: {fileID: 18136609}
 --- !u!1 &18136609
 GameObject:
   m_ObjectHideFlags: 0
@@ -972,8 +972,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _color: 0
-  _currentTile: {fileID: 0}
-  _startTile: {fileID: 0}
+  _startTile: {fileID: 1536367691}
+  _occupiedHighlight: {fileID: 2003207513}
 --- !u!1 &103843492
 GameObject:
   m_ObjectHideFlags: 0
@@ -1229,8 +1229,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _color: 0
-  _currentTile: {fileID: 0}
-  _startTile: {fileID: 0}
+  _startTile: {fileID: 2069338227}
+  _occupiedHighlight: {fileID: 1732868790}
 --- !u!1 &162431080
 GameObject:
   m_ObjectHideFlags: 0
@@ -2302,7 +2302,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9176471, g: 0.92549026, b: 0.9176471, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2910,8 +2910,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _color: 0
-  _currentTile: {fileID: 0}
-  _startTile: {fileID: 0}
+  _startTile: {fileID: 1987329347}
+  _occupiedHighlight: {fileID: 1256368051}
 --- !u!1 &391270117
 GameObject:
   m_ObjectHideFlags: 0
@@ -3651,8 +3651,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _color: 0
-  _currentTile: {fileID: 0}
-  _startTile: {fileID: 0}
+  _startTile: {fileID: 2109763155}
+  _occupiedHighlight: {fileID: 1075122662}
 --- !u!1 &448651294
 GameObject:
   m_ObjectHideFlags: 0
@@ -4837,8 +4837,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _color: 0
-  _currentTile: {fileID: 0}
-  _startTile: {fileID: 0}
+  _startTile: {fileID: 1475387478}
+  _occupiedHighlight: {fileID: 1921912690}
 --- !u!1 &680935982
 GameObject:
   m_ObjectHideFlags: 0
@@ -5877,8 +5877,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _color: 0
-  _currentTile: {fileID: 0}
-  _startTile: {fileID: 0}
+  _startTile: {fileID: 550367105}
+  _occupiedHighlight: {fileID: 1041285566}
 --- !u!1 &804055956
 GameObject:
   m_ObjectHideFlags: 0
@@ -6897,8 +6897,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _color: 0
-  _currentTile: {fileID: 0}
-  _startTile: {fileID: 0}
+  _startTile: {fileID: 319891913}
+  _occupiedHighlight: {fileID: 1076470310}
 --- !u!1 &910600102
 GameObject:
   m_ObjectHideFlags: 0
@@ -7695,8 +7695,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _color: 0
-  _currentTile: {fileID: 0}
-  _startTile: {fileID: 0}
+  _startTile: {fileID: 1776090710}
+  _occupiedHighlight: {fileID: 1402049781}
 --- !u!1 &968716574
 GameObject:
   m_ObjectHideFlags: 0
@@ -9704,8 +9704,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _color: 0
-  _currentTile: {fileID: 0}
-  _startTile: {fileID: 0}
+  _startTile: {fileID: 1049453137}
+  _occupiedHighlight: {fileID: 983825011}
 --- !u!1 &1245668007
 GameObject:
   m_ObjectHideFlags: 0
@@ -10275,8 +10275,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _color: 0
-  _currentTile: {fileID: 0}
-  _startTile: {fileID: 0}
+  _startTile: {fileID: 372340776}
+  _occupiedHighlight: {fileID: 1086828725}
 --- !u!1 &1356399581
 GameObject:
   m_ObjectHideFlags: 0
@@ -10412,8 +10412,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _color: 0
-  _currentTile: {fileID: 0}
-  _startTile: {fileID: 0}
+  _startTile: {fileID: 1628617137}
+  _occupiedHighlight: {fileID: 768586777}
 --- !u!1 &1360072767
 GameObject:
   m_ObjectHideFlags: 0
@@ -11345,8 +11345,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _color: 0
-  _currentTile: {fileID: 0}
-  _startTile: {fileID: 0}
+  _startTile: {fileID: 2097114499}
+  _occupiedHighlight: {fileID: 1690254622}
 --- !u!1 &1473970994
 GameObject:
   m_ObjectHideFlags: 0
@@ -12027,8 +12027,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _color: 0
-  _currentTile: {fileID: 0}
-  _startTile: {fileID: 0}
+  _startTile: {fileID: 1982532148}
+  _occupiedHighlight: {fileID: 1004314221}
 --- !u!1 &1611248020
 GameObject:
   m_ObjectHideFlags: 0
@@ -13343,8 +13343,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _color: 0
-  _currentTile: {fileID: 0}
-  _startTile: {fileID: 0}
+  _startTile: {fileID: 239244522}
+  _occupiedHighlight: {fileID: 921277290}
 --- !u!1 &1879672519
 GameObject:
   m_ObjectHideFlags: 0
@@ -15671,8 +15671,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _color: 0
-  _currentTile: {fileID: 0}
-  _startTile: {fileID: 0}
+  _startTile: {fileID: 1290391930}
+  _occupiedHighlight: {fileID: 984864605}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
