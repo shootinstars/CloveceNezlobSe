@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -11,12 +12,15 @@ public class GameManager : MonoBehaviour
     private bool _roundFinished = false;
     private TileManager _tileManager;
     private Dictionary<PieceColor, GameObject[]> _pieces = new Dictionary<PieceColor, GameObject[]>();
+    private GameObject[] _allPieces;
+    private PieceColor _currentPlayer;
 
     // Start is called before the first frame update
     void Start()
     {
         _tileManager = gameObject.GetComponent<TileManager>();
         InitializePiecesDict();
+        _allPieces = _pieces.Values.SelectMany(array => array).ToArray();
         StartCoroutine(PlayGame());
     }
 
@@ -29,7 +33,8 @@ public class GameManager : MonoBehaviour
     public void Roll()
     {
         var roll = Random.Range(1, 7);
-        Debug.Log(roll);
+        Debug.Log("rolled: " + roll);
+        _tileManager.HighlightPossibleMoves(_pieces[_currentPlayer], _currentPlayer, roll);
         if (roll == 6)
         {
             _roundFinished = true;
@@ -59,8 +64,15 @@ public class GameManager : MonoBehaviour
     IEnumerator PlayRound(PieceColor color)
     {
         _roundFinished = false;
+        _currentPlayer = color;
         Debug.Log(color + " player is currently on turn");
+
         yield return new WaitUntil(() => _roundFinished);
+    }
+
+    public GameObject[] GetAllPieces()
+    {
+        return _allPieces;
     }
 
 }

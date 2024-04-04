@@ -23,6 +23,13 @@ public class Piece : MonoBehaviour
     void Start()
     {
         TurnHighlightOff();
+        if (gameObject.name == "BluePiece0")
+        {
+            _currentTile = 0;
+        } else if (gameObject.name == "RedPiece0")
+        {
+            _currentTile = 6;
+        }
     }
 
     // Update is called once per frame

@@ -10,13 +10,14 @@ public class TileManager : MonoBehaviour
     [SerializeField] private GameObject[] _fieldTiles;
     [SerializeField] private Dictionary<PieceColor, GameObject[]> _startTiles = new Dictionary<PieceColor, GameObject[]>();
     [SerializeField] private Dictionary<PieceColor, GameObject[]> _endTiles = new Dictionary<PieceColor, GameObject[]>();
+    private GameManager _gameManager;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         FillDictionaries();
-        _fieldTiles = GameObject.FindGameObjectsWithTag("Board");
     }
 
     private void FillDictionaries()
@@ -25,28 +26,47 @@ public class TileManager : MonoBehaviour
         {
             _startTiles[color] = GameObject.FindGameObjectsWithTag($"{color}Start");
             _endTiles[color] = GameObject.FindGameObjectsWithTag($"{color}End");
-            Debug.Log(_startTiles[color].Length + _endTiles[color].Length);
         }
     }
 
-    public void HighlightPossibleMoves(Piece[] pieces, PieceColor color, int roll)
+    public void HighlightPossibleMoves(GameObject[] pieces, PieceColor color, int roll)
     {
         foreach (var piece in pieces)
         {
-            if (piece.GetCurrentTile() == -1) continue; 
-            for (int i = piece.GetCurrentTile(); i < piece.GetCurrentTile() + roll + 1; i++)
+            var currentPiece = piece.GetComponent<Piece>();
+            if (currentPiece.GetCurrentTile() == -1) continue;
+            var realIndex = (currentPiece.GetCurrentTile() + roll) % 40;
+            _fieldTiles[realIndex].GetComponent<Image>().color = Color.green;
+            _fieldTiles[realIndex].GetComponent<Button>().interactable = true;
+            CheckPiecesInDanger(color, realIndex);
+        }
+    }
+
+    private void CheckPiecesInDanger(PieceColor color, int tile)
+    {
+        var allPieces = _gameManager.GetAllPieces();
+        foreach (var piece in allPieces)
+        {
+            var currentPiece = piece.GetComponent<Piece>();
+            if (currentPiece.GetColor() != color && currentPiece.GetCurrentTile() == tile)
             {
-                var realIndex = ((int) color * 10 + i) % 40;
-                _fieldTiles[realIndex].GetComponent<Image>().color = Color.green;
+                currentPiece.TurnHighlightOn();
             }
         }
     }
 
     public void UnselectHighlightedMoves()
     {
+        var allPieces = _gameManager.GetAllPieces();
         foreach (var tile in _fieldTiles)
         {
             tile.GetComponent<Image>().color = Color.white;
+            tile.GetComponent<Button>().interactable = false;
+
+        }
+        foreach (var piece in allPieces)
+        {
+            piece.GetComponent<Piece>().TurnHighlightOff();
         }
     }
 
