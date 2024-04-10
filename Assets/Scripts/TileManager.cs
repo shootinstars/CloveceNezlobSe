@@ -1,22 +1,24 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class TileManager : MonoBehaviour
 {
 
-    [SerializeField] private GameObject[] _fieldTiles;
-    [SerializeField] private Dictionary<PieceColor, GameObject[]> _startTiles = new Dictionary<PieceColor, GameObject[]>();
-    [SerializeField] private Dictionary<PieceColor, GameObject[]> _endTiles = new Dictionary<PieceColor, GameObject[]>();
-    private GameManager _gameManager;
+    [SerializeField] public static GameObject[] FieldTiles;
+    [SerializeField] public static Dictionary<PieceColor, GameObject[]> StartTiles = new Dictionary<PieceColor, GameObject[]>();
+    [SerializeField] public static Dictionary<PieceColor, GameObject[]> EndTiles = new Dictionary<PieceColor, GameObject[]>();
+    public GameManager GameManager;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        FieldTiles = GameObject.FindGameObjectsWithTag("Board").OrderBy(x => x.GetComponent<GameTile>().Id).ToArray();
+        GameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         FillDictionaries();
     }
 
@@ -24,41 +26,42 @@ public class TileManager : MonoBehaviour
     {
         foreach (var color in (PieceColor[])Enum.GetValues(typeof(PieceColor)))
         {
-            _startTiles[color] = GameObject.FindGameObjectsWithTag($"{color}Start");
-            _endTiles[color] = GameObject.FindGameObjectsWithTag($"{color}End");
+            StartTiles[color] = GameObject.FindGameObjectsWithTag($"{color}Start");
+            EndTiles[color] = GameObject.FindGameObjectsWithTag($"{color}End");
         }
     }
 
-    public void HighlightPossibleMoves(GameObject[] pieces, PieceColor color, int roll)
-    {
-        foreach (var piece in pieces)
+    public static void HighlightPossibleMove(Piece piece, PieceColor color, int roll)
+    { 
+        piece.Chosen.SetActive(true);
+        var realIndex = (piece.CurrentTile + roll) % 40;
+        if (piece.CurrentTile != -1)
         {
-            var currentPiece = piece.GetComponent<Piece>();
-            if (currentPiece.GetCurrentTile() == -1) continue;
-            var realIndex = (currentPiece.GetCurrentTile() + roll) % 40;
-            _fieldTiles[realIndex].GetComponent<Image>().color = Color.green;
-            _fieldTiles[realIndex].GetComponent<Button>().interactable = true;
+            FieldTiles[realIndex].GetComponent<Image>().color = Color.green;
+            FieldTiles[realIndex].GetComponent<Button>().interactable = true;
+            CheckPiecesInDanger(color, realIndex);
+        }
+        else if (piece.CurrentTile == -1 && roll == 6)
+        {
+            realIndex = 0;
+            FieldTiles[realIndex].GetComponent<Image>().color = Color.green;
+            FieldTiles[realIndex].GetComponent<Button>().interactable = true;
             CheckPiecesInDanger(color, realIndex);
         }
     }
 
-    private void CheckPiecesInDanger(PieceColor color, int tile)
+    private static void CheckPiecesInDanger(PieceColor color, int tile)
     {
-        var allPieces = _gameManager.GetAllPieces();
-        foreach (var piece in allPieces)
+        if (GameManager.GamePlan[tile])
         {
-            var currentPiece = piece.GetComponent<Piece>();
-            if (currentPiece.GetColor() != color && currentPiece.GetCurrentTile() == tile)
-            {
-                currentPiece.TurnHighlightOn();
-            }
+            GameManager.GamePlan[tile].GetComponent<Piece>().TurnHighlightOn();
         }
     }
 
     public void UnselectHighlightedMoves()
     {
-        var allPieces = _gameManager.GetAllPieces();
-        foreach (var tile in _fieldTiles)
+        var allPieces = GameManager.GetAllPieces();
+        foreach (var tile in FieldTiles)
         {
             tile.GetComponent<Image>().color = Color.white;
             tile.GetComponent<Button>().interactable = false;
@@ -67,6 +70,7 @@ public class TileManager : MonoBehaviour
         foreach (var piece in allPieces)
         {
             piece.GetComponent<Piece>().TurnHighlightOff();
+            piece.GetComponent<Piece>().Chosen.SetActive(false);
         }
     }
 
@@ -74,20 +78,5 @@ public class TileManager : MonoBehaviour
     void Update()
     {
         
-    }
-
-    public GameObject[] GetFieldTiles()
-    {
-        return _fieldTiles;
-    }
-
-    public GameObject[] GetStartTilesByColor(PieceColor color)
-    {
-        return _startTiles[color];
-    }
-
-    public GameObject[] GetEndTilesByColor(PieceColor color)
-    {
-        return _endTiles[color];
     }
 }

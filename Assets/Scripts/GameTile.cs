@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameTile : MonoBehaviour
 {
+    public int Id;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +16,10 @@ public class GameTile : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void ConfirmMove()
+    {
+        GameManager.Move(GameManager.GamePlan[(Id-GameManager.CurrentRoll) % 40], Id);
     }
 }

@@ -3,24 +3,30 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
-    private bool _gameFinished = false;
-    private bool _roundFinished = false;
-    private TileManager _tileManager;
-    private Dictionary<PieceColor, GameObject[]> _pieces = new Dictionary<PieceColor, GameObject[]>();
-    private GameObject[] _allPieces;
-    private PieceColor _currentPlayer;
+    public bool GameFinished = false;
+    public bool RoundFinished = false;
+
+    public TileManager TileManager;
+    public GameObject[] AllPieces;
+    public PieceColor CurrentPlayer;
+    public Dictionary<PieceColor, GameObject[]> Pieces = new();
+    public static int CurrentRoll;
+    public static GameObject[] GamePlan = new GameObject[40];
+
 
     // Start is called before the first frame update
     void Start()
     {
-        _tileManager = gameObject.GetComponent<TileManager>();
+        TileManager = gameObject.GetComponent<TileManager>();
         InitializePiecesDict();
-        _allPieces = _pieces.Values.SelectMany(array => array).ToArray();
+        AllPieces = Pieces.Values.SelectMany(array => array).ToArray();
         StartCoroutine(PlayGame());
     }
 
@@ -34,10 +40,10 @@ public class GameManager : MonoBehaviour
     {
         var roll = Random.Range(1, 7);
         Debug.Log("rolled: " + roll);
-        _tileManager.HighlightPossibleMoves(_pieces[_currentPlayer], _currentPlayer, roll);
+        CurrentRoll = roll;
         if (roll == 6)
         {
-            _roundFinished = true;
+            RoundFinished = true;
         }
     }
 
@@ -45,14 +51,14 @@ public class GameManager : MonoBehaviour
     {
         foreach (var color in (PieceColor[]) Enum.GetValues(typeof(PieceColor)))
         {
-            _pieces[color] = GameObject.FindGameObjectsWithTag($"{color}Piece");
-            Debug.Log(_pieces[color].Length);
+            Pieces[color] = GameObject.FindGameObjectsWithTag($"{color}Piece");
+            Debug.Log(Pieces[color].Length);
         }
     }
 
     IEnumerator PlayGame()
     {
-        while (!_gameFinished)
+        while (!GameFinished)
         {
             yield return PlayRound(PieceColor.Blue);
             yield return PlayRound(PieceColor.Red);
@@ -63,16 +69,27 @@ public class GameManager : MonoBehaviour
 
     IEnumerator PlayRound(PieceColor color)
     {
-        _roundFinished = false;
-        _currentPlayer = color;
+        RoundFinished = false;
+        CurrentPlayer = color;
         Debug.Log(color + " player is currently on turn");
 
-        yield return new WaitUntil(() => _roundFinished);
+        yield return new WaitUntil(() => RoundFinished);
     }
 
     public GameObject[] GetAllPieces()
     {
-        return _allPieces;
+        return AllPieces;
+    }
+
+    public static void Move(GameObject piece, int newPosition)
+    {
+        piece.GetComponent<Piece>().CurrentTile = newPosition;
+        if (GamePlan[newPosition] != null)
+        {
+            GamePlan[newPosition].GetComponent<Piece>().ReturnHome();
+        }
+        piece.transform.position = TileManager.FieldTiles[newPosition].transform.position;
+        TileManager.FieldTiles[newPosition] = piece;
     }
 
 }
