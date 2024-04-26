@@ -11,14 +11,12 @@ public class TileManager : MonoBehaviour
     [SerializeField] public static GameObject[] FieldTiles;
     [SerializeField] public static Dictionary<PieceColor, GameObject[]> StartTiles = new Dictionary<PieceColor, GameObject[]>();
     [SerializeField] public static Dictionary<PieceColor, GameObject[]> EndTiles = new Dictionary<PieceColor, GameObject[]>();
-    public GameManager GameManager;
 
 
     // Start is called before the first frame update
     void Start()
     {
         FieldTiles = GameObject.FindGameObjectsWithTag("Board").OrderBy(x => x.GetComponent<GameTile>().Id).ToArray();
-        GameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         FillDictionaries();
     }
 
@@ -35,6 +33,7 @@ public class TileManager : MonoBehaviour
     { 
         piece.Chosen.SetActive(true);
         var realIndex = (piece.CurrentTile + roll) % 40;
+        Debug.Log("roll is " + roll);
         if (piece.CurrentTile != -1)
         {
             FieldTiles[realIndex].GetComponent<Image>().color = Color.green;
@@ -43,7 +42,9 @@ public class TileManager : MonoBehaviour
         }
         else if (piece.CurrentTile == -1 && roll == 6)
         {
-            realIndex = 0;
+            realIndex = 0 + (int) color * 10;
+            Debug.Log(color);
+            Debug.Log((int) color + " start position");
             FieldTiles[realIndex].GetComponent<Image>().color = Color.green;
             FieldTiles[realIndex].GetComponent<Button>().interactable = true;
             CheckPiecesInDanger(color, realIndex);
@@ -52,13 +53,13 @@ public class TileManager : MonoBehaviour
 
     private static void CheckPiecesInDanger(PieceColor color, int tile)
     {
-        if (GameManager.GamePlan[tile])
+        if (GameManager.GamePlan[tile] != null && GameManager.GamePlan[tile].GetComponent<Piece>().Color != color)
         {
             GameManager.GamePlan[tile].GetComponent<Piece>().TurnHighlightOn();
         }
     }
 
-    public void UnselectHighlightedMoves()
+    public static void UnselectHighlightedMoves()
     {
         var allPieces = GameManager.GetAllPieces();
         foreach (var tile in FieldTiles)

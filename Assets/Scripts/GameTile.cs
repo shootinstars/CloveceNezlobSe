@@ -20,6 +20,6 @@ public class GameTile : MonoBehaviour
 
     public void ConfirmMove()
     {
-        GameManager.Move(GameManager.GamePlan[(Id-GameManager.CurrentRoll) % 40], Id);
+    GameManager.Move(Id);
     }
 }

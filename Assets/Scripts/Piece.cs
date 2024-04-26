@@ -2,13 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Tilemaps;
+using UnityEngine.UI;
 
 public enum PieceColor
 {
-    Blue,
-    Red,
-    Green,
-    Yellow
+    Blue = 0,
+    Red = 1,
+    Green = 2,
+    Yellow = 3,
 }
 
 public class Piece : MonoBehaviour
@@ -26,14 +28,6 @@ public class Piece : MonoBehaviour
     void Start()
     {
         TurnHighlightOff();
-        if (gameObject.name == "BluePiece0")
-        {
-            GameManager.GamePlan[0] = gameObject;
-            CurrentTile = 0;
-        } else if (gameObject.name == "RedPiece0")
-        {
-            CurrentTile = 6;
-        }
     }
 
     // Update is called once per frame
@@ -50,12 +44,14 @@ public class Piece : MonoBehaviour
     public void ReturnHome()
     {
         gameObject.transform.position = StartTile.transform.position;
+        GameManager.ActivePiecesCount[Color] -= 1;
         CurrentTile = -1;
     }
 
     public void TurnHighlightOn()
     {
         OccupiedHighlight.SetActive(true);
+        gameObject.GetComponent<Button>().interactable = true;
     }
 
     public void TurnHighlightOff()
@@ -68,8 +64,22 @@ public class Piece : MonoBehaviour
         return Color;
     }
 
+    public void GetKickedOut()
+    {
+        if (OccupiedHighlight.activeSelf)
+        {
+            GameManager.Move(CurrentTile);
+        }
+    }
+
     public void AttemptMove()
     {
-        TileManager.HighlightPossibleMove(this, Color, GameManager.CurrentRoll);
+        if (!OccupiedHighlight.activeSelf)
+        {
+            Debug.Log(CurrentTile);
+            GameManager.ChosenPiece = gameObject;
+            TileManager.UnselectHighlightedMoves();
+            TileManager.HighlightPossibleMove(this, this.Color, GameManager.CurrentRoll);
+        }
     }
 }
