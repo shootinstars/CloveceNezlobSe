@@ -7,15 +7,20 @@ using UnityEngine.UI;
 
 public class TileManager : MonoBehaviour
 {
+    private GameManager GameManager;
 
-    [SerializeField] public static GameObject[] FieldTiles;
-    [SerializeField] public static Dictionary<PieceColor, GameObject[]> StartTiles = new Dictionary<PieceColor, GameObject[]>();
-    [SerializeField] public static Dictionary<PieceColor, GameObject[]> EndTiles = new Dictionary<PieceColor, GameObject[]>();
+    [SerializeField] public GameObject[] FieldTiles;
+    [SerializeField] public Dictionary<PieceColor, GameObject[]> StartTiles = new Dictionary<PieceColor, GameObject[]>();
+    [SerializeField] public Dictionary<PieceColor, GameObject[]> EndTiles = new Dictionary<PieceColor, GameObject[]>();
+    [SerializeField] public Dictionary<PieceColor, GameObject[]> EndFields = new Dictionary<PieceColor, GameObject[]>();
+
+    public Boolean MovePossible;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        GameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         FieldTiles = GameObject.FindGameObjectsWithTag("Board").OrderBy(x => x.GetComponent<GameTile>().Id).ToArray();
         FillDictionaries();
     }
@@ -26,32 +31,59 @@ public class TileManager : MonoBehaviour
         {
             StartTiles[color] = GameObject.FindGameObjectsWithTag($"{color}Start");
             EndTiles[color] = GameObject.FindGameObjectsWithTag($"{color}End");
+            EndFields[color] = new GameObject[4];
         }
     }
 
-    public static void HighlightPossibleMove(Piece piece, PieceColor color, int roll)
+    public void HighlightPossibleMove(Piece piece, PieceColor color, int roll)
     { 
         piece.Chosen.SetActive(true);
         var realIndex = (piece.CurrentTile + roll) % 40;
         Debug.Log("roll is " + roll);
-        if (piece.CurrentTile != -1)
+        if (piece.TilesGone + roll > 40)
         {
-            FieldTiles[realIndex].GetComponent<Image>().color = Color.green;
-            FieldTiles[realIndex].GetComponent<Button>().interactable = true;
-            CheckPiecesInDanger(color, realIndex);
+            HighlightEnd(piece, roll);
+        }
+        else if (piece.CurrentTile != -1)
+        {
+            HighlightTile(realIndex, color);
         }
         else if (piece.CurrentTile == -1 && roll == 6)
         {
-            realIndex = 0 + (int) color * 10;
-            Debug.Log(color);
-            Debug.Log((int) color + " start position");
-            FieldTiles[realIndex].GetComponent<Image>().color = Color.green;
-            FieldTiles[realIndex].GetComponent<Button>().interactable = true;
-            CheckPiecesInDanger(color, realIndex);
+            HighlightStart(color);
         }
     }
 
-    private static void CheckPiecesInDanger(PieceColor color, int tile)
+    public void HighlightEnd(Piece piece, int roll)
+    {
+        var endIndex = piece.TilesGone + roll;
+        if (endIndex < 45)
+        {
+            if (EndFields[piece.Color][endIndex % 5 - 1] == null)
+            {
+                EndTiles[piece.Color][endIndex % 5].GetComponent<Image>().color = Color.green;
+                EndTiles[piece.Color][endIndex % 5].GetComponent<Button>().interactable = true;
+                MovePossible = true;
+            }
+        }
+    }
+
+    public void HighlightTile(int index, PieceColor color)
+    {
+        FieldTiles[index].GetComponent<Image>().color = Color.green;
+        FieldTiles[index].GetComponent<Button>().interactable = true;
+        CheckPiecesInDanger(color, index);
+    }
+
+    public void HighlightStart(PieceColor color)
+    {
+        var realIndex = 0 + (int) color * 10;
+        FieldTiles[realIndex].GetComponent<Image>().color = Color.green;
+        FieldTiles[realIndex].GetComponent<Button>().interactable = true;
+        CheckPiecesInDanger(color, realIndex);
+    }
+
+    private void CheckPiecesInDanger(PieceColor color, int tile)
     {
         if (GameManager.GamePlan[tile] != null && GameManager.GamePlan[tile].GetComponent<Piece>().Color != color)
         {
@@ -59,7 +91,7 @@ public class TileManager : MonoBehaviour
         }
     }
 
-    public static void UnselectHighlightedMoves()
+    public void UnselectHighlightedMoves()
     {
         var allPieces = GameManager.GetAllPieces();
         foreach (var tile in FieldTiles)

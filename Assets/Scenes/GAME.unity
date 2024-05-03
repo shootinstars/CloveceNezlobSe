@@ -286,7 +286,10 @@ MonoBehaviour:
   StartTile: {fileID: 804055956}
   OccupiedHighlight: {fileID: 18136609}
   Chosen: {fileID: 450659666}
+  GameManager: {fileID: 0}
+  TileManager: {fileID: 0}
   CurrentTile: -1
+  TilesGone: 0
 --- !u!1 &18136609
 GameObject:
   m_ObjectHideFlags: 0
@@ -627,7 +630,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 44907005}
   m_OnClick:
     m_PersistentCalls:
@@ -695,6 +698,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Id: 5
+  GameManager: {fileID: 0}
 --- !u!1 &53189386
 GameObject:
   m_ObjectHideFlags: 0
@@ -707,6 +711,7 @@ GameObject:
   - component: {fileID: 53189390}
   - component: {fileID: 53189389}
   - component: {fileID: 53189388}
+  - component: {fileID: 53189391}
   m_Layer: 5
   m_Name: RedEnd2
   m_TagString: RedEnd
@@ -756,9 +761,9 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -772,11 +777,23 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 53189389}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 53189391}
+        m_TargetAssemblyTypeName: GameTile, Assembly-CSharp
+        m_MethodName: ConfirmMove
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &53189389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -815,6 +832,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 53189386}
   m_CullTransparentMesh: 1
+--- !u!114 &53189391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 53189386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75426f40819fee648b81373973496258, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Id: 2
+  GameManager: {fileID: 0}
 --- !u!1 &56912759
 GameObject:
   m_ObjectHideFlags: 0
@@ -1128,7 +1159,10 @@ MonoBehaviour:
   StartTile: {fileID: 1536367691}
   OccupiedHighlight: {fileID: 2003207513}
   Chosen: {fileID: 2092489249}
+  GameManager: {fileID: 0}
+  TileManager: {fileID: 0}
   CurrentTile: -1
+  TilesGone: 0
 --- !u!1 &90811961
 GameObject:
   m_ObjectHideFlags: 0
@@ -1282,7 +1316,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 103843495}
   m_OnClick:
     m_PersistentCalls:
@@ -1319,7 +1353,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 351da9402f1f88b44aa2cd16c179eb1b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4de29711a7e223d409c0646801b3723d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1350,6 +1384,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Id: 30
+  GameManager: {fileID: 0}
 --- !u!1 &143706060
 GameObject:
   m_ObjectHideFlags: 0
@@ -1663,7 +1698,10 @@ MonoBehaviour:
   StartTile: {fileID: 2069338227}
   OccupiedHighlight: {fileID: 1732868790}
   Chosen: {fileID: 90811961}
+  GameManager: {fileID: 0}
+  TileManager: {fileID: 0}
   CurrentTile: -1
+  TilesGone: 0
 --- !u!1 &162431080
 GameObject:
   m_ObjectHideFlags: 0
@@ -1742,7 +1780,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 162431083}
   m_OnClick:
     m_PersistentCalls:
@@ -1810,6 +1848,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Id: 25
+  GameManager: {fileID: 0}
 --- !u!1 &204862949
 GameObject:
   m_ObjectHideFlags: 0
@@ -1822,6 +1861,7 @@ GameObject:
   - component: {fileID: 204862953}
   - component: {fileID: 204862952}
   - component: {fileID: 204862951}
+  - component: {fileID: 204862954}
   m_Layer: 5
   m_Name: RedEnd3
   m_TagString: RedEnd
@@ -1871,9 +1911,9 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -1887,11 +1927,23 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 204862952}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 204862954}
+        m_TargetAssemblyTypeName: GameTile, Assembly-CSharp
+        m_MethodName: ConfirmMove
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &204862952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1930,6 +1982,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 204862949}
   m_CullTransparentMesh: 1
+--- !u!114 &204862954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 204862949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75426f40819fee648b81373973496258, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Id: 3
+  GameManager: {fileID: 0}
 --- !u!1 &238870414
 GameObject:
   m_ObjectHideFlags: 0
@@ -2174,6 +2240,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Id: 0
+  GameManager: {fileID: 0}
 --- !u!1 &313208135
 GameObject:
   m_ObjectHideFlags: 0
@@ -2186,6 +2253,7 @@ GameObject:
   - component: {fileID: 313208139}
   - component: {fileID: 313208138}
   - component: {fileID: 313208137}
+  - component: {fileID: 313208140}
   m_Layer: 5
   m_Name: GreenEnd0
   m_TagString: GreenEnd
@@ -2235,9 +2303,9 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -2251,11 +2319,23 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 313208138}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 313208140}
+        m_TargetAssemblyTypeName: GameTile, Assembly-CSharp
+        m_MethodName: ConfirmMove
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &313208138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2294,6 +2374,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 313208135}
   m_CullTransparentMesh: 1
+--- !u!114 &313208140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 313208135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75426f40819fee648b81373973496258, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Id: 0
+  GameManager: {fileID: 0}
 --- !u!1 &317967323
 GameObject:
   m_ObjectHideFlags: 0
@@ -2306,6 +2400,7 @@ GameObject:
   - component: {fileID: 317967327}
   - component: {fileID: 317967326}
   - component: {fileID: 317967325}
+  - component: {fileID: 317967328}
   m_Layer: 5
   m_Name: GreenEnd1
   m_TagString: GreenEnd
@@ -2355,9 +2450,9 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -2371,11 +2466,23 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 317967326}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 317967328}
+        m_TargetAssemblyTypeName: GameTile, Assembly-CSharp
+        m_MethodName: ConfirmMove
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &317967326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2414,6 +2521,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 317967323}
   m_CullTransparentMesh: 1
+--- !u!114 &317967328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 317967323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75426f40819fee648b81373973496258, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Id: 1
+  GameManager: {fileID: 0}
 --- !u!1 &319891913
 GameObject:
   m_ObjectHideFlags: 0
@@ -2548,6 +2669,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Id: 0
+  GameManager: {fileID: 0}
 --- !u!1 &332868873
 GameObject:
   m_ObjectHideFlags: 0
@@ -2626,7 +2748,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 332868876}
   m_OnClick:
     m_PersistentCalls:
@@ -2694,6 +2816,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Id: 2
+  GameManager: {fileID: 0}
 --- !u!1 &347189453
 GameObject:
   m_ObjectHideFlags: 0
@@ -2847,7 +2970,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 351068476}
   m_OnClick:
     m_PersistentCalls:
@@ -2915,6 +3038,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Id: 1
+  GameManager: {fileID: 0}
 --- !u!1 &353088550
 GameObject:
   m_ObjectHideFlags: 0
@@ -3068,7 +3192,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 370421203}
   m_OnClick:
     m_PersistentCalls:
@@ -3136,6 +3260,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Id: 7
+  GameManager: {fileID: 0}
 --- !u!1 &372340776
 GameObject:
   m_ObjectHideFlags: 0
@@ -3270,6 +3395,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Id: 0
+  GameManager: {fileID: 0}
 --- !u!1 &380377715
 GameObject:
   m_ObjectHideFlags: 0
@@ -3348,7 +3474,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 380377718}
   m_OnClick:
     m_PersistentCalls:
@@ -3416,6 +3542,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Id: 3
+  GameManager: {fileID: 0}
 --- !u!1 &390903090
 GameObject:
   m_ObjectHideFlags: 0
@@ -3579,7 +3706,10 @@ MonoBehaviour:
   StartTile: {fileID: 390903090}
   OccupiedHighlight: {fileID: 1256368051}
   Chosen: {fileID: 1372878642}
+  GameManager: {fileID: 0}
+  TileManager: {fileID: 0}
   CurrentTile: -1
+  TilesGone: 0
 --- !u!1 &391270117
 GameObject:
   m_ObjectHideFlags: 0
@@ -3627,6 +3757,7 @@ GameObject:
   - component: {fileID: 411134073}
   - component: {fileID: 411134072}
   - component: {fileID: 411134071}
+  - component: {fileID: 411134074}
   m_Layer: 5
   m_Name: GreenEnd3
   m_TagString: GreenEnd
@@ -3676,9 +3807,9 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -3692,11 +3823,23 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 411134072}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 411134074}
+        m_TargetAssemblyTypeName: GameTile, Assembly-CSharp
+        m_MethodName: ConfirmMove
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &411134072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3735,6 +3878,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 411134069}
   m_CullTransparentMesh: 1
+--- !u!114 &411134074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 411134069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75426f40819fee648b81373973496258, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Id: 3
+  GameManager: {fileID: 0}
 --- !u!1 &424799550
 GameObject:
   m_ObjectHideFlags: 0
@@ -4220,7 +4377,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 446662673}
   m_OnClick:
     m_PersistentCalls:
@@ -4288,6 +4445,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Id: 33
+  GameManager: {fileID: 0}
 --- !u!1 &447702773
 GameObject:
   m_ObjectHideFlags: 0
@@ -4451,7 +4609,10 @@ MonoBehaviour:
   StartTile: {fileID: 2109763155}
   OccupiedHighlight: {fileID: 1075122662}
   Chosen: {fileID: 695133393}
+  GameManager: {fileID: 0}
+  TileManager: {fileID: 0}
   CurrentTile: -1
+  TilesGone: 0
 --- !u!1 &448651294
 GameObject:
   m_ObjectHideFlags: 0
@@ -4680,7 +4841,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 451193570}
   m_OnClick:
     m_PersistentCalls:
@@ -4748,6 +4909,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Id: 34
+  GameManager: {fileID: 0}
 --- !u!1 &451560468
 GameObject:
   m_ObjectHideFlags: 0
@@ -4936,7 +5098,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 506833062}
   m_OnClick:
     m_PersistentCalls:
@@ -5004,6 +5166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Id: 18
+  GameManager: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -5313,6 +5476,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Id: 0
+  GameManager: {fileID: 0}
 --- !u!1 &554387108
 GameObject:
   m_ObjectHideFlags: 0
@@ -5466,7 +5630,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 568449333}
   m_OnClick:
     m_PersistentCalls:
@@ -5534,6 +5698,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Id: 4
+  GameManager: {fileID: 0}
 --- !u!1 &608789353
 GameObject:
   m_ObjectHideFlags: 0
@@ -5893,7 +6058,10 @@ MonoBehaviour:
   StartTile: {fileID: 1475387478}
   OccupiedHighlight: {fileID: 1921912690}
   Chosen: {fileID: 926815150}
+  GameManager: {fileID: 0}
+  TileManager: {fileID: 0}
   CurrentTile: -1
+  TilesGone: 0
 --- !u!1 &680935982
 GameObject:
   m_ObjectHideFlags: 0
@@ -5981,6 +6149,7 @@ GameObject:
   - component: {fileID: 680937517}
   - component: {fileID: 680937516}
   - component: {fileID: 680937515}
+  - component: {fileID: 680937518}
   m_Layer: 5
   m_Name: GreenEnd2
   m_TagString: GreenEnd
@@ -6030,9 +6199,9 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -6046,11 +6215,23 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 680937516}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 680937518}
+        m_TargetAssemblyTypeName: GameTile, Assembly-CSharp
+        m_MethodName: ConfirmMove
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &680937516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6089,6 +6270,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 680937513}
   m_CullTransparentMesh: 1
+--- !u!114 &680937518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 680937513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75426f40819fee648b81373973496258, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Id: 2
+  GameManager: {fileID: 0}
 --- !u!1 &695133393
 GameObject:
   m_ObjectHideFlags: 0
@@ -6281,7 +6476,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 705843537}
   m_OnClick:
     m_PersistentCalls:
@@ -6349,6 +6544,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Id: 35
+  GameManager: {fileID: 0}
 --- !u!1 &727070273
 GameObject:
   m_ObjectHideFlags: 0
@@ -6462,7 +6658,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 730411719}
   m_OnClick:
     m_PersistentCalls:
@@ -6530,6 +6726,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Id: 28
+  GameManager: {fileID: 0}
 --- !u!1 &735695364
 GameObject:
   m_ObjectHideFlags: 0
@@ -6620,6 +6817,7 @@ GameObject:
   - component: {fileID: 764318093}
   - component: {fileID: 764318092}
   - component: {fileID: 764318091}
+  - component: {fileID: 764318094}
   m_Layer: 5
   m_Name: RedEnd0
   m_TagString: RedEnd
@@ -6669,9 +6867,9 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -6685,11 +6883,23 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 764318092}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 764318094}
+        m_TargetAssemblyTypeName: GameTile, Assembly-CSharp
+        m_MethodName: ConfirmMove
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &764318092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6728,6 +6938,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 764318089}
   m_CullTransparentMesh: 1
+--- !u!114 &764318094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 764318089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75426f40819fee648b81373973496258, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Id: 0
+  GameManager: {fileID: 0}
 --- !u!1 &768586777
 GameObject:
   m_ObjectHideFlags: 0
@@ -6882,7 +7106,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 774208375}
   m_OnClick:
     m_PersistentCalls:
@@ -6950,6 +7174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Id: 6
+  GameManager: {fileID: 0}
 --- !u!1 &803448714
 GameObject:
   m_ObjectHideFlags: 0
@@ -7113,7 +7338,10 @@ MonoBehaviour:
   StartTile: {fileID: 550367105}
   OccupiedHighlight: {fileID: 1041285566}
   Chosen: {fileID: 992050328}
+  GameManager: {fileID: 0}
+  TileManager: {fileID: 0}
   CurrentTile: -1
+  TilesGone: 0
 --- !u!1 &804055956
 GameObject:
   m_ObjectHideFlags: 0
@@ -7248,6 +7476,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Id: 0
+  GameManager: {fileID: 0}
 --- !u!1 &808532689
 GameObject:
   m_ObjectHideFlags: 0
@@ -7326,7 +7555,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 808532692}
   m_OnClick:
     m_PersistentCalls:
@@ -7394,6 +7623,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Id: 37
+  GameManager: {fileID: 0}
 --- !u!1 &829018830
 GameObject:
   m_ObjectHideFlags: 0
@@ -7472,7 +7702,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 829018833}
   m_OnClick:
     m_PersistentCalls:
@@ -7509,7 +7739,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 351da9402f1f88b44aa2cd16c179eb1b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7d7c2d34dcbba1b4db7fef5cc3c7becf, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7540,6 +7770,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Id: 20
+  GameManager: {fileID: 0}
 --- !u!1 &831101647
 GameObject:
   m_ObjectHideFlags: 0
@@ -7627,6 +7858,7 @@ GameObject:
   - component: {fileID: 849142992}
   - component: {fileID: 849142991}
   - component: {fileID: 849142990}
+  - component: {fileID: 849142993}
   m_Layer: 5
   m_Name: YellowEnd0
   m_TagString: YellowEnd
@@ -7676,9 +7908,9 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -7692,11 +7924,23 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 849142991}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 849142993}
+        m_TargetAssemblyTypeName: GameTile, Assembly-CSharp
+        m_MethodName: ConfirmMove
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &849142991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7735,6 +7979,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 849142988}
   m_CullTransparentMesh: 1
+--- !u!114 &849142993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 849142988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75426f40819fee648b81373973496258, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Id: 0
+  GameManager: {fileID: 0}
 --- !u!1 &855206052
 GameObject:
   m_ObjectHideFlags: 0
@@ -7813,7 +8071,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 855206055}
   m_OnClick:
     m_PersistentCalls:
@@ -7881,6 +8139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Id: 32
+  GameManager: {fileID: 0}
 --- !u!1 &880812780
 GameObject:
   m_ObjectHideFlags: 0
@@ -8034,7 +8293,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 881154115}
   m_OnClick:
     m_PersistentCalls:
@@ -8102,6 +8361,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Id: 36
+  GameManager: {fileID: 0}
 --- !u!1 &882490878
 GameObject:
   m_ObjectHideFlags: 0
@@ -8265,7 +8525,10 @@ MonoBehaviour:
   StartTile: {fileID: 319891913}
   OccupiedHighlight: {fileID: 1076470310}
   Chosen: {fileID: 628284958}
+  GameManager: {fileID: 0}
+  TileManager: {fileID: 0}
   CurrentTile: -1
+  TilesGone: 0
 --- !u!1 &910600102
 GameObject:
   m_ObjectHideFlags: 0
@@ -8606,7 +8869,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 934527934}
   m_OnClick:
     m_PersistentCalls:
@@ -8674,6 +8937,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Id: 11
+  GameManager: {fileID: 0}
 --- !u!1 &938200847
 GameObject:
   m_ObjectHideFlags: 0
@@ -8752,7 +9016,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 938200850}
   m_OnClick:
     m_PersistentCalls:
@@ -8820,6 +9084,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Id: 26
+  GameManager: {fileID: 0}
 --- !u!1 &946190960
 GameObject:
   m_ObjectHideFlags: 0
@@ -8937,7 +9202,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 950015278}
   m_OnClick:
     m_PersistentCalls:
@@ -8974,7 +9239,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 351da9402f1f88b44aa2cd16c179eb1b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 36ba91e872c6004438378568b4c4e95b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9005,6 +9270,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Id: 10
+  GameManager: {fileID: 0}
 --- !u!1 &960987221
 GameObject:
   m_ObjectHideFlags: 0
@@ -9243,7 +9509,10 @@ MonoBehaviour:
   StartTile: {fileID: 1776090710}
   OccupiedHighlight: {fileID: 1402049781}
   Chosen: {fileID: 428087901}
+  GameManager: {fileID: 0}
+  TileManager: {fileID: 0}
   CurrentTile: -1
+  TilesGone: 0
 --- !u!1 &968716574
 GameObject:
   m_ObjectHideFlags: 0
@@ -9322,7 +9591,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 968716577}
   m_OnClick:
     m_PersistentCalls:
@@ -9390,6 +9659,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Id: 31
+  GameManager: {fileID: 0}
 --- !u!1 &972816937
 GameObject:
   m_ObjectHideFlags: 0
@@ -9804,7 +10074,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1032940135}
   m_OnClick:
     m_PersistentCalls:
@@ -9872,6 +10142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Id: 27
+  GameManager: {fileID: 0}
 --- !u!1 &1037077519
 GameObject:
   m_ObjectHideFlags: 0
@@ -10082,6 +10353,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Id: 0
+  GameManager: {fileID: 0}
 --- !u!1 &1058250642
 GameObject:
   m_ObjectHideFlags: 0
@@ -10160,7 +10432,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1058250645}
   m_OnClick:
     m_PersistentCalls:
@@ -10228,6 +10500,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Id: 8
+  GameManager: {fileID: 0}
 --- !u!1 &1058668996
 GameObject:
   m_ObjectHideFlags: 0
@@ -10240,6 +10513,7 @@ GameObject:
   - component: {fileID: 1058669000}
   - component: {fileID: 1058668999}
   - component: {fileID: 1058668998}
+  - component: {fileID: 1058669001}
   m_Layer: 5
   m_Name: YellowEnd1
   m_TagString: YellowEnd
@@ -10289,9 +10563,9 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -10305,11 +10579,23 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1058668999}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1058669001}
+        m_TargetAssemblyTypeName: GameTile, Assembly-CSharp
+        m_MethodName: ConfirmMove
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1058668999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10348,6 +10634,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1058668996}
   m_CullTransparentMesh: 1
+--- !u!114 &1058669001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1058668996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75426f40819fee648b81373973496258, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Id: 1
+  GameManager: {fileID: 0}
 --- !u!1 &1065932171
 GameObject:
   m_ObjectHideFlags: 0
@@ -10426,7 +10726,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1065932174}
   m_OnClick:
     m_PersistentCalls:
@@ -10494,6 +10794,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Id: 13
+  GameManager: {fileID: 0}
 --- !u!1 &1075122662
 GameObject:
   m_ObjectHideFlags: 0
@@ -10635,7 +10936,59 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3a8c253d1dba9d4b9c48a5b4a136023, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GameFinished: 0
+  RoundFinished: 0
+  CurrentPlayerInfo: {fileID: 0}
+  RollInfo: {fileID: 0}
+  RollAgain: {fileID: 0}
+  ChosenPiece: {fileID: 0}
+  RollButton: {fileID: 0}
+  CurrentPlayer: 0
   TileManager: {fileID: 0}
+  RollCount: 0
+  CurrentRoll: 0
+  AllPieces: []
+  GamePlan:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!4 &1103661006
 Transform:
   m_ObjectHideFlags: 0
@@ -10663,6 +11016,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11851ba305277584aa9768144b64e047, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FieldTiles: []
+  MovePossible: 0
 --- !u!1 &1107147577
 GameObject:
   m_ObjectHideFlags: 0
@@ -10741,7 +11096,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1107147580}
   m_OnClick:
     m_PersistentCalls:
@@ -10809,6 +11164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Id: 9
+  GameManager: {fileID: 0}
 --- !u!1 &1139754402
 GameObject:
   m_ObjectHideFlags: 0
@@ -10821,6 +11177,7 @@ GameObject:
   - component: {fileID: 1139754406}
   - component: {fileID: 1139754405}
   - component: {fileID: 1139754404}
+  - component: {fileID: 1139754407}
   m_Layer: 5
   m_Name: BlueEnd0
   m_TagString: BlueEnd
@@ -10870,9 +11227,9 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -10890,7 +11247,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1139754405}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1139754407}
+        m_TargetAssemblyTypeName: GameTile, Assembly-CSharp
+        m_MethodName: ConfirmMove
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1139754405
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10929,6 +11298,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1139754402}
   m_CullTransparentMesh: 1
+--- !u!114 &1139754407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1139754402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75426f40819fee648b81373973496258, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Id: 0
+  GameManager: {fileID: 0}
 --- !u!1 &1140432042
 GameObject:
   m_ObjectHideFlags: 0
@@ -11007,7 +11390,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1140432045}
   m_OnClick:
     m_PersistentCalls:
@@ -11075,6 +11458,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Id: 14
+  GameManager: {fileID: 0}
 --- !u!1 &1165351035
 GameObject:
   m_ObjectHideFlags: 0
@@ -11221,7 +11605,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1169729000}
   m_OnClick:
     m_PersistentCalls:
@@ -11289,6 +11673,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Id: 17
+  GameManager: {fileID: 0}
 --- !u!1 &1200392870
 GameObject:
   m_ObjectHideFlags: 0
@@ -11376,6 +11761,7 @@ GameObject:
   - component: {fileID: 1202572640}
   - component: {fileID: 1202572639}
   - component: {fileID: 1202572638}
+  - component: {fileID: 1202572641}
   m_Layer: 5
   m_Name: BlueEnd1
   m_TagString: BlueEnd
@@ -11425,9 +11811,9 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -11445,7 +11831,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1202572639}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1202572641}
+        m_TargetAssemblyTypeName: GameTile, Assembly-CSharp
+        m_MethodName: ConfirmMove
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1202572639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11484,6 +11882,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1202572636}
   m_CullTransparentMesh: 1
+--- !u!114 &1202572641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1202572636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75426f40819fee648b81373973496258, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Id: 1
+  GameManager: {fileID: 0}
 --- !u!1 &1231386917
 GameObject:
   m_ObjectHideFlags: 0
@@ -11647,7 +12059,10 @@ MonoBehaviour:
   StartTile: {fileID: 1049453137}
   OccupiedHighlight: {fileID: 983825011}
   Chosen: {fileID: 143706060}
+  GameManager: {fileID: 0}
+  TileManager: {fileID: 0}
   CurrentTile: -1
+  TilesGone: 0
 --- !u!1 &1245668007
 GameObject:
   m_ObjectHideFlags: 0
@@ -11894,6 +12309,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Id: 0
+  GameManager: {fileID: 0}
 --- !u!1 &1307709977
 GameObject:
   m_ObjectHideFlags: 0
@@ -12246,7 +12662,10 @@ MonoBehaviour:
   StartTile: {fileID: 372340776}
   OccupiedHighlight: {fileID: 1086828725}
   Chosen: {fileID: 1009808420}
+  GameManager: {fileID: 0}
+  TileManager: {fileID: 0}
   CurrentTile: -1
+  TilesGone: 0
 --- !u!1 &1356399581
 GameObject:
   m_ObjectHideFlags: 0
@@ -12410,7 +12829,10 @@ MonoBehaviour:
   StartTile: {fileID: 1628617137}
   OccupiedHighlight: {fileID: 768586777}
   Chosen: {fileID: 238870414}
+  GameManager: {fileID: 0}
+  TileManager: {fileID: 0}
   CurrentTile: -1
+  TilesGone: 0
 --- !u!1 &1360072767
 GameObject:
   m_ObjectHideFlags: 0
@@ -12423,6 +12845,7 @@ GameObject:
   - component: {fileID: 1360072771}
   - component: {fileID: 1360072770}
   - component: {fileID: 1360072769}
+  - component: {fileID: 1360072772}
   m_Layer: 5
   m_Name: BlueEnd2
   m_TagString: BlueEnd
@@ -12472,9 +12895,9 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -12492,7 +12915,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1360072770}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1360072772}
+        m_TargetAssemblyTypeName: GameTile, Assembly-CSharp
+        m_MethodName: ConfirmMove
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1360072770
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12531,6 +12966,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1360072767}
   m_CullTransparentMesh: 1
+--- !u!114 &1360072772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1360072767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75426f40819fee648b81373973496258, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Id: 2
+  GameManager: {fileID: 0}
 --- !u!1 &1367519709
 GameObject:
   m_ObjectHideFlags: 0
@@ -12543,6 +12992,7 @@ GameObject:
   - component: {fileID: 1367519713}
   - component: {fileID: 1367519712}
   - component: {fileID: 1367519711}
+  - component: {fileID: 1367519714}
   m_Layer: 5
   m_Name: YellowEnd3
   m_TagString: YellowEnd
@@ -12592,9 +13042,9 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -12608,11 +13058,23 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1367519712}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1367519714}
+        m_TargetAssemblyTypeName: GameTile, Assembly-CSharp
+        m_MethodName: ConfirmMove
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1367519712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12651,6 +13113,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1367519709}
   m_CullTransparentMesh: 1
+--- !u!114 &1367519714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367519709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75426f40819fee648b81373973496258, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Id: 3
+  GameManager: {fileID: 0}
 --- !u!1 &1372878642
 GameObject:
   m_ObjectHideFlags: 0
@@ -12804,7 +13280,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1391626270}
   m_OnClick:
     m_PersistentCalls:
@@ -12872,6 +13348,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Id: 24
+  GameManager: {fileID: 0}
 --- !u!1 &1399102244
 GameObject:
   m_ObjectHideFlags: 0
@@ -12884,6 +13361,7 @@ GameObject:
   - component: {fileID: 1399102248}
   - component: {fileID: 1399102247}
   - component: {fileID: 1399102246}
+  - component: {fileID: 1399102249}
   m_Layer: 5
   m_Name: RedEnd1
   m_TagString: RedEnd
@@ -12933,9 +13411,9 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -12949,11 +13427,23 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1399102247}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1399102249}
+        m_TargetAssemblyTypeName: GameTile, Assembly-CSharp
+        m_MethodName: ConfirmMove
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1399102247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12992,6 +13482,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1399102244}
   m_CullTransparentMesh: 1
+--- !u!114 &1399102249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1399102244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75426f40819fee648b81373973496258, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Id: 1
+  GameManager: {fileID: 0}
 --- !u!1 &1402049781
 GameObject:
   m_ObjectHideFlags: 0
@@ -13241,7 +13745,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1414327639}
   m_OnClick:
     m_PersistentCalls:
@@ -13309,6 +13813,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Id: 21
+  GameManager: {fileID: 0}
 --- !u!1 &1427163603
 GameObject:
   m_ObjectHideFlags: 0
@@ -13426,7 +13931,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1444612128}
   m_OnClick:
     m_PersistentCalls:
@@ -13494,6 +13999,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Id: 19
+  GameManager: {fileID: 0}
 --- !u!1 &1472078870
 GameObject:
   m_ObjectHideFlags: 0
@@ -13657,7 +14163,10 @@ MonoBehaviour:
   StartTile: {fileID: 2097114499}
   OccupiedHighlight: {fileID: 1690254622}
   Chosen: {fileID: 1784232775}
+  GameManager: {fileID: 0}
+  TileManager: {fileID: 0}
   CurrentTile: -1
+  TilesGone: 0
 --- !u!1 &1473970994
 GameObject:
   m_ObjectHideFlags: 0
@@ -13867,6 +14376,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Id: 0
+  GameManager: {fileID: 0}
 --- !u!1 &1504839238
 GameObject:
   m_ObjectHideFlags: 0
@@ -13945,7 +14455,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1504839241}
   m_OnClick:
     m_PersistentCalls:
@@ -14013,6 +14523,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Id: 16
+  GameManager: {fileID: 0}
 --- !u!1 &1536367691
 GameObject:
   m_ObjectHideFlags: 0
@@ -14147,6 +14658,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Id: 0
+  GameManager: {fileID: 0}
 --- !u!1 &1545027716
 GameObject:
   m_ObjectHideFlags: 0
@@ -14394,7 +14906,10 @@ MonoBehaviour:
   StartTile: {fileID: 1982532148}
   OccupiedHighlight: {fileID: 1004314221}
   Chosen: {fileID: 145144620}
+  GameManager: {fileID: 0}
+  TileManager: {fileID: 0}
   CurrentTile: -1
+  TilesGone: 0
 --- !u!1 &1611248020
 GameObject:
   m_ObjectHideFlags: 0
@@ -14473,7 +14988,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1611248023}
   m_OnClick:
     m_PersistentCalls:
@@ -14541,6 +15056,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Id: 29
+  GameManager: {fileID: 0}
 --- !u!1 &1628617137
 GameObject:
   m_ObjectHideFlags: 0
@@ -14675,6 +15191,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Id: 0
+  GameManager: {fileID: 0}
 --- !u!1 &1629286590
 GameObject:
   m_ObjectHideFlags: 0
@@ -14971,6 +15488,7 @@ GameObject:
   - component: {fileID: 1651683169}
   - component: {fileID: 1651683168}
   - component: {fileID: 1651683167}
+  - component: {fileID: 1651683170}
   m_Layer: 5
   m_Name: BlueEnd3
   m_TagString: BlueEnd
@@ -15020,9 +15538,9 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -15040,7 +15558,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1651683168}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1651683170}
+        m_TargetAssemblyTypeName: GameTile, Assembly-CSharp
+        m_MethodName: ConfirmMove
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1651683168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15079,6 +15609,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1651683165}
   m_CullTransparentMesh: 1
+--- !u!114 &1651683170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651683165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75426f40819fee648b81373973496258, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Id: 3
+  GameManager: {fileID: 0}
 --- !u!1 &1675920368
 GameObject:
   m_ObjectHideFlags: 0
@@ -15586,6 +16130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Id: 0
+  GameManager: {fileID: 0}
 --- !u!1 &1776907579
 GameObject:
   m_ObjectHideFlags: 0
@@ -15974,7 +16519,10 @@ MonoBehaviour:
   StartTile: {fileID: 239244522}
   OccupiedHighlight: {fileID: 921277290}
   Chosen: {fileID: 972816937}
+  GameManager: {fileID: 0}
+  TileManager: {fileID: 0}
   CurrentTile: -1
+  TilesGone: 0
 --- !u!1 &1879672519
 GameObject:
   m_ObjectHideFlags: 0
@@ -16186,7 +16734,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1883096731}
   m_OnClick:
     m_PersistentCalls:
@@ -16254,6 +16802,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Id: 39
+  GameManager: {fileID: 0}
 --- !u!1 &1903295528
 GameObject:
   m_ObjectHideFlags: 0
@@ -16332,7 +16881,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1903295531}
   m_OnClick:
     m_PersistentCalls:
@@ -16400,6 +16949,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Id: 12
+  GameManager: {fileID: 0}
 --- !u!1 &1921912690
 GameObject:
   m_ObjectHideFlags: 0
@@ -16515,7 +17065,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1963630418}
   m_OnClick:
     m_PersistentCalls:
@@ -16583,6 +17133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Id: 38
+  GameManager: {fileID: 0}
 --- !u!1 &1982532148
 GameObject:
   m_ObjectHideFlags: 0
@@ -16717,6 +17268,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Id: 0
+  GameManager: {fileID: 0}
 --- !u!1 &1982963671
 GameObject:
   m_ObjectHideFlags: 0
@@ -16795,7 +17347,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1982963674}
   m_OnClick:
     m_PersistentCalls:
@@ -16863,6 +17415,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Id: 23
+  GameManager: {fileID: 0}
 --- !u!1 &1987329347
 GameObject:
   m_ObjectHideFlags: 0
@@ -16997,6 +17550,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Id: 0
+  GameManager: {fileID: 0}
 --- !u!1 &1991717917
 GameObject:
   m_ObjectHideFlags: 0
@@ -17321,7 +17875,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 2012865976}
   m_OnClick:
     m_PersistentCalls:
@@ -17389,6 +17943,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Id: 22
+  GameManager: {fileID: 0}
 --- !u!1 &2027856992
 GameObject:
   m_ObjectHideFlags: 0
@@ -17467,7 +18022,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 2027856995}
   m_OnClick:
     m_PersistentCalls:
@@ -17504,7 +18059,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 351da9402f1f88b44aa2cd16c179eb1b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5964861a5ac99944b91bc815bff3bf91, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -17535,6 +18090,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Id: 0
+  GameManager: {fileID: 0}
 --- !u!1 &2063425806
 GameObject:
   m_ObjectHideFlags: 0
@@ -17613,7 +18169,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 2063425809}
   m_OnClick:
     m_PersistentCalls:
@@ -17681,6 +18237,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Id: 15
+  GameManager: {fileID: 0}
 --- !u!1 &2069338227
 GameObject:
   m_ObjectHideFlags: 0
@@ -17815,6 +18372,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Id: 0
+  GameManager: {fileID: 0}
 --- !u!1 &2075916163
 GameObject:
   m_ObjectHideFlags: 0
@@ -17902,6 +18460,7 @@ GameObject:
   - component: {fileID: 2078077251}
   - component: {fileID: 2078077250}
   - component: {fileID: 2078077249}
+  - component: {fileID: 2078077252}
   m_Layer: 5
   m_Name: YellowEnd2
   m_TagString: YellowEnd
@@ -17951,9 +18510,9 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -17967,11 +18526,23 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 2078077250}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2078077252}
+        m_TargetAssemblyTypeName: GameTile, Assembly-CSharp
+        m_MethodName: ConfirmMove
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2078077250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18010,6 +18581,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2078077247}
   m_CullTransparentMesh: 1
+--- !u!114 &2078077252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2078077247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75426f40819fee648b81373973496258, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Id: 2
+  GameManager: {fileID: 0}
 --- !u!1 &2079967281
 GameObject:
   m_ObjectHideFlags: 0
@@ -18294,6 +18879,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Id: 0
+  GameManager: {fileID: 0}
 --- !u!1 &2108738117
 GameObject:
   m_ObjectHideFlags: 0
@@ -18562,6 +19148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Id: 0
+  GameManager: {fileID: 0}
 --- !u!1 &2146087806
 GameObject:
   m_ObjectHideFlags: 0
@@ -18725,7 +19312,10 @@ MonoBehaviour:
   StartTile: {fileID: 1290391930}
   OccupiedHighlight: {fileID: 984864605}
   Chosen: {fileID: 32687957}
+  GameManager: {fileID: 0}
+  TileManager: {fileID: 0}
   CurrentTile: -1
+  TilesGone: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

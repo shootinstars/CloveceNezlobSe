@@ -12,31 +12,33 @@ using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
-    public static bool GameFinished = false;
-    public static bool RoundFinished = false;
+    public bool GameFinished = false;
+    public bool RoundFinished = false;
 
-    public static TMP_Text CurrentPlayerInfo;
-    public static TMP_Text RollInfo;
+    public TMP_Text CurrentPlayerInfo;
+    public TMP_Text RollInfo;
 
-    public static GameObject RollAgain;
-    public static GameObject ChosenPiece;
-    public static GameObject RollButton;
+    public GameObject RollAgain;
+    public GameObject ChosenPiece;
+    public GameObject RollButton;
     
 
-    public static PieceColor CurrentPlayer;
+    public PieceColor CurrentPlayer;
+    public TileManager TileManager;
 
-    public static int RollCount;
-    public static int CurrentRoll;
+    public int RollCount;
+    public int CurrentRoll;
 
-    public static GameObject[] AllPieces;
-    public static Dictionary<PieceColor, GameObject[]> Pieces = new();
-    public static Dictionary<PieceColor, int> ActivePiecesCount = new();
-    public static GameObject[] GamePlan = new GameObject[40];
+    public GameObject[] AllPieces;
+    public Dictionary<PieceColor, GameObject[]> Pieces = new();
+    public Dictionary<PieceColor, int> ActivePiecesCount = new();
+    public GameObject[] GamePlan = new GameObject[40];
 
 
     // Start is called before the first frame update
     void Start()
     {
+        TileManager = GetComponent<TileManager>();
         CurrentPlayerInfo = GameObject.Find("CurrentPlayerInfo").GetComponent<TMP_Text>();
         RollInfo = GameObject.Find("RollInfo").GetComponent<TMP_Text>();
         RollAgain = GameObject.Find("RollAgain");
@@ -56,6 +58,7 @@ public class GameManager : MonoBehaviour
 
     public void Roll()
     {
+        TurnPiecesOn(CurrentPlayer);
         var roll = Random.Range(1, 7);
         RollInfo.text = "Rolled:" + roll;
         RollCount++;
@@ -83,7 +86,7 @@ public class GameManager : MonoBehaviour
         CurrentRoll = roll;
     }
 
-    public static void EndRound(PieceColor color)
+    public void EndRound(PieceColor color)
     {
         TurnPiecesOff(color);
         RoundFinished = true;
@@ -99,7 +102,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator EndRoundCoroutine()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(0.5f);
         EndRound(CurrentPlayer);
     }
 
@@ -111,7 +114,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private static void TurnPiecesOn(PieceColor color)
+    private void TurnPiecesOn(PieceColor color)
     {
         foreach (var piece in Pieces[color])
         {
@@ -119,11 +122,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private static void TurnPiecesOff(PieceColor color)
+    private void TurnPiecesOff(PieceColor color)
     {
         foreach (var piece in Pieces[color])
         {
             piece.GetComponent<Button>().interactable = false;
+            piece.GetComponent<Piece>().Chosen.SetActive(false);
         }
     }
 
@@ -146,47 +150,72 @@ public class GameManager : MonoBehaviour
         RoundFinished = false;
         CurrentPlayer = color;
         RollCount = 0;
-        TurnPiecesOn(color);
         CurrentPlayerInfo.text = "Current turn: " + color;
         yield return new WaitUntil(() => RoundFinished);
     }
 
-    public static GameObject[] GetAllPieces()
+    public GameObject[] GetAllPieces()
     {
         return AllPieces;
     }
 
-    public static void Move(int newPosition)
+    public void UpdateInfoBeforeMove(Piece piece)
+    {
+        if (piece.CurrentTile == -1)
+        {
+            ActivePiecesCount[piece.Color] += 1;
+            piece.TilesGone = 1;
+        }
+        else
+        {
+            GamePlan[piece.CurrentTile] = null;
+            piece.TilesGone += CurrentRoll;
+        }
+    }
+
+    public void Move(int newPosition)
     {
         Debug.Log("blue Pieces on board:" + ActivePiecesCount[PieceColor.Blue]);
         Debug.Log(CurrentRoll);
         var pieceComp = ChosenPiece.GetComponent<Piece>();
-        if (pieceComp.CurrentTile == -1)
+        UpdateInfoBeforeMove(pieceComp);
+        if (pieceComp.TilesGone > 40)
         {
-            ActivePiecesCount[pieceComp.Color] += 1;
+            MoveToEnd(pieceComp, newPosition);
         }
         else
         {
-            GamePlan[pieceComp.CurrentTile] = null;
+            MoveOnBoard(pieceComp, newPosition);
         }
-        ChosenPiece.GetComponent<Piece>().CurrentTile = newPosition;
+        TileManager.UnselectHighlightedMoves();
+        if (CurrentRoll != 6 && (ActivePiecesCount[pieceComp.Color] != 0))
+        {
+
+            StartCoroutine(EndRoundCoroutine());
+        } else
+        {
+            RollButton.GetComponent<Button>().interactable = true;
+            RollAgain.SetActive(true);
+        }
+        Debug.Log("Moved piece has done " + pieceComp.TilesGone +  " moves");
+    }
+
+    public void MoveOnBoard(Piece piece, int newPosition)
+    {
+        piece.CurrentTile = newPosition;
         if (GamePlan[newPosition] != null)
         {
             GamePlan[newPosition].GetComponent<Piece>().ReturnHome();
         }
         ChosenPiece.transform.position = TileManager.FieldTiles[newPosition].transform.position;
         GamePlan[newPosition] = ChosenPiece;
-        TileManager.UnselectHighlightedMoves();
-        if (CurrentRoll != 6 && (ActivePiecesCount[pieceComp.Color] != 0))
-        {
-            EndRound(pieceComp.Color);
-        } else
-        {
-            RollButton.GetComponent<Button>().interactable = true;
-            RollAgain.SetActive(true);
-        }
+    }
 
-        Debug.Log("Move done, new position is: " + newPosition);
+    public void MoveToEnd(Piece piece, int endPosition)
+    {
+        piece.CurrentTile = 40 + endPosition;
+        TileManager.EndFields[piece.Color][endPosition] = ChosenPiece;
+        ChosenPiece.transform.position = TileManager.EndTiles[piece.Color][endPosition].transform.position;
     }
 
 }

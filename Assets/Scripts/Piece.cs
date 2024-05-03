@@ -20,13 +20,18 @@ public class Piece : MonoBehaviour
     [SerializeField] public GameObject StartTile;
     [SerializeField] public GameObject OccupiedHighlight;
     [SerializeField] public GameObject Chosen;
+    public GameManager GameManager;
+    public TileManager TileManager;
 
 
     public int CurrentTile = -1;
+    public int TilesGone = 0;
 
     // Start is called before the first frame update
     void Start()
     {
+        GameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        TileManager = GameObject.Find("GameManager").GetComponent<TileManager>();
         TurnHighlightOff();
     }
 
@@ -36,10 +41,6 @@ public class Piece : MonoBehaviour
         
     }
 
-    public int GetCurrentTile()
-    {
-        return CurrentTile;
-    }
 
     public void ReturnHome()
     {
@@ -59,11 +60,6 @@ public class Piece : MonoBehaviour
         OccupiedHighlight.SetActive(false);
     }
 
-    public PieceColor GetColor()
-    {
-        return Color;
-    }
-
     public void GetKickedOut()
     {
         if (OccupiedHighlight.activeSelf)
@@ -79,7 +75,7 @@ public class Piece : MonoBehaviour
             Debug.Log(CurrentTile);
             GameManager.ChosenPiece = gameObject;
             TileManager.UnselectHighlightedMoves();
-            TileManager.HighlightPossibleMove(this, this.Color, GameManager.CurrentRoll);
+            TileManager.HighlightPossibleMove(this, Color, GameManager.CurrentRoll);
         }
     }
 }
