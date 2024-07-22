@@ -26,6 +26,7 @@ public class Piece : MonoBehaviour
 
     public int CurrentTile = -1;
     public int TilesGone = 0;
+    public bool Finished = false;
 
     // Start is called before the first frame update
     void Start()
@@ -35,11 +36,6 @@ public class Piece : MonoBehaviour
         TurnHighlightOff();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
 
     public void ReturnHome()
@@ -47,6 +43,7 @@ public class Piece : MonoBehaviour
         gameObject.transform.position = StartTile.transform.position;
         GameManager.ActivePiecesCount[Color] -= 1;
         CurrentTile = -1;
+        TilesGone = 0;
     }
 
     public void TurnHighlightOn()
@@ -72,7 +69,6 @@ public class Piece : MonoBehaviour
     {
         if (!OccupiedHighlight.activeSelf)
         {
-            Debug.Log(CurrentTile);
             GameManager.ChosenPiece = gameObject;
             TileManager.UnselectHighlightedMoves();
             TileManager.HighlightPossibleMove(this, Color, GameManager.CurrentRoll);

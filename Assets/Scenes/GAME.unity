@@ -245,14 +245,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.39607847, b: 0.8941177, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1090409a7010a9a4d9f55e5a49b549c0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5ee9eaa1073655f4cb183c788e146e73, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -290,6 +290,7 @@ MonoBehaviour:
   TileManager: {fileID: 0}
   CurrentTile: -1
   TilesGone: 0
+  Finished: 0
 --- !u!1 &18136609
 GameObject:
   m_ObjectHideFlags: 0
@@ -699,6 +700,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 5
   GameManager: {fileID: 0}
+  BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &53189386
 GameObject:
   m_ObjectHideFlags: 0
@@ -807,14 +809,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6489a1546527acf409a8ae553022ff28, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 351da9402f1f88b44aa2cd16c179eb1b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -846,6 +848,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 2
   GameManager: {fileID: 0}
+  BaseColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &56912759
 GameObject:
   m_ObjectHideFlags: 0
@@ -1118,14 +1121,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9960785, g: 0.8235295, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2f30420e7aa085b4eaeefec5f4a7f7ab, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5ee9eaa1073655f4cb183c788e146e73, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1163,6 +1166,7 @@ MonoBehaviour:
   TileManager: {fileID: 0}
   CurrentTile: -1
   TilesGone: 0
+  Finished: 0
 --- !u!1 &90811961
 GameObject:
   m_ObjectHideFlags: 0
@@ -1346,14 +1350,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9921569, g: 0.8235295, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4de29711a7e223d409c0646801b3723d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e762792bba43a5642b1d36b4c40982f1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1385,6 +1389,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 30
   GameManager: {fileID: 0}
+  BaseColor: {r: 0.9921569, g: 0.8235295, b: 0, a: 1}
 --- !u!1 &143706060
 GameObject:
   m_ObjectHideFlags: 0
@@ -1657,14 +1662,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f6b882324f82b1647bbbb9ccff9b1b3c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5ee9eaa1073655f4cb183c788e146e73, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1702,6 +1707,7 @@ MonoBehaviour:
   TileManager: {fileID: 0}
   CurrentTile: -1
   TilesGone: 0
+  Finished: 0
 --- !u!1 &162431080
 GameObject:
   m_ObjectHideFlags: 0
@@ -1849,6 +1855,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 25
   GameManager: {fileID: 0}
+  BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &204862949
 GameObject:
   m_ObjectHideFlags: 0
@@ -1957,14 +1964,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6489a1546527acf409a8ae553022ff28, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 351da9402f1f88b44aa2cd16c179eb1b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1996,6 +2003,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 3
   GameManager: {fileID: 0}
+  BaseColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &238870414
 GameObject:
   m_ObjectHideFlags: 0
@@ -2184,7 +2192,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 239244525}
   m_OnClick:
     m_PersistentCalls:
@@ -2241,6 +2249,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 0
   GameManager: {fileID: 0}
+  BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &313208135
 GameObject:
   m_ObjectHideFlags: 0
@@ -2349,14 +2358,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.3019608, g: 0.8235295, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2dd73120b047b9d4ab9bda1d226b57b7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 351da9402f1f88b44aa2cd16c179eb1b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2388,6 +2397,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 0
   GameManager: {fileID: 0}
+  BaseColor: {r: 0.3019608, g: 0.8235295, b: 0, a: 1}
 --- !u!1 &317967323
 GameObject:
   m_ObjectHideFlags: 0
@@ -2496,14 +2506,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.3019608, g: 0.8235295, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2dd73120b047b9d4ab9bda1d226b57b7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 351da9402f1f88b44aa2cd16c179eb1b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2535,6 +2545,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 1
   GameManager: {fileID: 0}
+  BaseColor: {r: 0.3019608, g: 0.8235295, b: 0, a: 1}
 --- !u!1 &319891913
 GameObject:
   m_ObjectHideFlags: 0
@@ -2613,7 +2624,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 319891916}
   m_OnClick:
     m_PersistentCalls:
@@ -2670,6 +2681,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 0
   GameManager: {fileID: 0}
+  BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &332868873
 GameObject:
   m_ObjectHideFlags: 0
@@ -2817,6 +2829,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 2
   GameManager: {fileID: 0}
+  BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &347189453
 GameObject:
   m_ObjectHideFlags: 0
@@ -3039,6 +3052,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 1
   GameManager: {fileID: 0}
+  BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &353088550
 GameObject:
   m_ObjectHideFlags: 0
@@ -3261,6 +3275,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 7
   GameManager: {fileID: 0}
+  BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &372340776
 GameObject:
   m_ObjectHideFlags: 0
@@ -3339,7 +3354,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 372340779}
   m_OnClick:
     m_PersistentCalls:
@@ -3396,6 +3411,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 0
   GameManager: {fileID: 0}
+  BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &380377715
 GameObject:
   m_ObjectHideFlags: 0
@@ -3543,6 +3559,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 3
   GameManager: {fileID: 0}
+  BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &390903090
 GameObject:
   m_ObjectHideFlags: 0
@@ -3665,14 +3682,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.39607847, b: 0.8941177, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1090409a7010a9a4d9f55e5a49b549c0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5ee9eaa1073655f4cb183c788e146e73, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3703,13 +3720,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Color: 0
-  StartTile: {fileID: 390903090}
+  StartTile: {fileID: 1987329347}
   OccupiedHighlight: {fileID: 1256368051}
   Chosen: {fileID: 1372878642}
   GameManager: {fileID: 0}
   TileManager: {fileID: 0}
   CurrentTile: -1
   TilesGone: 0
+  Finished: 0
 --- !u!1 &391270117
 GameObject:
   m_ObjectHideFlags: 0
@@ -3853,14 +3871,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.3019608, g: 0.8235295, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2dd73120b047b9d4ab9bda1d226b57b7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 351da9402f1f88b44aa2cd16c179eb1b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3892,6 +3910,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 3
   GameManager: {fileID: 0}
+  BaseColor: {r: 0.3019608, g: 0.8235295, b: 0, a: 1}
 --- !u!1 &424799550
 GameObject:
   m_ObjectHideFlags: 0
@@ -4289,6 +4308,7 @@ RectTransform:
   - {fileID: 540671317}
   - {fileID: 239084288}
   - {fileID: 1879672520}
+  - {fileID: 844229822}
   - {fileID: 2108738118}
   - {fileID: 1407548370}
   - {fileID: 1649709926}
@@ -4446,6 +4466,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 33
   GameManager: {fileID: 0}
+  BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &447702773
 GameObject:
   m_ObjectHideFlags: 0
@@ -4568,14 +4589,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.39607847, b: 0.8941177, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1090409a7010a9a4d9f55e5a49b549c0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5ee9eaa1073655f4cb183c788e146e73, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4613,6 +4634,7 @@ MonoBehaviour:
   TileManager: {fileID: 0}
   CurrentTile: -1
   TilesGone: 0
+  Finished: 0
 --- !u!1 &448651294
 GameObject:
   m_ObjectHideFlags: 0
@@ -4910,6 +4932,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 34
   GameManager: {fileID: 0}
+  BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &451560468
 GameObject:
   m_ObjectHideFlags: 0
@@ -5167,6 +5190,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 18
   GameManager: {fileID: 0}
+  BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -5420,7 +5444,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 550367108}
   m_OnClick:
     m_PersistentCalls:
@@ -5477,6 +5501,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 0
   GameManager: {fileID: 0}
+  BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &554387108
 GameObject:
   m_ObjectHideFlags: 0
@@ -5699,6 +5724,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 4
   GameManager: {fileID: 0}
+  BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &608789353
 GameObject:
   m_ObjectHideFlags: 0
@@ -6017,14 +6043,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.3019608, g: 0.8235295, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4b8156b07a592f744b74a23a8bde6304, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5ee9eaa1073655f4cb183c788e146e73, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6062,6 +6088,7 @@ MonoBehaviour:
   TileManager: {fileID: 0}
   CurrentTile: -1
   TilesGone: 0
+  Finished: 0
 --- !u!1 &680935982
 GameObject:
   m_ObjectHideFlags: 0
@@ -6245,14 +6272,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.3019608, g: 0.8235295, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2dd73120b047b9d4ab9bda1d226b57b7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 351da9402f1f88b44aa2cd16c179eb1b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6284,6 +6311,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 2
   GameManager: {fileID: 0}
+  BaseColor: {r: 0.3019608, g: 0.8235295, b: 0, a: 1}
 --- !u!1 &695133393
 GameObject:
   m_ObjectHideFlags: 0
@@ -6545,6 +6573,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 35
   GameManager: {fileID: 0}
+  BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &727070273
 GameObject:
   m_ObjectHideFlags: 0
@@ -6727,6 +6756,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 28
   GameManager: {fileID: 0}
+  BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &735695364
 GameObject:
   m_ObjectHideFlags: 0
@@ -6913,14 +6943,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6489a1546527acf409a8ae553022ff28, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 351da9402f1f88b44aa2cd16c179eb1b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6952,6 +6982,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 0
   GameManager: {fileID: 0}
+  BaseColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &768586777
 GameObject:
   m_ObjectHideFlags: 0
@@ -7175,6 +7206,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 6
   GameManager: {fileID: 0}
+  BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &803448714
 GameObject:
   m_ObjectHideFlags: 0
@@ -7297,14 +7329,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.3019608, g: 0.8235295, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4b8156b07a592f744b74a23a8bde6304, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5ee9eaa1073655f4cb183c788e146e73, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7342,6 +7374,7 @@ MonoBehaviour:
   TileManager: {fileID: 0}
   CurrentTile: -1
   TilesGone: 0
+  Finished: 0
 --- !u!1 &804055956
 GameObject:
   m_ObjectHideFlags: 0
@@ -7420,7 +7453,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 804055959}
   m_OnClick:
     m_PersistentCalls:
@@ -7477,6 +7510,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 0
   GameManager: {fileID: 0}
+  BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &808532689
 GameObject:
   m_ObjectHideFlags: 0
@@ -7624,6 +7658,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 37
   GameManager: {fileID: 0}
+  BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &829018830
 GameObject:
   m_ObjectHideFlags: 0
@@ -7732,14 +7767,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.3019608, g: 0.8235295, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7d7c2d34dcbba1b4db7fef5cc3c7becf, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e762792bba43a5642b1d36b4c40982f1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7771,6 +7806,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 20
   GameManager: {fileID: 0}
+  BaseColor: {r: 0.3019608, g: 0.8235295, b: 0, a: 1}
 --- !u!1 &831101647
 GameObject:
   m_ObjectHideFlags: 0
@@ -7845,6 +7881,139 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 831101647}
+  m_CullTransparentMesh: 1
+--- !u!1 &844229821
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 844229822}
+  - component: {fileID: 844229825}
+  - component: {fileID: 844229824}
+  - component: {fileID: 844229823}
+  m_Layer: 5
+  m_Name: EndTurnButton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &844229822
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 844229821}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1925968054}
+  m_Father: {fileID: 444267312}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 763.73, y: -90.87}
+  m_SizeDelta: {x: 265.28, y: 49.74}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &844229823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 844229821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 844229824}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1103661005}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: EndRound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &844229824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 844229821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &844229825
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 844229821}
   m_CullTransparentMesh: 1
 --- !u!1 &849142988
 GameObject:
@@ -7954,14 +8123,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9921569, g: 0.8235295, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f9cd88d1534bd09458a011d184c80cf3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 351da9402f1f88b44aa2cd16c179eb1b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7993,6 +8162,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 0
   GameManager: {fileID: 0}
+  BaseColor: {r: 0.9921569, g: 0.8235295, b: 0, a: 1}
 --- !u!1 &855206052
 GameObject:
   m_ObjectHideFlags: 0
@@ -8140,6 +8310,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 32
   GameManager: {fileID: 0}
+  BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &880812780
 GameObject:
   m_ObjectHideFlags: 0
@@ -8362,6 +8533,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 36
   GameManager: {fileID: 0}
+  BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &882490878
 GameObject:
   m_ObjectHideFlags: 0
@@ -8484,14 +8656,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9960785, g: 0.8235295, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2f30420e7aa085b4eaeefec5f4a7f7ab, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5ee9eaa1073655f4cb183c788e146e73, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8529,6 +8701,7 @@ MonoBehaviour:
   TileManager: {fileID: 0}
   CurrentTile: -1
   TilesGone: 0
+  Finished: 0
 --- !u!1 &910600102
 GameObject:
   m_ObjectHideFlags: 0
@@ -8938,6 +9111,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 11
   GameManager: {fileID: 0}
+  BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &938200847
 GameObject:
   m_ObjectHideFlags: 0
@@ -9085,6 +9259,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 26
   GameManager: {fileID: 0}
+  BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &946190960
 GameObject:
   m_ObjectHideFlags: 0
@@ -9232,14 +9407,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 36ba91e872c6004438378568b4c4e95b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e762792bba43a5642b1d36b4c40982f1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9271,6 +9446,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 10
   GameManager: {fileID: 0}
+  BaseColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &960987221
 GameObject:
   m_ObjectHideFlags: 0
@@ -9468,14 +9644,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f6b882324f82b1647bbbb9ccff9b1b3c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5ee9eaa1073655f4cb183c788e146e73, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9513,6 +9689,7 @@ MonoBehaviour:
   TileManager: {fileID: 0}
   CurrentTile: -1
   TilesGone: 0
+  Finished: 0
 --- !u!1 &968716574
 GameObject:
   m_ObjectHideFlags: 0
@@ -9660,6 +9837,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 31
   GameManager: {fileID: 0}
+  BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &972816937
 GameObject:
   m_ObjectHideFlags: 0
@@ -10143,6 +10321,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 27
   GameManager: {fileID: 0}
+  BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1037077519
 GameObject:
   m_ObjectHideFlags: 0
@@ -10297,7 +10476,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1049453140}
   m_OnClick:
     m_PersistentCalls:
@@ -10354,6 +10533,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 0
   GameManager: {fileID: 0}
+  BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1058250642
 GameObject:
   m_ObjectHideFlags: 0
@@ -10501,6 +10681,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 8
   GameManager: {fileID: 0}
+  BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1058668996
 GameObject:
   m_ObjectHideFlags: 0
@@ -10609,14 +10790,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9921569, g: 0.8235295, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f9cd88d1534bd09458a011d184c80cf3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 351da9402f1f88b44aa2cd16c179eb1b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -10648,6 +10829,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 1
   GameManager: {fileID: 0}
+  BaseColor: {r: 0.9921569, g: 0.8235295, b: 0, a: 1}
 --- !u!1 &1065932171
 GameObject:
   m_ObjectHideFlags: 0
@@ -10795,6 +10977,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 13
   GameManager: {fileID: 0}
+  BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1075122662
 GameObject:
   m_ObjectHideFlags: 0
@@ -10938,11 +11121,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GameFinished: 0
   RoundFinished: 0
-  CurrentPlayerInfo: {fileID: 0}
-  RollInfo: {fileID: 0}
-  RollAgain: {fileID: 0}
+  ShouldSkip: 1
+  CurrentPlayerInfo: {fileID: 1649709927}
+  RollInfo: {fileID: 1407548371}
+  RollAgain: {fileID: 2108738117}
   ChosenPiece: {fileID: 0}
-  RollButton: {fileID: 0}
+  RollButton: {fileID: 1879672519}
+  EndTurnButton: {fileID: 844229821}
   CurrentPlayer: 0
   TileManager: {fileID: 0}
   RollCount: 0
@@ -11165,6 +11350,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 9
   GameManager: {fileID: 0}
+  BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1139754402
 GameObject:
   m_ObjectHideFlags: 0
@@ -11243,7 +11429,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1139754405}
   m_OnClick:
     m_PersistentCalls:
@@ -11273,14 +11459,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.39607847, b: 0.8941177, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f883867643186a74894ef25a3812b77d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 351da9402f1f88b44aa2cd16c179eb1b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -11312,6 +11498,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 0
   GameManager: {fileID: 0}
+  BaseColor: {r: 0, g: 0.39607847, b: 0.8941177, a: 1}
 --- !u!1 &1140432042
 GameObject:
   m_ObjectHideFlags: 0
@@ -11459,6 +11646,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 14
   GameManager: {fileID: 0}
+  BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1165351035
 GameObject:
   m_ObjectHideFlags: 0
@@ -11674,6 +11862,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 17
   GameManager: {fileID: 0}
+  BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1200392870
 GameObject:
   m_ObjectHideFlags: 0
@@ -11827,7 +12016,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1202572639}
   m_OnClick:
     m_PersistentCalls:
@@ -11857,14 +12046,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.39607847, b: 0.8941177, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f883867643186a74894ef25a3812b77d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 351da9402f1f88b44aa2cd16c179eb1b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -11896,6 +12085,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 1
   GameManager: {fileID: 0}
+  BaseColor: {r: 0, g: 0.39607847, b: 0.8941177, a: 1}
 --- !u!1 &1231386917
 GameObject:
   m_ObjectHideFlags: 0
@@ -12018,14 +12208,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.3019608, g: 0.8235295, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4b8156b07a592f744b74a23a8bde6304, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5ee9eaa1073655f4cb183c788e146e73, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -12063,6 +12253,7 @@ MonoBehaviour:
   TileManager: {fileID: 0}
   CurrentTile: -1
   TilesGone: 0
+  Finished: 0
 --- !u!1 &1245668007
 GameObject:
   m_ObjectHideFlags: 0
@@ -12253,7 +12444,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1290391933}
   m_OnClick:
     m_PersistentCalls:
@@ -12310,6 +12501,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 0
   GameManager: {fileID: 0}
+  BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1307709977
 GameObject:
   m_ObjectHideFlags: 0
@@ -12621,14 +12813,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9960785, g: 0.8235295, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2f30420e7aa085b4eaeefec5f4a7f7ab, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5ee9eaa1073655f4cb183c788e146e73, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -12666,6 +12858,7 @@ MonoBehaviour:
   TileManager: {fileID: 0}
   CurrentTile: -1
   TilesGone: 0
+  Finished: 0
 --- !u!1 &1356399581
 GameObject:
   m_ObjectHideFlags: 0
@@ -12788,14 +12981,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f6b882324f82b1647bbbb9ccff9b1b3c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5ee9eaa1073655f4cb183c788e146e73, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -12833,6 +13026,7 @@ MonoBehaviour:
   TileManager: {fileID: 0}
   CurrentTile: -1
   TilesGone: 0
+  Finished: 0
 --- !u!1 &1360072767
 GameObject:
   m_ObjectHideFlags: 0
@@ -12911,7 +13105,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1360072770}
   m_OnClick:
     m_PersistentCalls:
@@ -12941,14 +13135,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.39607847, b: 0.8941177, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f883867643186a74894ef25a3812b77d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 351da9402f1f88b44aa2cd16c179eb1b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -12980,6 +13174,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 2
   GameManager: {fileID: 0}
+  BaseColor: {r: 0, g: 0.39607847, b: 0.8941177, a: 1}
 --- !u!1 &1367519709
 GameObject:
   m_ObjectHideFlags: 0
@@ -13088,14 +13283,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9921569, g: 0.8235295, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f9cd88d1534bd09458a011d184c80cf3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 351da9402f1f88b44aa2cd16c179eb1b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -13127,6 +13322,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 3
   GameManager: {fileID: 0}
+  BaseColor: {r: 0.9921569, g: 0.8235295, b: 0, a: 1}
 --- !u!1 &1372878642
 GameObject:
   m_ObjectHideFlags: 0
@@ -13349,6 +13545,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 24
   GameManager: {fileID: 0}
+  BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1399102244
 GameObject:
   m_ObjectHideFlags: 0
@@ -13457,14 +13654,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6489a1546527acf409a8ae553022ff28, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 351da9402f1f88b44aa2cd16c179eb1b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -13496,6 +13693,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 1
   GameManager: {fileID: 0}
+  BaseColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &1402049781
 GameObject:
   m_ObjectHideFlags: 0
@@ -13814,6 +14012,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 21
   GameManager: {fileID: 0}
+  BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1427163603
 GameObject:
   m_ObjectHideFlags: 0
@@ -14000,6 +14199,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 19
   GameManager: {fileID: 0}
+  BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1472078870
 GameObject:
   m_ObjectHideFlags: 0
@@ -14122,14 +14322,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f6b882324f82b1647bbbb9ccff9b1b3c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5ee9eaa1073655f4cb183c788e146e73, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -14167,6 +14367,7 @@ MonoBehaviour:
   TileManager: {fileID: 0}
   CurrentTile: -1
   TilesGone: 0
+  Finished: 0
 --- !u!1 &1473970994
 GameObject:
   m_ObjectHideFlags: 0
@@ -14320,7 +14521,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1475387481}
   m_OnClick:
     m_PersistentCalls:
@@ -14377,6 +14578,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 0
   GameManager: {fileID: 0}
+  BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1504839238
 GameObject:
   m_ObjectHideFlags: 0
@@ -14524,6 +14726,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 16
   GameManager: {fileID: 0}
+  BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1536367691
 GameObject:
   m_ObjectHideFlags: 0
@@ -14602,7 +14805,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1536367694}
   m_OnClick:
     m_PersistentCalls:
@@ -14659,6 +14862,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 0
   GameManager: {fileID: 0}
+  BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1545027716
 GameObject:
   m_ObjectHideFlags: 0
@@ -14865,14 +15069,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9960785, g: 0.8235295, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2f30420e7aa085b4eaeefec5f4a7f7ab, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5ee9eaa1073655f4cb183c788e146e73, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -14910,6 +15114,7 @@ MonoBehaviour:
   TileManager: {fileID: 0}
   CurrentTile: -1
   TilesGone: 0
+  Finished: 0
 --- !u!1 &1611248020
 GameObject:
   m_ObjectHideFlags: 0
@@ -15057,6 +15262,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 29
   GameManager: {fileID: 0}
+  BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1628617137
 GameObject:
   m_ObjectHideFlags: 0
@@ -15135,7 +15341,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1628617140}
   m_OnClick:
     m_PersistentCalls:
@@ -15192,6 +15398,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 0
   GameManager: {fileID: 0}
+  BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1629286590
 GameObject:
   m_ObjectHideFlags: 0
@@ -15554,7 +15761,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1651683168}
   m_OnClick:
     m_PersistentCalls:
@@ -15584,14 +15791,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.39607847, b: 0.8941177, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f883867643186a74894ef25a3812b77d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 351da9402f1f88b44aa2cd16c179eb1b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -15623,6 +15830,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 3
   GameManager: {fileID: 0}
+  BaseColor: {r: 0, g: 0.39607847, b: 0.8941177, a: 1}
 --- !u!1 &1675920368
 GameObject:
   m_ObjectHideFlags: 0
@@ -16074,7 +16282,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1776090713}
   m_OnClick:
     m_PersistentCalls:
@@ -16131,6 +16339,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 0
   GameManager: {fileID: 0}
+  BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1776907579
 GameObject:
   m_ObjectHideFlags: 0
@@ -16478,14 +16687,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.39607847, b: 0.8941177, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1090409a7010a9a4d9f55e5a49b549c0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5ee9eaa1073655f4cb183c788e146e73, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -16523,6 +16732,7 @@ MonoBehaviour:
   TileManager: {fileID: 0}
   CurrentTile: -1
   TilesGone: 0
+  Finished: 0
 --- !u!1 &1879672519
 GameObject:
   m_ObjectHideFlags: 0
@@ -16803,6 +17013,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 39
   GameManager: {fileID: 0}
+  BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1903295528
 GameObject:
   m_ObjectHideFlags: 0
@@ -16950,6 +17161,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 12
   GameManager: {fileID: 0}
+  BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1921912690
 GameObject:
   m_ObjectHideFlags: 0
@@ -16987,6 +17199,140 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1925968053
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1925968054}
+  - component: {fileID: 1925968056}
+  - component: {fileID: 1925968055}
+  m_Layer: 5
+  m_Name: Text (TMP)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1925968054
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1925968053}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 844229822}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1925968055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1925968053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: END TURN
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4281479730
+  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 24
+  m_fontSizeBase: 24
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1925968056
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1925968053}
+  m_CullTransparentMesh: 1
 --- !u!1 &1963630415
 GameObject:
   m_ObjectHideFlags: 0
@@ -17134,6 +17480,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 38
   GameManager: {fileID: 0}
+  BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1982532148
 GameObject:
   m_ObjectHideFlags: 0
@@ -17212,7 +17559,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1982532151}
   m_OnClick:
     m_PersistentCalls:
@@ -17269,6 +17616,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 0
   GameManager: {fileID: 0}
+  BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1982963671
 GameObject:
   m_ObjectHideFlags: 0
@@ -17416,6 +17764,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 23
   GameManager: {fileID: 0}
+  BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1987329347
 GameObject:
   m_ObjectHideFlags: 0
@@ -17494,7 +17843,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1987329350}
   m_OnClick:
     m_PersistentCalls:
@@ -17551,6 +17900,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 0
   GameManager: {fileID: 0}
+  BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1991717917
 GameObject:
   m_ObjectHideFlags: 0
@@ -17944,6 +18294,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 22
   GameManager: {fileID: 0}
+  BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &2027856992
 GameObject:
   m_ObjectHideFlags: 0
@@ -18052,14 +18403,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.39607847, b: 0.8941177, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5964861a5ac99944b91bc815bff3bf91, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e762792bba43a5642b1d36b4c40982f1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -18091,6 +18442,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 0
   GameManager: {fileID: 0}
+  BaseColor: {r: 0, g: 0.39607847, b: 0.8941177, a: 1}
 --- !u!1 &2063425806
 GameObject:
   m_ObjectHideFlags: 0
@@ -18238,6 +18590,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 15
   GameManager: {fileID: 0}
+  BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &2069338227
 GameObject:
   m_ObjectHideFlags: 0
@@ -18316,7 +18669,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 2069338230}
   m_OnClick:
     m_PersistentCalls:
@@ -18373,6 +18726,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 0
   GameManager: {fileID: 0}
+  BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &2075916163
 GameObject:
   m_ObjectHideFlags: 0
@@ -18556,14 +18910,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9921569, g: 0.8235295, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f9cd88d1534bd09458a011d184c80cf3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 351da9402f1f88b44aa2cd16c179eb1b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -18595,6 +18949,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 2
   GameManager: {fileID: 0}
+  BaseColor: {r: 0.9921569, g: 0.8235295, b: 0, a: 1}
 --- !u!1 &2079967281
 GameObject:
   m_ObjectHideFlags: 0
@@ -18823,7 +19178,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 2097114502}
   m_OnClick:
     m_PersistentCalls:
@@ -18880,6 +19235,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 0
   GameManager: {fileID: 0}
+  BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &2108738117
 GameObject:
   m_ObjectHideFlags: 0
@@ -19092,7 +19448,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 2109763158}
   m_OnClick:
     m_PersistentCalls:
@@ -19149,6 +19505,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 0
   GameManager: {fileID: 0}
+  BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &2146087806
 GameObject:
   m_ObjectHideFlags: 0
@@ -19271,14 +19628,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.3019608, g: 0.8235295, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4b8156b07a592f744b74a23a8bde6304, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5ee9eaa1073655f4cb183c788e146e73, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -19316,6 +19673,7 @@ MonoBehaviour:
   TileManager: {fileID: 0}
   CurrentTile: -1
   TilesGone: 0
+  Finished: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

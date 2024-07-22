@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
 {
     public bool GameFinished = false;
     public bool RoundFinished = false;
+    public bool ShouldSkip = true;
 
     public TMP_Text CurrentPlayerInfo;
     public TMP_Text RollInfo;
@@ -21,6 +22,7 @@ public class GameManager : MonoBehaviour
     public GameObject RollAgain;
     public GameObject ChosenPiece;
     public GameObject RollButton;
+    public GameObject EndTurnButton;
     
 
     public PieceColor CurrentPlayer;
@@ -33,6 +35,7 @@ public class GameManager : MonoBehaviour
     public Dictionary<PieceColor, GameObject[]> Pieces = new();
     public Dictionary<PieceColor, int> ActivePiecesCount = new();
     public GameObject[] GamePlan = new GameObject[40];
+
 
 
     // Start is called before the first frame update
@@ -50,44 +53,90 @@ public class GameManager : MonoBehaviour
         StartCoroutine(PlayGame());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void Roll()
     {
         TurnPiecesOn(CurrentPlayer);
         var roll = Random.Range(1, 7);
         RollInfo.text = "Rolled:" + roll;
+        Debug.Log(CurrentPlayer + " rolled : " + roll);
         RollCount++;
+        EndTurnButton.GetComponent<Button>().interactable = false;
         var limit = ActivePiecesCount[CurrentPlayer] == 0 ? 3 : 1;
-        Debug.Log(limit + " is the limit");
+        CurrentRoll = roll;
         if (roll != 6 && RollCount >= limit)
         {
             RollButton.GetComponent<Button>().interactable = false;
             if (limit == 3)
             {
-                StartCoroutine(EndRoundCoroutine());
+                EndRound();
+            }
+            else
+            {
+                EndTurnButton.GetComponent<Button>().interactable = !CanMove(CurrentPlayer);
             }
         }
 
         if (roll == 6)
         {
             RollButton.GetComponent<Button>().interactable = false;
+            EndTurnButton.GetComponent<Button>().interactable = !CanMove(CurrentPlayer);
         }
 
         if (limit == 3 && roll != 6)
         {
+            EndTurnButton.GetComponent<Button>().interactable = !CanMove(CurrentPlayer);
             RollAgain.SetActive(true);
         }
-
-        CurrentRoll = roll;
     }
 
-    public void EndRound(PieceColor color)
+    private Boolean PlayerFinished(PieceColor color)
     {
+        foreach (var pieceObject in Pieces[color])
+        {
+            if (!pieceObject.GetComponent<Piece>().Finished)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private Boolean CanMove(PieceColor color)
+    {
+        foreach (var pieceObject in Pieces[color])
+        {
+            Piece piece = pieceObject.GetComponent<Piece>();
+            if (piece.CurrentTile != -1 && piece.TilesGone + CurrentRoll <= 44)
+            {
+                if (piece.TilesGone + CurrentRoll < 41 && (GamePlan[(piece.CurrentTile + CurrentRoll) % 40] == null
+                    || GamePlan[(piece.CurrentTile + CurrentRoll) % 40].GetComponent<Piece>().Color != color))
+                {
+                    Debug.Log("Can move");
+                    return true;
+                }
+
+                if (piece.TilesGone + CurrentRoll > 40 &&
+                    TileManager.EndFields[color][(piece.TilesGone + CurrentRoll) % 5 - 1] == null)
+                {
+                    Debug.Log("Can move");
+                    return true;
+                }
+            }
+
+            if (CurrentRoll == 6 && piece.CurrentTile == -1 
+                                 && (GamePlan[(int)color * 10] == null || GamePlan[(int)color * 10].GetComponent<Piece>().Color != color))
+            {
+                Debug.Log("Can move");
+                return true;
+            }
+        }
+        Debug.Log("Cannot move");
+        return false;
+    }
+
+    IEnumerator EndRoundCoroutine(PieceColor color)
+    {
+        yield return new WaitForSeconds(0.5f);
         TurnPiecesOff(color);
         RoundFinished = true;
     }
@@ -100,10 +149,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    IEnumerator EndRoundCoroutine()
+    public void EndRound()
     {
-        yield return new WaitForSeconds(0.5f);
-        EndRound(CurrentPlayer);
+        StartCoroutine(EndRoundCoroutine(CurrentPlayer));
     }
 
     private void InitializePiecesDict()
@@ -144,9 +192,14 @@ public class GameManager : MonoBehaviour
 
     IEnumerator PlayRound(PieceColor color)
     {
+        if (PlayerFinished(color))
+        {
+            EndRound();
+        }
         RollAgain.SetActive(false);
         RollInfo.text = "Roll: ";
         RollButton.GetComponent<Button>().interactable = true;
+        EndTurnButton.GetComponent<Button>().interactable = true;
         RoundFinished = false;
         CurrentPlayer = color;
         RollCount = 0;
@@ -166,6 +219,11 @@ public class GameManager : MonoBehaviour
             ActivePiecesCount[piece.Color] += 1;
             piece.TilesGone = 1;
         }
+        else if (piece.TilesGone > 40)
+        {
+            TileManager.EndFields[piece.Color][piece.TilesGone % 5 - 1] = null;
+            piece.TilesGone += CurrentRoll;
+        }
         else
         {
             GamePlan[piece.CurrentTile] = null;
@@ -175,9 +233,8 @@ public class GameManager : MonoBehaviour
 
     public void Move(int newPosition)
     {
-        Debug.Log("blue Pieces on board:" + ActivePiecesCount[PieceColor.Blue]);
-        Debug.Log(CurrentRoll);
         var pieceComp = ChosenPiece.GetComponent<Piece>();
+        TurnPiecesOff(pieceComp.Color);
         UpdateInfoBeforeMove(pieceComp);
         if (pieceComp.TilesGone > 40)
         {
@@ -190,8 +247,7 @@ public class GameManager : MonoBehaviour
         TileManager.UnselectHighlightedMoves();
         if (CurrentRoll != 6 && (ActivePiecesCount[pieceComp.Color] != 0))
         {
-
-            StartCoroutine(EndRoundCoroutine());
+            EndRound();
         } else
         {
             RollButton.GetComponent<Button>().interactable = true;
@@ -213,7 +269,8 @@ public class GameManager : MonoBehaviour
 
     public void MoveToEnd(Piece piece, int endPosition)
     {
-        piece.CurrentTile = 40 + endPosition;
+        piece.Finished = true;
+        piece.CurrentTile = piece.TilesGone + endPosition;
         TileManager.EndFields[piece.Color][endPosition] = ChosenPiece;
         ChosenPiece.transform.position = TileManager.EndTiles[piece.Color][endPosition].transform.position;
     }
