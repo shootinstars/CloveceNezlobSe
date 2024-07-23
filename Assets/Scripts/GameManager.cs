@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
@@ -58,7 +59,6 @@ public class GameManager : MonoBehaviour
         TurnPiecesOn(CurrentPlayer);
         var roll = Random.Range(1, 7);
         RollInfo.text = "Rolled:" + roll;
-        Debug.Log(CurrentPlayer + " rolled : " + roll);
         RollCount++;
         EndTurnButton.GetComponent<Button>().interactable = false;
         var limit = ActivePiecesCount[CurrentPlayer] == 0 ? 3 : 1;
@@ -111,14 +111,12 @@ public class GameManager : MonoBehaviour
                 if (piece.TilesGone + CurrentRoll < 41 && (GamePlan[(piece.CurrentTile + CurrentRoll) % 40] == null
                     || GamePlan[(piece.CurrentTile + CurrentRoll) % 40].GetComponent<Piece>().Color != color))
                 {
-                    Debug.Log("Can move");
                     return true;
                 }
 
                 if (piece.TilesGone + CurrentRoll > 40 &&
                     TileManager.EndFields[color][(piece.TilesGone + CurrentRoll) % 5 - 1] == null)
                 {
-                    Debug.Log("Can move");
                     return true;
                 }
             }
@@ -126,11 +124,9 @@ public class GameManager : MonoBehaviour
             if (CurrentRoll == 6 && piece.CurrentTile == -1 
                                  && (GamePlan[(int)color * 10] == null || GamePlan[(int)color * 10].GetComponent<Piece>().Color != color))
             {
-                Debug.Log("Can move");
                 return true;
             }
         }
-        Debug.Log("Cannot move");
         return false;
     }
 
@@ -192,10 +188,6 @@ public class GameManager : MonoBehaviour
 
     IEnumerator PlayRound(PieceColor color)
     {
-        if (PlayerFinished(color))
-        {
-            EndRound();
-        }
         RollAgain.SetActive(false);
         RollInfo.text = "Roll: ";
         RollButton.GetComponent<Button>().interactable = true;
@@ -204,6 +196,11 @@ public class GameManager : MonoBehaviour
         CurrentPlayer = color;
         RollCount = 0;
         CurrentPlayerInfo.text = "Current turn: " + color;
+        if (PlayerFinished(color))
+        {
+            TurnPiecesOff(color);
+            RoundFinished = true;
+        }
         yield return new WaitUntil(() => RoundFinished);
     }
 
@@ -253,7 +250,6 @@ public class GameManager : MonoBehaviour
             RollButton.GetComponent<Button>().interactable = true;
             RollAgain.SetActive(true);
         }
-        Debug.Log("Moved piece has done " + pieceComp.TilesGone +  " moves");
     }
 
     public void MoveOnBoard(Piece piece, int newPosition)
