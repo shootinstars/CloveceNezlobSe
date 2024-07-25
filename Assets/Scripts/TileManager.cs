@@ -10,11 +10,15 @@ public class TileManager : MonoBehaviour
     private GameManager GameManager;
 
     [SerializeField] public GameObject[] FieldTiles;
-    [SerializeField] public Dictionary<PieceColor, GameObject[]> StartTiles = new Dictionary<PieceColor, GameObject[]>();
-    [SerializeField] public Dictionary<PieceColor, GameObject[]> EndTiles = new Dictionary<PieceColor, GameObject[]>();
-    [SerializeField] public Dictionary<PieceColor, GameObject[]> EndFields = new Dictionary<PieceColor, GameObject[]>();
+    public Dictionary<PieceColor, GameObject[]> StartTiles = new Dictionary<PieceColor, GameObject[]>();
+    public Dictionary<PieceColor, GameObject[]> EndTiles = new Dictionary<PieceColor, GameObject[]>();
+    public Dictionary<PieceColor, GameObject[]> EndFields = new Dictionary<PieceColor, GameObject[]>();
+    private Dictionary<PieceColor, Color> _highlightColors = new Dictionary<PieceColor, Color>();
 
-    private Color _highlightColor = new Color(159/255f, 80/255f, 34/255f);
+    private Color _highlightRed = new Color(253/255f, 116/255f, 116/255f);
+    private Color _highlightGreen = new Color(186/255f, 1, 97/255f);
+    private Color _highlightBlue = new Color(78/255f, 202/255f, 1);
+    private Color _highlightYellow = new Color(1, 1, 90 / 255f);
     public Boolean MovePossible;
 
 
@@ -34,6 +38,10 @@ public class TileManager : MonoBehaviour
             EndTiles[color] = GameObject.FindGameObjectsWithTag($"{color}End").OrderBy(x => x.GetComponent<GameTile>().Id).ToArray();
             EndFields[color] = new GameObject[4];
         }
+        _highlightColors.Add(PieceColor.Blue, _highlightBlue);
+        _highlightColors.Add(PieceColor.Green, _highlightGreen);
+        _highlightColors.Add(PieceColor.Yellow, _highlightYellow);
+        _highlightColors.Add(PieceColor.Red, _highlightRed);
     }
 
     public void HighlightPossibleMove(Piece piece, PieceColor color, int roll)
@@ -62,7 +70,7 @@ public class TileManager : MonoBehaviour
             if (EndFields[piece.Color][endIndex % 5 - 1] == null)
             {
                 Debug.Log(endIndex % 5 - 1);
-                EndTiles[piece.Color][endIndex % 5 - 1].GetComponent<Image>().color = _highlightColor;
+                EndTiles[piece.Color][endIndex % 5 - 1].GetComponent<Image>().color = _highlightColors[piece.Color];
                 EndTiles[piece.Color][endIndex % 5 - 1].GetComponent<Button>().interactable = true;
                 MovePossible = true;
             }
@@ -71,7 +79,7 @@ public class TileManager : MonoBehaviour
 
     public void HighlightTile(int index, PieceColor color)
     {
-        FieldTiles[index].GetComponent<Image>().color = _highlightColor;
+        FieldTiles[index].GetComponent<Image>().color = _highlightColors[color];
         FieldTiles[index].GetComponent<Button>().interactable = true;
         CheckPiecesInDanger(color, index);
     }
@@ -79,7 +87,7 @@ public class TileManager : MonoBehaviour
     public void HighlightStart(PieceColor color)
     {
         var realIndex = 0 + (int) color * 10;
-        FieldTiles[realIndex].GetComponent<Image>().color = _highlightColor;
+        FieldTiles[realIndex].GetComponent<Image>().color = _highlightColors[color];
         FieldTiles[realIndex].GetComponent<Button>().interactable = true;
         CheckPiecesInDanger(color, realIndex);
     }

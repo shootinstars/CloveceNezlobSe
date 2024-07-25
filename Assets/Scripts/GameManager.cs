@@ -9,6 +9,7 @@ using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 using Button = UnityEngine.UI.Button;
+using Image = UnityEngine.UI.Image;
 using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
@@ -28,6 +29,7 @@ public class GameManager : MonoBehaviour
 
     public PieceColor CurrentPlayer;
     public TileManager TileManager;
+    public DiceControl DiceControl;
 
     public int RollCount;
     public int CurrentRoll;
@@ -63,6 +65,7 @@ public class GameManager : MonoBehaviour
         EndTurnButton.GetComponent<Button>().interactable = false;
         var limit = ActivePiecesCount[CurrentPlayer] == 0 ? 3 : 1;
         CurrentRoll = roll;
+        ChangeButton();
         if (roll != 6 && RollCount >= limit)
         {
             RollButton.GetComponent<Button>().interactable = false;
@@ -101,39 +104,11 @@ public class GameManager : MonoBehaviour
         return true;
     }
 
-    private Boolean CanMove(PieceColor color)
-    {
-        foreach (var pieceObject in Pieces[color])
-        {
-            Piece piece = pieceObject.GetComponent<Piece>();
-            if (piece.CurrentTile != -1 && piece.TilesGone + CurrentRoll <= 44)
-            {
-                if (piece.TilesGone + CurrentRoll < 41 && (GamePlan[(piece.CurrentTile + CurrentRoll) % 40] == null
-                    || GamePlan[(piece.CurrentTile + CurrentRoll) % 40].GetComponent<Piece>().Color != color))
-                {
-                    return true;
-                }
-
-                if (piece.TilesGone + CurrentRoll > 40 &&
-                    TileManager.EndFields[color][(piece.TilesGone + CurrentRoll) % 5 - 1] == null)
-                {
-                    return true;
-                }
-            }
-
-            if (CurrentRoll == 6 && piece.CurrentTile == -1 
-                                 && (GamePlan[(int)color * 10] == null || GamePlan[(int)color * 10].GetComponent<Piece>().Color != color))
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-
     IEnumerator EndRoundCoroutine(PieceColor color)
     {
         yield return new WaitForSeconds(0.5f);
         TurnPiecesOff(color);
+        RollButton.GetComponent<Button>().image.sprite = DiceControl.BackToDefaultDice();
         RoundFinished = true;
     }
 
@@ -195,13 +170,34 @@ public class GameManager : MonoBehaviour
         RoundFinished = false;
         CurrentPlayer = color;
         RollCount = 0;
-        CurrentPlayerInfo.text = "Current turn: " + color;
+        ChangeTextColor();
+        CurrentPlayerInfo.text = color.ToString();
         if (PlayerFinished(color))
         {
             TurnPiecesOff(color);
             RoundFinished = true;
         }
         yield return new WaitUntil(() => RoundFinished);
+    }
+
+    private void ChangeTextColor()
+    {
+        switch (CurrentPlayer)
+        {
+            case PieceColor.Blue:
+                CurrentPlayerInfo.color = new Color(0, 101/255f, 228/255f); break;
+            case PieceColor.Red:
+                CurrentPlayerInfo.color = Color.red; break;
+            case PieceColor.Green:
+                CurrentPlayerInfo.color = new Color(49/255f, 195/255f, 0); break;
+            case PieceColor.Yellow:
+                CurrentPlayerInfo.color = new Color(1, 210/255f, 0); break;
+        }
+    }
+
+    public void ChangeButton()
+    {
+        RollButton.GetComponent<Button>().image.sprite = DiceControl.ChangeDiceNumber(CurrentRoll);
     }
 
     public GameObject[] GetAllPieces()
@@ -228,6 +224,35 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private Boolean CanMove(PieceColor color)
+    {
+        foreach (var pieceObject in Pieces[color])
+        {
+            Piece piece = pieceObject.GetComponent<Piece>();
+            if (piece.CurrentTile != -1 && piece.TilesGone + CurrentRoll <= 44)
+            {
+                if (piece.TilesGone + CurrentRoll < 41 && (GamePlan[(piece.CurrentTile + CurrentRoll) % 40] == null
+                                                           || GamePlan[(piece.CurrentTile + CurrentRoll) % 40].GetComponent<Piece>().Color != color))
+                {
+                    return true;
+                }
+
+                if (piece.TilesGone + CurrentRoll > 40 &&
+                    TileManager.EndFields[color][(piece.TilesGone + CurrentRoll) % 5 - 1] == null)
+                {
+                    return true;
+                }
+            }
+
+            if (CurrentRoll == 6 && piece.CurrentTile == -1
+                                 && (GamePlan[(int)color * 10] == null || GamePlan[(int)color * 10].GetComponent<Piece>().Color != color))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void Move(int newPosition)
     {
         var pieceComp = ChosenPiece.GetComponent<Piece>();
@@ -248,6 +273,7 @@ public class GameManager : MonoBehaviour
         } else
         {
             RollButton.GetComponent<Button>().interactable = true;
+            DiceControl.BackToDefaultDice();
             RollAgain.SetActive(true);
         }
     }
