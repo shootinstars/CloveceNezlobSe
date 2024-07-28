@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,34 +6,47 @@ using UnityEngine.UI;
 
 public class DiceControl : MonoBehaviour
 {
-    public Texture2D[] Textures;
-    public Sprite[] DiceSprites;
+    private Texture2D[] textures;
+    public Sprite[] DiceSprites { get; private set; }
+    private GameManager gameManager;
+    private SoundManager soundManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        Textures = Resources.LoadAll<Texture2D>("Images/Dice");
+        textures = Resources.LoadAll<Texture2D>("Images/Dice");
+        gameManager = GetComponent<GameManager>();
+        soundManager = GameObject.Find("SoundManager").GetComponent<SoundManager>();
         CreateSprites();
     }
 
     public void CreateSprites()
     {
-        DiceSprites = new Sprite[Textures.Length];
+        DiceSprites = new Sprite[textures.Length];
         var i = 0;
-        foreach (var texture in Textures)
+        foreach (var texture in textures)
         {
-            Debug.Log(i);
             DiceSprites[i] = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
             i++;
         }
     }
-    public Sprite ChangeDiceNumber(int roll)
-    {
-        return DiceSprites[roll - 1];
-    }
 
-    public Sprite BackToDefaultDice()
+    public IEnumerator RollAnimation()
     {
-        return DiceSprites[6];
+        soundManager.PlayRollSound();
+        gameManager.ChangeToDefaultButton();
+        float timer = 0.5f;
+        float interval = 0.15f;
+        float elapsed = 0f;
+        while (elapsed < timer)
+        {
+            yield return new WaitForSeconds(interval);
+            elapsed += interval;
+        }
+
+        gameManager.TurnPiecesOn();
+        gameManager.ChangeButton();
+        gameManager.ShouldRoll = true;
+        gameManager.HandleRollButton();
     }
 }

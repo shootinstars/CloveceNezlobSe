@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -5,6 +6,8 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
+
+[Serializable]
 public enum PieceColor
 {
     Blue = 0,
@@ -16,23 +19,22 @@ public enum PieceColor
 public class Piece : MonoBehaviour
 {
 
-    [SerializeField] public PieceColor Color;
-    [SerializeField] public GameObject StartTile;
-    [SerializeField] public GameObject OccupiedHighlight;
-    [SerializeField] public GameObject Chosen;
-    public GameManager GameManager;
-    public TileManager TileManager;
+    public PieceColor Color;
+    [SerializeField] private GameObject startTile;
+    [SerializeField] private GameObject OccupiedHighlight;
+    public GameObject Chosen;
+    [SerializeField] private GameManager gameManager;
+    [SerializeField] private TileManager tileManager;
+    [SerializeField] private SoundManager soundManager;
 
 
-    public int CurrentTile = -1;
-    public int TilesGone = 0;
-    public bool Finished = false;
+    public int CurrentTile { get; set; } = -1;
+    public int TilesGone;
+    public bool hasFinished = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        GameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        TileManager = GameObject.Find("GameManager").GetComponent<TileManager>();
         TurnHighlightOff();
     }
 
@@ -40,8 +42,8 @@ public class Piece : MonoBehaviour
 
     public void ReturnHome()
     {
-        gameObject.transform.position = StartTile.transform.position;
-        GameManager.ActivePiecesCount[Color] -= 1;
+        gameObject.transform.position = startTile.transform.position;
+        gameManager.DecreaseActivePieces(Color);
         CurrentTile = -1;
         TilesGone = 0;
     }
@@ -61,7 +63,7 @@ public class Piece : MonoBehaviour
     {
         if (OccupiedHighlight.activeSelf)
         {
-            GameManager.Move(CurrentTile);
+            gameManager.Move(CurrentTile);
         }
     }
 
@@ -69,9 +71,10 @@ public class Piece : MonoBehaviour
     {
         if (!OccupiedHighlight.activeSelf)
         {
-            GameManager.ChosenPiece = gameObject;
-            TileManager.UnselectHighlightedMoves();
-            TileManager.HighlightPossibleMove(this, Color, GameManager.CurrentRoll);
+            gameManager.TurnOffRollWarning();
+            gameManager.SetChosenPiece(gameObject);
+            tileManager.UnselectHighlightedMoves();
+            tileManager.HighlightPossibleMove(this, Color, gameManager.getCurrentRoll());
         }
     }
 }

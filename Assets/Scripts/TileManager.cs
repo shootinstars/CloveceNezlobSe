@@ -7,26 +7,26 @@ using UnityEngine.UI;
 
 public class TileManager : MonoBehaviour
 {
-    private GameManager GameManager;
+    [SerializeField] private GameManager gameManager;
 
-    [SerializeField] public GameObject[] FieldTiles;
-    public Dictionary<PieceColor, GameObject[]> StartTiles = new Dictionary<PieceColor, GameObject[]>();
-    public Dictionary<PieceColor, GameObject[]> EndTiles = new Dictionary<PieceColor, GameObject[]>();
-    public Dictionary<PieceColor, GameObject[]> EndFields = new Dictionary<PieceColor, GameObject[]>();
-    private Dictionary<PieceColor, Color> _highlightColors = new Dictionary<PieceColor, Color>();
+    [SerializeField] private GameObject[] fieldTiles;
 
-    private Color _highlightRed = new Color(253/255f, 116/255f, 116/255f);
-    private Color _highlightGreen = new Color(186/255f, 1, 97/255f);
-    private Color _highlightBlue = new Color(78/255f, 202/255f, 1);
-    private Color _highlightYellow = new Color(1, 1, 90 / 255f);
-    public Boolean MovePossible;
+    public Dictionary<PieceColor, GameObject[]> EndTiles { get; } = new Dictionary<PieceColor, GameObject[]>();
+    public Dictionary<PieceColor, GameObject[]> EndFields { get; } = new Dictionary<PieceColor, GameObject[]>();
+
+    private Dictionary<PieceColor, Color> highlightColors = new Dictionary<PieceColor, Color>();
+    private Color highlightRed = new Color(253/255f, 116/255f, 116/255f);
+    private Color highlightGreen = new Color(186/255f, 1, 97/255f);
+    private Color highlightBlue = new Color(78/255f, 202/255f, 1);
+    private Color highlightYellow = new Color(1, 1, 90 / 255f);
+    private Color highlight = Color.gray;
+    private Color highlightBrown = new Color(195 / 255f, 116 / 255f, 14 / 255f);
 
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        GameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        FieldTiles = GameObject.FindGameObjectsWithTag("Board").OrderBy(x => x.GetComponent<GameTile>().Id).ToArray();
+        fieldTiles = GameObject.FindGameObjectsWithTag("Board").OrderBy(x => x.GetComponent<GameTile>().Id).ToArray();
         FillDictionaries();
     }
 
@@ -34,14 +34,13 @@ public class TileManager : MonoBehaviour
     {
         foreach (var color in (PieceColor[])Enum.GetValues(typeof(PieceColor)))
         {
-            StartTiles[color] = GameObject.FindGameObjectsWithTag($"{color}Start");
             EndTiles[color] = GameObject.FindGameObjectsWithTag($"{color}End").OrderBy(x => x.GetComponent<GameTile>().Id).ToArray();
             EndFields[color] = new GameObject[4];
         }
-        _highlightColors.Add(PieceColor.Blue, _highlightBlue);
-        _highlightColors.Add(PieceColor.Green, _highlightGreen);
-        _highlightColors.Add(PieceColor.Yellow, _highlightYellow);
-        _highlightColors.Add(PieceColor.Red, _highlightRed);
+        highlightColors.Add(PieceColor.Blue, highlightBlue);
+        highlightColors.Add(PieceColor.Green, highlightGreen);
+        highlightColors.Add(PieceColor.Yellow, highlightYellow);
+        highlightColors.Add(PieceColor.Red, highlightRed);
     }
 
     public void HighlightPossibleMove(Piece piece, PieceColor color, int roll)
@@ -70,40 +69,42 @@ public class TileManager : MonoBehaviour
             if (EndFields[piece.Color][endIndex % 5 - 1] == null)
             {
                 Debug.Log(endIndex % 5 - 1);
-                EndTiles[piece.Color][endIndex % 5 - 1].GetComponent<Image>().color = _highlightColors[piece.Color];
+                // EndTiles[piece.Color][endIndex % 5 - 1].GetComponent<Image>().color = highlightColors[piece.Color];
+                EndTiles[piece.Color][endIndex % 5 - 1].GetComponent<Image>().color = highlightBrown;
                 EndTiles[piece.Color][endIndex % 5 - 1].GetComponent<Button>().interactable = true;
-                MovePossible = true;
             }
         }
     }
 
     public void HighlightTile(int index, PieceColor color)
     {
-        FieldTiles[index].GetComponent<Image>().color = _highlightColors[color];
-        FieldTiles[index].GetComponent<Button>().interactable = true;
+        //fieldTiles[index].GetComponent<Image>().color = highlightColors[color];
+        fieldTiles[index].GetComponent<Image>().color = highlightBrown;
+        fieldTiles[index].GetComponent<Button>().interactable = true;
         CheckPiecesInDanger(color, index);
     }
 
     public void HighlightStart(PieceColor color)
     {
         var realIndex = 0 + (int) color * 10;
-        FieldTiles[realIndex].GetComponent<Image>().color = _highlightColors[color];
-        FieldTiles[realIndex].GetComponent<Button>().interactable = true;
+        //fieldTiles[realIndex].GetComponent<Image>().color = highlightColors[color];
+        fieldTiles[realIndex].GetComponent<Image>().color = highlightBrown;
+        fieldTiles[realIndex].GetComponent<Button>().interactable = true;
         CheckPiecesInDanger(color, realIndex);
     }
 
     private void CheckPiecesInDanger(PieceColor color, int tile)
     {
-        if (GameManager.GamePlan[tile] != null && GameManager.GamePlan[tile].GetComponent<Piece>().Color != color)
+        if (gameManager.GamePlan[tile] != null && gameManager.GamePlan[tile].GetComponent<Piece>().Color != color)
         {
-            GameManager.GamePlan[tile].GetComponent<Piece>().TurnHighlightOn();
+            gameManager.GamePlan[tile].GetComponent<Piece>().TurnHighlightOn();
         }
     }
 
     public void UnselectHighlightedMoves()
     {
-        var allPieces = GameManager.GetAllPieces();
-        foreach (var tile in FieldTiles)
+        var allPieces = gameManager.GetAllPieces();
+        foreach (var tile in fieldTiles)
         {
             tile.GetComponent<Image>().color = tile.GetComponent<GameTile>().BaseColor;
             tile.GetComponent<Button>().interactable = false;
@@ -123,6 +124,11 @@ public class TileManager : MonoBehaviour
                 endTile.GetComponent<Button>().interactable = false;
             }
         }
+    }
+
+    public GameObject[] getFieldTiles()
+    {
+        return fieldTiles;
     }
 
 }
