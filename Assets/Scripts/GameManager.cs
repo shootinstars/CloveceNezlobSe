@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject rollButton;
     [SerializeField] private GameObject endTurnButton;
     [SerializeField] private GameObject rollWarning;
+    [SerializeField] private GameObject diceTutorial;
+    [SerializeField] private GameObject pieceTutorial;
 
     [SerializeField] private Image currentPlayerImage;
     
@@ -47,6 +49,11 @@ public class GameManager : MonoBehaviour
 
     public void Roll()
     {
+        if (diceTutorial.activeSelf)
+        {
+            diceTutorial.SetActive(false);
+            pieceTutorial.SetActive(true);
+        }
         if (hasToMove)
         {
             rollWarning.SetActive(true);
