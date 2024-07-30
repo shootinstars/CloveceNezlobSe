@@ -77,4 +77,12 @@ public class Piece : MonoBehaviour
             tileManager.HighlightPossibleMove(this, Color, gameManager.getCurrentRoll());
         }
     }
+
+    public void ResetPiece()
+    {
+        CurrentTile = -1;
+        TilesGone = 0;
+        hasFinished = false;
+        gameObject.transform.position = startTile.transform.position;
+    }
 }
