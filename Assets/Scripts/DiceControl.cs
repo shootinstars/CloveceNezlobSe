@@ -12,7 +12,7 @@ public class DiceControl : MonoBehaviour
     private SoundManager soundManager;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         textures = Resources.LoadAll<Texture2D>("Images/Dice");
         gameManager = GetComponent<GameManager>();

@@ -10,6 +10,16 @@ public class GameTile : MonoBehaviour
 
     public void ConfirmMove()
     {
-    gameManager.Move(Id);
+        if (gameManager.TileTutorial.activeSelf)
+        {
+            gameManager.tutorialPartFinished = true;
+            gameManager.TutorialChosenPiece.transform.position = gameObject.transform.position;
+            return;
+        }
+        if (gameManager.Tutorial.activeSelf)
+        {
+            return;
+        }
+        gameManager.Move(Id);
     }
 }

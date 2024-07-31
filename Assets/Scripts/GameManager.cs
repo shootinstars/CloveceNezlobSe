@@ -10,8 +10,9 @@ using Random = UnityEngine.Random;
 public class GameManager : MonoBehaviour
 {
     public bool ShouldRoll;
-
-    private bool gameFinished = false;
+    private bool tutorialComplete = false;
+    public bool tutorialPartFinished;
+    private bool gameFinished;
     private bool roundFinished;
     private bool hasToMove;
 
@@ -19,9 +20,27 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject rollAgain;
     [SerializeField] private GameObject rollButton;
     [SerializeField] private GameObject endTurnButton;
+    [SerializeField] private GameObject skipTutorialButton;
     [SerializeField] private GameObject rollWarning;
+
     [SerializeField] private GameObject diceTutorial;
-    [SerializeField] private GameObject pieceTutorial;
+    [SerializeField] private GameObject endTurnTutorial;
+
+    [SerializeField] private GameObject diceTutorialBackground;
+    [SerializeField] private GameObject pieceTutorialBackground;
+    [SerializeField] private GameObject tileTutorialBackground;
+    [SerializeField] private GameObject endTurnTutorialBackground;
+
+    [SerializeField] private GameObject resultScreen;
+    [SerializeField] private Image firstIcon;
+    [SerializeField] private Image secondIcon;
+    [SerializeField] private Image thirdIcon;
+    [SerializeField] private Image fourthIcon;
+
+    public GameObject Tutorial;
+    public GameObject PieceTutorial;
+    public GameObject TileTutorial;
+    public GameObject TutorialChosenPiece;
 
     [SerializeField] private Image currentPlayerImage;
     
@@ -33,8 +52,12 @@ public class GameManager : MonoBehaviour
 
     private int rollCount;
     private int currentRoll;
+    private int lastFinished = 0;
+
     [SerializeField] private readonly Dictionary<PieceColor, GameObject[]> pieces = new();
     private Dictionary<PieceColor, int> activePiecesCount = new();
+    private PieceColor[] finishingOrder = new PieceColor[4];
+    private HashSet<PieceColor> finishedColors = new HashSet<PieceColor>();
     public GameObject[] GamePlan { get; } = new GameObject[40];
 
     // Start is called before the first frame update
@@ -51,9 +74,12 @@ public class GameManager : MonoBehaviour
     {
         if (diceTutorial.activeSelf)
         {
-            diceTutorial.SetActive(false);
-            pieceTutorial.SetActive(true);
+            Debug.Log("L");
+
+        tutorialPartFinished = true;
+            return;
         }
+        if (Tutorial.activeSelf) return;
         if (hasToMove)
         {
             rollWarning.SetActive(true);
@@ -94,6 +120,145 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void HidePieces()
+    {
+        foreach (var color in (PieceColor[])Enum.GetValues(typeof(PieceColor)))
+        {
+            foreach (var piece in pieces[color])
+            {
+                var image = piece.GetComponent<Image>();
+                image.color = new Color(image.color.r, image.color.g, image.color.b, 100 / 255f);
+            }
+        }
+    }
+
+    private void CheckForNewFinisher()
+    {
+        foreach (var color in (PieceColor[])Enum.GetValues(typeof(PieceColor)))
+        {
+            if (!finishedColors.Contains(color) && HasColorFinished(color))
+            {
+                finishedColors.Add(color);
+                finishingOrder[lastFinished] = color;
+                lastFinished++;
+            }
+        }
+    }
+
+    private Boolean HasColorFinished(PieceColor color)
+    {
+        foreach (var piece in pieces[color])
+        {
+            if (!piece.GetComponent<Piece>().hasFinished)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void ShowPieces()
+    {
+        foreach (var color in (PieceColor[])Enum.GetValues(typeof(PieceColor)))
+        {
+            foreach (var piece in pieces[color])
+            {
+                var image = piece.GetComponent<Image>();
+                image.color = new Color(image.color.r, image.color.g, image.color.b, 1);
+
+            }
+        }
+    }
+
+    IEnumerator StartDiceTutorial()
+    {
+        endTurnButton.SetActive(false);
+        tutorialPartFinished = false;
+        diceTutorial.SetActive(true);
+        diceTutorialBackground.SetActive(true);
+        yield return new WaitUntil(() => tutorialPartFinished);
+    }
+
+    IEnumerator StartPieceTutorial()
+    {
+        rollButton.GetComponent<Button>().image.sprite = diceControl.DiceSprites[5];
+        ActivateBluePieces();
+        diceTutorial.SetActive(false);
+        tutorialPartFinished = false;
+        PieceTutorial.SetActive(true);
+        diceTutorialBackground.SetActive(false);
+        pieceTutorialBackground.SetActive(true);
+        yield return new WaitUntil(() => tutorialPartFinished);
+    }
+
+    IEnumerator StartTileTutorial()
+    {
+        HidePieces();
+        tileManager.getFieldTiles()[0].GetComponent<Button>().interactable = true;
+        DeactivateBluePieces();
+        PieceTutorial.SetActive(false);
+        tutorialPartFinished = false;
+        TileTutorial.SetActive(true);
+        pieceTutorialBackground.SetActive(false);
+        tileTutorialBackground.SetActive(true);
+        yield return new WaitUntil(() => tutorialPartFinished);
+    }
+
+    IEnumerator StartEndTurnTutorial()
+    {
+        endTurnButton.SetActive(true);
+        ShowPieces();
+        tileManager.getFieldTiles()[0].GetComponent<Button>().interactable = false;
+        TileTutorial.SetActive(false);
+        tutorialPartFinished = false;
+        endTurnTutorial.SetActive(true);
+        tileTutorialBackground.SetActive(false);
+        endTurnTutorialBackground.SetActive(true);
+        yield return new WaitUntil(() => tutorialPartFinished);
+    }
+
+    public void ActivateBluePieces()
+    {
+        foreach (var piece in pieces[PieceColor.Blue])
+        {
+            piece.GetComponent<Button>().interactable = true;
+        }
+    }
+
+    public void DeactivateBluePieces()
+    {
+        foreach (var piece in pieces[PieceColor.Blue])
+        {
+            piece.GetComponent<Button>().interactable = false;
+        }
+    }
+
+    public void EndTutorial()
+    {
+        endTurnTutorialBackground.SetActive(false);
+        endTurnTutorial.SetActive(false);
+        foreach (var piece in pieces[PieceColor.Blue])
+        {
+            piece.GetComponent<Piece>().ResetPiece();
+        }
+        ChangeToDefaultButton();
+        HideTutorial();
+        endTurnButton.SetActive(true);
+    }
+
+    public void HideTutorial()
+    {
+        diceTutorial.SetActive(false);
+        PieceTutorial.SetActive(false);
+        TileTutorial.SetActive(false);
+        Tutorial.SetActive(false);
+        diceTutorialBackground.SetActive(false);
+        tileTutorialBackground.SetActive(false);
+        pieceTutorialBackground.SetActive(false);
+        endTurnTutorialBackground.SetActive(false);
+        skipTutorialButton.SetActive(false);
+    }
+
     public void HandleRollButton()
     {
         var limit = activePiecesCount[currentPlayer] == 0 ? 3 : 1;
@@ -132,6 +297,17 @@ public class GameManager : MonoBehaviour
         roundFinished = true;
     }
 
+    public void EndRound()
+    {
+        if (endTurnTutorial.activeSelf || Tutorial.activeSelf)
+        {
+            tutorialPartFinished = true;
+            tutorialComplete = true;
+            return;
+        }
+        StartCoroutine(EndRoundCoroutine(currentPlayer));
+    }
+
     public void InitializeActiveCount()
     {
         foreach (var color in (PieceColor[]) Enum.GetValues(typeof(PieceColor)))
@@ -158,11 +334,6 @@ public class GameManager : MonoBehaviour
     public void DecreaseActivePieces(PieceColor color)
     {
         activePiecesCount[color] -= 1;
-    }
-
-    public void EndRound()
-    {
-        StartCoroutine(EndRoundCoroutine(currentPlayer));
     }
 
     private void InitializePiecesDict()
@@ -192,6 +363,24 @@ public class GameManager : MonoBehaviour
 
     IEnumerator PlayGame()
     {
+        while (!tutorialComplete)
+        {
+            yield return StartDiceTutorial();
+            if (!tutorialComplete)
+            {
+                yield return StartPieceTutorial();
+            }
+            if (!tutorialComplete)
+            {
+                yield return StartTileTutorial();
+            }
+            if (!tutorialComplete)
+            {
+                yield return StartEndTurnTutorial();
+            }
+            tutorialComplete = true;
+        }
+        EndTutorial();
         while (!gameFinished)
         {
             yield return PlayRound(PieceColor.Blue);
@@ -199,10 +388,13 @@ public class GameManager : MonoBehaviour
             yield return PlayRound(PieceColor.Green);
             yield return PlayRound(PieceColor.Yellow);
         }
+        EndGame();
     }
 
     IEnumerator PlayRound(PieceColor color)
     {
+        CheckForNewFinisher();
+        roundFinished = false;
         if (allPiecesFinished())
         {
             gameFinished = true;
@@ -214,7 +406,6 @@ public class GameManager : MonoBehaviour
         rollAgain.SetActive(false);
         rollButton.GetComponent<Button>().interactable = true;
         endTurnButton.GetComponent<Button>().interactable = true;
-        roundFinished = false;
         currentPlayer = color;
         rollCount = 0;
         if (PlayerFinished(color))
@@ -291,9 +482,14 @@ public class GameManager : MonoBehaviour
                 }
             }
 
-            if (piece.CurrentTile == -1 
-                && currentRoll == 6 
+            if (piece.CurrentTile == -1
+                && currentRoll == 6
                 && (GamePlan[(int)color * 10] == null || GamePlan[(int)color * 10].GetComponent<Piece>().Color != color))
+            {
+                return true;
+            }
+
+            if (activePiecesCount[color] == 0)
             {
                 return true;
             }
@@ -348,4 +544,16 @@ public class GameManager : MonoBehaviour
         chosenPiece.transform.position = tileManager.EndTiles[piece.Color][endPosition].transform.position;
     }
 
+    public void EndGame()
+    {
+        resultScreen.SetActive(true);
+        firstIcon.sprite = pieces[finishingOrder[0]][0].GetComponent<Image>().sprite;
+        firstIcon.color = pieces[finishingOrder[0]][0].GetComponent<Image>().color;
+        secondIcon.color = pieces[finishingOrder[1]][0].GetComponent<Image>().color;
+        secondIcon.sprite = pieces[finishingOrder[1]][0].GetComponent<Image>().sprite;
+        thirdIcon.sprite = pieces[finishingOrder[2]][0].GetComponent<Image>().sprite;
+        thirdIcon.color = pieces[finishingOrder[2]][0].GetComponent<Image>().color;
+        fourthIcon.sprite = pieces[finishingOrder[3]][0].GetComponent<Image>().sprite;
+        fourthIcon.color = pieces[finishingOrder[3]][0].GetComponent<Image>().color;
+    }
 }

@@ -69,6 +69,17 @@ public class Piece : MonoBehaviour
 
     public void AttemptMove()
     {
+        if (gameManager.PieceTutorial.activeSelf)
+        {
+            gameManager.TutorialChosenPiece = gameObject;
+            gameManager.tutorialPartFinished = true;
+            return;
+        }
+
+        if (gameManager.Tutorial.activeSelf)
+        {
+            return;
+        }
         if (!OccupiedHighlight.activeSelf)
         {
             gameManager.TurnOffRollWarning();
