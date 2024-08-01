@@ -11,6 +11,7 @@ public class SoundManager : MonoBehaviour
 
     public void PlayRollSound()
     {
+        Source.volume = 1f;
         Source.clip = rollSound;
         Source.Play();
     }
@@ -18,11 +19,13 @@ public class SoundManager : MonoBehaviour
     public void PlayScreamSound()
     {
         Source.clip = screamSound;
+        Source.volume = 0.5f;
         Source.Play();
     }
 
     public void PlayMoveSound()
     {
+        Source.volume = 1f;
         Source.clip = moveSound;
         Source.Play();
     }

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Button = UnityEngine.UI.Button;
@@ -15,6 +16,8 @@ public class GameManager : MonoBehaviour
     private bool gameFinished;
     private bool roundFinished;
     private bool hasToMove;
+    private bool isPaused;
+    
 
     private GameObject chosenPiece;
     [SerializeField] private GameObject rollAgain;
@@ -30,12 +33,15 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject pieceTutorialBackground;
     [SerializeField] private GameObject tileTutorialBackground;
     [SerializeField] private GameObject endTurnTutorialBackground;
+    [SerializeField] private GameObject tileTutorialGreyBackground;
+    [SerializeField] private GameObject pauseScreen;
 
     [SerializeField] private GameObject resultScreen;
     [SerializeField] private Image firstIcon;
     [SerializeField] private Image secondIcon;
     [SerializeField] private Image thirdIcon;
     [SerializeField] private Image fourthIcon;
+
 
     public GameObject Tutorial;
     public GameObject PieceTutorial;
@@ -69,104 +75,12 @@ public class GameManager : MonoBehaviour
         StartCoroutine(PlayGame());
     }
 
-
-    public void Roll()
+    void Update()
     {
-        if (diceTutorial.activeSelf)
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Debug.Log("L");
-
-        tutorialPartFinished = true;
-            return;
-        }
-        if (Tutorial.activeSelf) return;
-        if (hasToMove)
-        {
-            rollWarning.SetActive(true);
-            return;
-        }
-        if (ShouldRoll)
-        {
-            StartCoroutine(diceControl.RollAnimation());
-            ShouldRoll = false;
-            var roll = Random.Range(1, 7);
-            rollAgain.SetActive(false);
-            rollCount++;
-            endTurnButton.GetComponent<Button>().interactable = false;
-            var limit = activePiecesCount[currentPlayer] == 0 ? 3 : 1;
-            currentRoll = roll;
-            if (roll != 6 && rollCount >= limit)
-            {
-                if (limit == 3)
-                {
-                    EndRound();
-                }
-                else
-                {
-                    endTurnButton.GetComponent<Button>().interactable = !CanMove(currentPlayer);
-                }
-            }
-
-            if (roll == 6)
-            {
-                endTurnButton.GetComponent<Button>().interactable = !CanMove(currentPlayer);
-            }
-
-            if (limit == 3 && rollCount < 3 && roll != 6)
-            {
-                endTurnButton.GetComponent<Button>().interactable = !CanMove(currentPlayer);
-                rollAgain.SetActive(true);
-            }
-        }
-    }
-
-    public void HidePieces()
-    {
-        foreach (var color in (PieceColor[])Enum.GetValues(typeof(PieceColor)))
-        {
-            foreach (var piece in pieces[color])
-            {
-                var image = piece.GetComponent<Image>();
-                image.color = new Color(image.color.r, image.color.g, image.color.b, 100 / 255f);
-            }
-        }
-    }
-
-    private void CheckForNewFinisher()
-    {
-        foreach (var color in (PieceColor[])Enum.GetValues(typeof(PieceColor)))
-        {
-            if (!finishedColors.Contains(color) && HasColorFinished(color))
-            {
-                finishedColors.Add(color);
-                finishingOrder[lastFinished] = color;
-                lastFinished++;
-            }
-        }
-    }
-
-    private Boolean HasColorFinished(PieceColor color)
-    {
-        foreach (var piece in pieces[color])
-        {
-            if (!piece.GetComponent<Piece>().hasFinished)
-            {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public void ShowPieces()
-    {
-        foreach (var color in (PieceColor[])Enum.GetValues(typeof(PieceColor)))
-        {
-            foreach (var piece in pieces[color])
-            {
-                var image = piece.GetComponent<Image>();
-                image.color = new Color(image.color.r, image.color.g, image.color.b, 1);
-
-            }
+            isPaused = !isPaused;
+            pauseScreen.SetActive(isPaused);
         }
     }
 
@@ -193,7 +107,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator StartTileTutorial()
     {
-        HidePieces();
+        tileTutorialGreyBackground.SetActive(true);
         tileManager.getFieldTiles()[0].GetComponent<Button>().interactable = true;
         DeactivateBluePieces();
         PieceTutorial.SetActive(false);
@@ -207,7 +121,7 @@ public class GameManager : MonoBehaviour
     IEnumerator StartEndTurnTutorial()
     {
         endTurnButton.SetActive(true);
-        ShowPieces();
+        tileTutorialGreyBackground.SetActive(false);
         tileManager.getFieldTiles()[0].GetComponent<Button>().interactable = false;
         TileTutorial.SetActive(false);
         tutorialPartFinished = false;
@@ -215,22 +129,6 @@ public class GameManager : MonoBehaviour
         tileTutorialBackground.SetActive(false);
         endTurnTutorialBackground.SetActive(true);
         yield return new WaitUntil(() => tutorialPartFinished);
-    }
-
-    public void ActivateBluePieces()
-    {
-        foreach (var piece in pieces[PieceColor.Blue])
-        {
-            piece.GetComponent<Button>().interactable = true;
-        }
-    }
-
-    public void DeactivateBluePieces()
-    {
-        foreach (var piece in pieces[PieceColor.Blue])
-        {
-            piece.GetComponent<Button>().interactable = false;
-        }
     }
 
     public void EndTutorial()
@@ -259,12 +157,27 @@ public class GameManager : MonoBehaviour
         skipTutorialButton.SetActive(false);
     }
 
-    public void HandleRollButton()
+    public void ActivateBluePieces()
     {
-        var limit = activePiecesCount[currentPlayer] == 0 ? 3 : 1;
-        if ((currentRoll != 6 && rollCount >= limit && limit != 3) || currentRoll == 6)
+        foreach (var piece in pieces[PieceColor.Blue])
         {
-            hasToMove = true;
+            piece.GetComponent<Button>().interactable = true;
+        }
+    }
+
+    public void DeactivateBluePieces()
+    {
+        foreach (var piece in pieces[PieceColor.Blue])
+        {
+            piece.GetComponent<Button>().interactable = false;
+        }
+    }
+
+    private void InitializePiecesDict()
+    {
+        foreach (var color in (PieceColor[]) Enum.GetValues(typeof(PieceColor)))
+        {
+            pieces[color] = GameObject.FindGameObjectsWithTag($"{color}Piece");
         }
     }
 
@@ -278,6 +191,23 @@ public class GameManager : MonoBehaviour
             }
         }
         return true;
+    }
+
+    public void TurnPiecesOn()
+    {
+        foreach (var piece in pieces[currentPlayer])
+        {
+            piece.GetComponent<Button>().interactable = true;
+        }
+    }
+
+    private void TurnPiecesOff()
+    {
+        foreach (var piece in pieces[currentPlayer])
+        {
+            piece.GetComponent<Button>().interactable = false;
+            piece.GetComponent<Piece>().Chosen.SetActive(false);
+        }
     }
 
     IEnumerator EndRoundCoroutine(PieceColor color)
@@ -334,31 +264,6 @@ public class GameManager : MonoBehaviour
     public void DecreaseActivePieces(PieceColor color)
     {
         activePiecesCount[color] -= 1;
-    }
-
-    private void InitializePiecesDict()
-    {
-        foreach (var color in (PieceColor[]) Enum.GetValues(typeof(PieceColor)))
-        {
-            pieces[color] = GameObject.FindGameObjectsWithTag($"{color}Piece");
-        }
-    }
-
-    public void TurnPiecesOn()
-    {
-        foreach (var piece in pieces[currentPlayer])
-        {
-            piece.GetComponent<Button>().interactable = true;
-        }
-    }
-
-    private void TurnPiecesOff()
-    {
-        foreach (var piece in pieces[currentPlayer])
-        {
-            piece.GetComponent<Button>().interactable = false;
-            piece.GetComponent<Piece>().Chosen.SetActive(false);
-        }
     }
 
     IEnumerator PlayGame()
@@ -459,6 +364,88 @@ public class GameManager : MonoBehaviour
         {
             GamePlan[piece.CurrentTile] = null;
             piece.TilesGone += currentRoll;
+        }
+    }
+
+    public void HandleRollButton()
+    {
+        var limit = activePiecesCount[currentPlayer] == 0 ? 3 : 1;
+        if ((currentRoll != 6 && rollCount >= limit && limit != 3) || currentRoll == 6)
+        {
+            hasToMove = true;
+        }
+    }
+
+    public void Roll()
+    {
+        if (diceTutorial.activeSelf)
+        {
+            tutorialPartFinished = true;
+            return;
+        }
+        if (Tutorial.activeSelf) return;
+        if (hasToMove)
+        {
+            rollWarning.SetActive(true);
+            return;
+        }
+        if (ShouldRoll)
+        {
+            StartCoroutine(diceControl.RollAnimation());
+            ShouldRoll = false;
+            var roll = Random.Range(1, 7);
+            rollAgain.SetActive(false);
+            rollCount++;
+            endTurnButton.GetComponent<Button>().interactable = false;
+            var limit = activePiecesCount[currentPlayer] == 0 ? 3 : 1;
+            currentRoll = roll;
+            if (roll != 6 && rollCount >= limit)
+            {
+                if (limit == 3)
+                {
+                    EndRound();
+                }
+                else
+                {
+                    endTurnButton.GetComponent<Button>().interactable = !CanMove(currentPlayer);
+                }
+            }
+
+            if (roll == 6)
+            {
+                endTurnButton.GetComponent<Button>().interactable = !CanMove(currentPlayer);
+            }
+
+            if (limit == 3 && rollCount < 3 && roll != 6)
+            {
+                endTurnButton.GetComponent<Button>().interactable = !CanMove(currentPlayer);
+                rollAgain.SetActive(true);
+            }
+        }
+    }
+
+    private Boolean HasColorFinished(PieceColor color)
+    {
+        foreach (var piece in pieces[color])
+        {
+            if (!piece.GetComponent<Piece>().hasFinished)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private void CheckForNewFinisher()
+    {
+        foreach (var color in (PieceColor[])Enum.GetValues(typeof(PieceColor)))
+        {
+            if (!finishedColors.Contains(color) && HasColorFinished(color))
+            {
+                finishedColors.Add(color);
+                finishingOrder[lastFinished] = color;
+                lastFinished++;
+            }
         }
     }
 

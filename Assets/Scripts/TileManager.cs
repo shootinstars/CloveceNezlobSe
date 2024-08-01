@@ -68,8 +68,6 @@ public class TileManager : MonoBehaviour
         {
             if (EndFields[piece.Color][endIndex % 5 - 1] == null)
             {
-                Debug.Log(endIndex % 5 - 1);
-                // EndTiles[piece.Color][endIndex % 5 - 1].GetComponent<Image>().color = highlightColors[piece.Color];
                 EndTiles[piece.Color][endIndex % 5 - 1].GetComponent<Image>().color = highlightBrown;
                 EndTiles[piece.Color][endIndex % 5 - 1].GetComponent<Button>().interactable = true;
             }
@@ -78,7 +76,6 @@ public class TileManager : MonoBehaviour
 
     public void HighlightTile(int index, PieceColor color)
     {
-        //fieldTiles[index].GetComponent<Image>().color = highlightColors[color];
         fieldTiles[index].GetComponent<Image>().color = highlightBrown;
         fieldTiles[index].GetComponent<Button>().interactable = true;
         CheckPiecesInDanger(color, index);
@@ -87,7 +84,6 @@ public class TileManager : MonoBehaviour
     public void HighlightStart(PieceColor color)
     {
         var realIndex = 0 + (int) color * 10;
-        //fieldTiles[realIndex].GetComponent<Image>().color = highlightColors[color];
         fieldTiles[realIndex].GetComponent<Image>().color = highlightBrown;
         fieldTiles[realIndex].GetComponent<Button>().interactable = true;
         CheckPiecesInDanger(color, realIndex);
