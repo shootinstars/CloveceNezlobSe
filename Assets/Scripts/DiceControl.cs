@@ -10,6 +10,7 @@ public class DiceControl : MonoBehaviour
     public Sprite[] DiceSprites { get; private set; }
     private GameManager gameManager;
     private SoundManager soundManager;
+    [SerializeField] private ComputerPlayer computerPlayer;
 
     // Start is called before the first frame update
     void Awake()
@@ -31,7 +32,7 @@ public class DiceControl : MonoBehaviour
         }
     }
 
-    public IEnumerator RollAnimation()
+    public IEnumerator RollAnimation(bool isComputer)
     {
         soundManager.PlayRollSound();
         gameManager.ChangeToDefaultButton();
@@ -45,7 +46,14 @@ public class DiceControl : MonoBehaviour
         }
 
         gameManager.TurnPiecesOn();
-        gameManager.ChangeButton();
+        if (isComputer)
+        {
+            gameManager.ChangeButton(computerPlayer.getComputerRoll());
+        }
+        else
+        {
+            gameManager.ChangeButton(gameManager.getCurrentRoll());
+        }
         gameManager.ShouldRoll = true;
         gameManager.HandleRollButton();
     }

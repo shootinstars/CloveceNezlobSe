@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 using Button = UnityEngine.UI.Button;
 using Random = UnityEngine.Random;
@@ -11,9 +12,9 @@ using Random = UnityEngine.Random;
 public class GameManager : MonoBehaviour
 {
     public bool ShouldRoll;
-    private bool tutorialComplete = false;
     public bool tutorialPartFinished;
-    private bool gameFinished;
+    private bool tutorialComplete;
+    public bool gameFinished;
     private bool roundFinished;
     private bool hasToMove;
     private bool isPaused;
@@ -48,23 +49,24 @@ public class GameManager : MonoBehaviour
     public GameObject TileTutorial;
     public GameObject TutorialChosenPiece;
 
-    [SerializeField] private Image currentPlayerImage;
+    public Image CurrentPlayerImage;
     
 
     [SerializeField] private PieceColor currentPlayer;
     [SerializeField] private TileManager tileManager;
     [SerializeField] private SoundManager soundManager;
     [SerializeField] private DiceControl diceControl;
+    [SerializeField] private ComputerPlayer computerPlayer;
 
     private int rollCount;
     private int currentRoll;
     private int lastFinished = 0;
 
-    [SerializeField] private readonly Dictionary<PieceColor, GameObject[]> pieces = new();
-    private Dictionary<PieceColor, int> activePiecesCount = new();
+    public Dictionary<PieceColor, GameObject[]> Pieces { get; } = new();
+    public Dictionary<PieceColor, int> ActivePiecesCount = new();
     private PieceColor[] finishingOrder = new PieceColor[4];
     private HashSet<PieceColor> finishedColors = new HashSet<PieceColor>();
-    public GameObject[] GamePlan { get; } = new GameObject[40];
+    public GameObject[] GamePlan { get; } = new GameObject[TileManager.FieldSize];
 
     // Start is called before the first frame update
     void Start()
@@ -79,8 +81,16 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            isPaused = !isPaused;
-            pauseScreen.SetActive(isPaused);
+            if (!isPaused)
+            {
+                Time.timeScale = 0f;
+                pauseScreen.SetActive(true);
+            }
+            else
+            {
+                Time.timeScale = 1f;
+                pauseScreen.SetActive(false);
+            }
         }
     }
 
@@ -135,7 +145,7 @@ public class GameManager : MonoBehaviour
     {
         endTurnTutorialBackground.SetActive(false);
         endTurnTutorial.SetActive(false);
-        foreach (var piece in pieces[PieceColor.Blue])
+        foreach (var piece in Pieces[PieceColor.Blue])
         {
             piece.GetComponent<Piece>().ResetPiece();
         }
@@ -159,7 +169,7 @@ public class GameManager : MonoBehaviour
 
     public void ActivateBluePieces()
     {
-        foreach (var piece in pieces[PieceColor.Blue])
+        foreach (var piece in Pieces[PieceColor.Blue])
         {
             piece.GetComponent<Button>().interactable = true;
         }
@@ -167,7 +177,7 @@ public class GameManager : MonoBehaviour
 
     public void DeactivateBluePieces()
     {
-        foreach (var piece in pieces[PieceColor.Blue])
+        foreach (var piece in Pieces[PieceColor.Blue])
         {
             piece.GetComponent<Button>().interactable = false;
         }
@@ -177,25 +187,13 @@ public class GameManager : MonoBehaviour
     {
         foreach (var color in (PieceColor[]) Enum.GetValues(typeof(PieceColor)))
         {
-            pieces[color] = GameObject.FindGameObjectsWithTag($"{color}Piece");
+            Pieces[color] = GameObject.FindGameObjectsWithTag($"{color}Piece");
         }
-    }
-
-    private Boolean PlayerFinished(PieceColor color)
-    {
-        foreach (var pieceObject in pieces[color])
-        {
-            if (!pieceObject.GetComponent<Piece>().hasFinished)
-            {
-                return false;
-            }
-        }
-        return true;
     }
 
     public void TurnPiecesOn()
     {
-        foreach (var piece in pieces[currentPlayer])
+        foreach (var piece in Pieces[currentPlayer])
         {
             piece.GetComponent<Button>().interactable = true;
         }
@@ -203,18 +201,18 @@ public class GameManager : MonoBehaviour
 
     private void TurnPiecesOff()
     {
-        foreach (var piece in pieces[currentPlayer])
+        foreach (var piece in Pieces[currentPlayer])
         {
             piece.GetComponent<Button>().interactable = false;
             piece.GetComponent<Piece>().Chosen.SetActive(false);
         }
     }
 
-    IEnumerator EndRoundCoroutine(PieceColor color)
+    public IEnumerator EndRoundCoroutine(PieceColor color)
     {
         rollButton.GetComponent<Button>().interactable = false;
         hasToMove = false;
-        if (ShouldRoll)
+        if (ShouldRoll || computerPlayer != null)
         {
             yield return new WaitForSeconds(1f);
         }
@@ -224,6 +222,10 @@ public class GameManager : MonoBehaviour
         }
         TurnPiecesOff();
         ChangeToDefaultButton();
+        if (computerPlayer != null)
+        {
+            computerPlayer.computerRoundFinished = true;
+        }
         roundFinished = true;
     }
 
@@ -242,7 +244,7 @@ public class GameManager : MonoBehaviour
     {
         foreach (var color in (PieceColor[]) Enum.GetValues(typeof(PieceColor)))
         {
-            activePiecesCount.Add(color, 0);
+            ActivePiecesCount.Add(color, 0);
         }
     }
 
@@ -263,7 +265,7 @@ public class GameManager : MonoBehaviour
 
     public void DecreaseActivePieces(PieceColor color)
     {
-        activePiecesCount[color] -= 1;
+        ActivePiecesCount[color] -= 1;
     }
 
     IEnumerator PlayGame()
@@ -286,12 +288,25 @@ public class GameManager : MonoBehaviour
             tutorialComplete = true;
         }
         EndTutorial();
-        while (!gameFinished)
+        if (computerPlayer == null)
         {
-            yield return PlayRound(PieceColor.Blue);
-            yield return PlayRound(PieceColor.Red);
-            yield return PlayRound(PieceColor.Green);
-            yield return PlayRound(PieceColor.Yellow);
+            while (!gameFinished)
+            {
+                yield return PlayRound(PieceColor.Blue);
+                yield return PlayRound(PieceColor.Red);
+                yield return PlayRound(PieceColor.Green);
+                yield return PlayRound(PieceColor.Yellow);
+            }
+        }
+        else
+        {
+            while (!gameFinished)
+            {
+                yield return PlayRound(PieceColor.Blue);
+                yield return computerPlayer.PlayComputerRound(PieceColor.Red);
+                yield return computerPlayer.PlayComputerRound(PieceColor.Green);
+                yield return computerPlayer.PlayComputerRound(PieceColor.Yellow);
+            }
         }
         EndGame();
     }
@@ -300,12 +315,12 @@ public class GameManager : MonoBehaviour
     {
         CheckForNewFinisher();
         roundFinished = false;
-        if (allPiecesFinished())
+        if (AllPiecesFinished())
         {
             gameFinished = true;
             roundFinished = true;
         }
-        currentPlayerImage.color = tileManager.EndTiles[color][0].GetComponent<Image>().color;
+        CurrentPlayerImage.color = tileManager.EndTiles[color][0].GetComponent<Image>().color;
         rollWarning.SetActive(false);
         ShouldRoll = true;
         rollAgain.SetActive(false);
@@ -313,7 +328,7 @@ public class GameManager : MonoBehaviour
         endTurnButton.GetComponent<Button>().interactable = true;
         currentPlayer = color;
         rollCount = 0;
-        if (PlayerFinished(color))
+        if (GetNumberOfFinished(color) == 4)
         {
             TurnPiecesOff();
             roundFinished = true;
@@ -321,7 +336,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitUntil(() => roundFinished);
     }
 
-    public bool allPiecesFinished()
+    public bool AllPiecesFinished()
     {
         foreach (var piece in GetAllPieces())
         {
@@ -333,9 +348,23 @@ public class GameManager : MonoBehaviour
         return true;
     }
 
-    public void ChangeButton()
+    public int GetNumberOfFinished(PieceColor color)
     {
-        rollButton.GetComponent<Button>().image.sprite = diceControl.DiceSprites[currentRoll - 1];
+        var finished = 0;
+        foreach (var piece in Pieces[color])
+        {
+            if (piece.GetComponent<Piece>().hasFinished)
+            {
+                finished++;
+            }
+        }
+
+        return finished;
+    }
+
+    public void ChangeButton(int roll)
+    {
+        rollButton.GetComponent<Button>().image.sprite = diceControl.DiceSprites[roll - 1];
     }
 
     public void ChangeToDefaultButton()
@@ -345,31 +374,12 @@ public class GameManager : MonoBehaviour
 
     public GameObject[] GetAllPieces()
     {
-        return pieces.Values.SelectMany(array => array).ToArray();
-    }
-
-    public void UpdateInfoBeforeMove(Piece piece)
-    {
-        if (piece.CurrentTile == -1)
-        {
-            activePiecesCount[piece.Color] += 1;
-            piece.TilesGone = 1;
-        }
-        else if (piece.TilesGone > 40)
-        {
-            tileManager.EndFields[piece.Color][piece.TilesGone % 5 - 1] = null;
-            piece.TilesGone += currentRoll;
-        }
-        else
-        {
-            GamePlan[piece.CurrentTile] = null;
-            piece.TilesGone += currentRoll;
-        }
+        return Pieces.Values.SelectMany(array => array).ToArray();
     }
 
     public void HandleRollButton()
     {
-        var limit = activePiecesCount[currentPlayer] == 0 ? 3 : 1;
+        var limit = ActivePiecesCount[currentPlayer] == 0 ? 3 : 1;
         if ((currentRoll != 6 && rollCount >= limit && limit != 3) || currentRoll == 6)
         {
             hasToMove = true;
@@ -391,13 +401,13 @@ public class GameManager : MonoBehaviour
         }
         if (ShouldRoll)
         {
-            StartCoroutine(diceControl.RollAnimation());
+            StartCoroutine(diceControl.RollAnimation(false));
             ShouldRoll = false;
             var roll = Random.Range(1, 7);
             rollAgain.SetActive(false);
             rollCount++;
             endTurnButton.GetComponent<Button>().interactable = false;
-            var limit = activePiecesCount[currentPlayer] == 0 ? 3 : 1;
+            var limit = ActivePiecesCount[currentPlayer] == 0 ? 3 : 1;
             currentRoll = roll;
             if (roll != 6 && rollCount >= limit)
             {
@@ -426,7 +436,7 @@ public class GameManager : MonoBehaviour
 
     private Boolean HasColorFinished(PieceColor color)
     {
-        foreach (var piece in pieces[color])
+        foreach (var piece in Pieces[color])
         {
             if (!piece.GetComponent<Piece>().hasFinished)
             {
@@ -436,7 +446,7 @@ public class GameManager : MonoBehaviour
         return true;
     }
 
-    private void CheckForNewFinisher()
+    public void CheckForNewFinisher()
     {
         foreach (var color in (PieceColor[])Enum.GetValues(typeof(PieceColor)))
         {
@@ -449,20 +459,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private Boolean CanMove(PieceColor color)
+    public Boolean CanMove(PieceColor color)
     {
-        foreach (var pieceObject in pieces[color])
+        foreach (var pieceObject in Pieces[color])
         {
             Piece piece = pieceObject.GetComponent<Piece>();
             if (piece.CurrentTile != -1 && piece.TilesGone + currentRoll <= 44)
             {
-                if (piece.TilesGone + currentRoll < 41 && (GamePlan[(piece.CurrentTile + currentRoll) % 40] == null
-                                                           || GamePlan[(piece.CurrentTile + currentRoll) % 40].GetComponent<Piece>().Color != color))
+                if (piece.TilesGone + currentRoll <= TileManager.FieldSize && (GamePlan[(piece.CurrentTile + currentRoll) % TileManager.FieldSize] == null
+                                                           || GamePlan[(piece.CurrentTile + currentRoll) % TileManager.FieldSize].GetComponent<Piece>().Color != color))
                 {
                     return true;
                 }
 
-                if (piece.TilesGone + currentRoll > 40 &&
+                if (piece.TilesGone + currentRoll > TileManager.FieldSize &&
                     tileManager.EndFields[color][(piece.TilesGone + currentRoll) % 5 - 1] == null)
                 {
                     return true;
@@ -476,12 +486,31 @@ public class GameManager : MonoBehaviour
                 return true;
             }
 
-            if (activePiecesCount[color] == 0)
+            if (ActivePiecesCount[color] == 0)
             {
                 return true;
             }
         }
         return false;
+    }
+
+    public void UpdateInfoBeforeMove(Piece piece)
+    {
+        if (piece.CurrentTile == -1)
+        {
+            ActivePiecesCount[piece.Color] += 1;
+            piece.TilesGone = 1;
+        }
+        else if (piece.TilesGone > TileManager.FieldSize)
+        {
+            tileManager.EndFields[piece.Color][piece.TilesGone % 5 - 1] = null;
+            piece.TilesGone += currentRoll;
+        }
+        else
+        {
+            GamePlan[piece.CurrentTile] = null;
+            piece.TilesGone += currentRoll;
+        }
     }
 
     public void Move(int newPosition)
@@ -492,7 +521,7 @@ public class GameManager : MonoBehaviour
         TurnPiecesOff();
         UpdateInfoBeforeMove(pieceComp);
         soundManager.PlayMoveSound();
-        if (pieceComp.TilesGone > 40)
+        if (pieceComp.TilesGone > TileManager.FieldSize)
         {
             MoveToEnd(pieceComp, newPosition);
         }
@@ -501,7 +530,7 @@ public class GameManager : MonoBehaviour
             MoveOnBoard(pieceComp, newPosition);
         }
         tileManager.UnselectHighlightedMoves();
-        if (currentRoll != 6 && (activePiecesCount[pieceComp.Color] != 0))
+        if (currentRoll != 6 && (ActivePiecesCount[pieceComp.Color] != 0))
         {
             EndRound();
         } else
@@ -519,7 +548,7 @@ public class GameManager : MonoBehaviour
             soundManager.PlayScreamSound();
             GamePlan[newPosition].GetComponent<Piece>().ReturnHome();
         }
-        chosenPiece.transform.position = tileManager.getFieldTiles()[newPosition].transform.position;
+        piece.gameObject.transform.position = tileManager.getFieldTiles()[newPosition].transform.position;
         GamePlan[newPosition] = chosenPiece;
     }
 
@@ -528,19 +557,19 @@ public class GameManager : MonoBehaviour
         piece.hasFinished = true;
         piece.CurrentTile = piece.TilesGone + endPosition;
         tileManager.EndFields[piece.Color][endPosition] = chosenPiece;
-        chosenPiece.transform.position = tileManager.EndTiles[piece.Color][endPosition].transform.position;
+        piece.gameObject.transform.position = tileManager.EndTiles[piece.Color][endPosition].transform.position;
     }
 
     public void EndGame()
     {
         resultScreen.SetActive(true);
-        firstIcon.sprite = pieces[finishingOrder[0]][0].GetComponent<Image>().sprite;
-        firstIcon.color = pieces[finishingOrder[0]][0].GetComponent<Image>().color;
-        secondIcon.color = pieces[finishingOrder[1]][0].GetComponent<Image>().color;
-        secondIcon.sprite = pieces[finishingOrder[1]][0].GetComponent<Image>().sprite;
-        thirdIcon.sprite = pieces[finishingOrder[2]][0].GetComponent<Image>().sprite;
-        thirdIcon.color = pieces[finishingOrder[2]][0].GetComponent<Image>().color;
-        fourthIcon.sprite = pieces[finishingOrder[3]][0].GetComponent<Image>().sprite;
-        fourthIcon.color = pieces[finishingOrder[3]][0].GetComponent<Image>().color;
+        firstIcon.sprite = Pieces[finishingOrder[0]][0].GetComponent<Image>().sprite;
+        firstIcon.color = Pieces[finishingOrder[0]][0].GetComponent<Image>().color;
+        secondIcon.color = Pieces[finishingOrder[1]][0].GetComponent<Image>().color;
+        secondIcon.sprite = Pieces[finishingOrder[1]][0].GetComponent<Image>().sprite;
+        thirdIcon.sprite = Pieces[finishingOrder[2]][0].GetComponent<Image>().sprite;
+        thirdIcon.color = Pieces[finishingOrder[2]][0].GetComponent<Image>().color;
+        fourthIcon.sprite = Pieces[finishingOrder[3]][0].GetComponent<Image>().sprite;
+        fourthIcon.color = Pieces[finishingOrder[3]][0].GetComponent<Image>().color;
     }
 }

@@ -9765,6 +9765,55 @@ MonoBehaviour:
   Id: 37
   gameManager: {fileID: 1103661005}
   BaseColor: {r: 1, g: 1, b: 1, a: 1}
+--- !u!1 &809755097
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 809755098}
+  - component: {fileID: 809755099}
+  m_Layer: 0
+  m_Name: ComputerPlayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &809755098
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 809755097}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.2312447, y: 0.43365324, z: 2627.096}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &809755099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 809755097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5af7a31afff432042836c24f81fe670a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  computerRoundFinished: 0
+  gameManager: {fileID: 1103661005}
+  tileManager: {fileID: 1103661007}
+  soundManager: {fileID: 715555428}
+  diceControl: {fileID: 1103661009}
 --- !u!1 &829018830
 GameObject:
   m_ObjectHideFlags: 0
@@ -13825,7 +13874,7 @@ MonoBehaviour:
   tileManager: {fileID: 1103661007}
   soundManager: {fileID: 715555428}
   diceControl: {fileID: 1103661009}
-  computerPlayer: {fileID: 0}
+  computerPlayer: {fileID: 809755099}
 --- !u!4 &1103661006
 Transform:
   m_ObjectHideFlags: 0
@@ -13880,7 +13929,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4c400c1c0ca8e54a929c2d2f08bc2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  computerPlayer: {fileID: 0}
+  computerPlayer: {fileID: 809755099}
 --- !u!1 &1107147577
 GameObject:
   m_ObjectHideFlags: 0
@@ -24358,6 +24407,7 @@ SceneRoots:
   - {fileID: 619394802}
   - {fileID: 1399857914}
   - {fileID: 1103661006}
+  - {fileID: 809755098}
   - {fileID: 1545027718}
   - {fileID: 1165351038}
   - {fileID: 444267312}

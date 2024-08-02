@@ -11,6 +11,8 @@ public class TileManager : MonoBehaviour
 
     [SerializeField] private GameObject[] fieldTiles;
 
+    public const int FieldSize = 40;
+
     public Dictionary<PieceColor, GameObject[]> EndTiles { get; } = new Dictionary<PieceColor, GameObject[]>();
     public Dictionary<PieceColor, GameObject[]> EndFields { get; } = new Dictionary<PieceColor, GameObject[]>();
 
@@ -46,8 +48,8 @@ public class TileManager : MonoBehaviour
     public void HighlightPossibleMove(Piece piece, PieceColor color, int roll)
     { 
         piece.Chosen.SetActive(true);
-        var realIndex = (piece.CurrentTile + roll) % 40;
-        if (piece.TilesGone + roll > 40)
+        var realIndex = (piece.CurrentTile + roll) % FieldSize;
+        if (piece.TilesGone + roll > FieldSize)
         {
             HighlightEnd(piece, roll);
         }

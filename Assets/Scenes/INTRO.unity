@@ -225,7 +225,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -263, y: -197}
+  m_AnchoredPosition: {x: -298, y: -197}
   m_SizeDelta: {x: 242.6, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &184855951
@@ -359,7 +359,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 355, y: -197}
+  m_AnchoredPosition: {x: 320, y: -197}
   m_SizeDelta: {x: 240.35, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &757096271
@@ -416,8 +416,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -694,7 +694,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -263, y: -10}
+  m_AnchoredPosition: {x: -298, y: -10}
   m_SizeDelta: {x: 383.06, y: 213.07}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1747926218
@@ -997,11 +997,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LanguageId: 0
-  menuTextCzech: "Nov\xE1 hra"
-  skipTutorialCzech: "P\u0159esko\u010Dit\xB4v\xFDuku"
-  rollAgainCzech: "H\xE1zej znovu"
+  menuTextCzech: "HR\xC1T"
+  skipTutorialCzech: "P\u0159esko\u010Dit v\xFDuku"
+  rollAgainCzech: "H\xE1zej znovu!"
   endTurnCzech: "Ukon\u010Dit tah"
-  rollWarningCzech: "Nejprve mus\xED\u0161 prov\xE9st sv\u016Fj tah"
+  rollWarningCzech: "Nejprve prove\u010F sv\u016Fj tah!"
   currentTurnCzech: "Aktu\xE1ln\xED tah:"
   diceTutorialCzech: Klikni na kostku
   pieceTutorialCzech: Klikni na figurku
@@ -1049,7 +1049,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 354.99994, y: -10}
+  m_AnchoredPosition: {x: 319.99994, y: -10}
   m_SizeDelta: {x: 383.06, y: 213.07}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1918435119

@@ -7,7 +7,6 @@ public class LanguageManager : MonoBehaviour
     public int LanguageId;
 
     public string menuTextCzech = "HRÁT";
-
     public string skipTutorialCzech = "Pøeskoèit výuku";
     public string rollAgainCzech = "Házej znovu!";
     public string endTurnCzech = "Ukonèit tah";
