@@ -85,11 +85,13 @@ public class GameManager : MonoBehaviour
             {
                 Time.timeScale = 0f;
                 pauseScreen.SetActive(true);
+                isPaused = true;
             }
             else
             {
                 Time.timeScale = 1f;
                 pauseScreen.SetActive(false);
+                isPaused = false;
             }
         }
     }
@@ -195,7 +197,8 @@ public class GameManager : MonoBehaviour
     {
         foreach (var piece in Pieces[currentPlayer])
         {
-            piece.GetComponent<Button>().interactable = true;
+
+            piece.GetComponent<Button>().interactable = !piece.GetComponent<Piece>().hasFinished;
         }
     }
 
@@ -302,7 +305,8 @@ public class GameManager : MonoBehaviour
         {
             while (!gameFinished)
             {
-                yield return PlayRound(PieceColor.Blue);
+                // yield return PlayRound(PieceColor.Blue);
+                yield return computerPlayer.PlayComputerRound(PieceColor.Blue);
                 yield return computerPlayer.PlayComputerRound(PieceColor.Red);
                 yield return computerPlayer.PlayComputerRound(PieceColor.Green);
                 yield return computerPlayer.PlayComputerRound(PieceColor.Yellow);
@@ -417,18 +421,18 @@ public class GameManager : MonoBehaviour
                 }
                 else
                 {
-                    endTurnButton.GetComponent<Button>().interactable = !CanMove(currentPlayer);
+                    endTurnButton.GetComponent<Button>().interactable = !CanMove(currentPlayer, false);
                 }
             }
 
             if (roll == 6)
             {
-                endTurnButton.GetComponent<Button>().interactable = !CanMove(currentPlayer);
+                endTurnButton.GetComponent<Button>().interactable = !CanMove(currentPlayer, false);
             }
 
             if (limit == 3 && rollCount < 3 && roll != 6)
             {
-                endTurnButton.GetComponent<Button>().interactable = !CanMove(currentPlayer);
+                endTurnButton.GetComponent<Button>().interactable = !CanMove(currentPlayer, false);
                 rollAgain.SetActive(true);
             }
         }
@@ -459,28 +463,29 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public Boolean CanMove(PieceColor color)
+    public Boolean CanMove(PieceColor color, bool isComputer)
     {
+        var roll = isComputer ? computerPlayer.getComputerRoll() : currentRoll;
         foreach (var pieceObject in Pieces[color])
         {
             Piece piece = pieceObject.GetComponent<Piece>();
-            if (piece.CurrentTile != -1 && piece.TilesGone + currentRoll <= 44)
+            if (piece.CurrentTile != -1 && piece.TilesGone + roll <= 44)
             {
-                if (piece.TilesGone + currentRoll <= TileManager.FieldSize && (GamePlan[(piece.CurrentTile + currentRoll) % TileManager.FieldSize] == null
-                                                           || GamePlan[(piece.CurrentTile + currentRoll) % TileManager.FieldSize].GetComponent<Piece>().Color != color))
+                if (piece.TilesGone + roll <= TileManager.FieldSize && (GamePlan[(piece.CurrentTile + roll) % TileManager.FieldSize] == null
+                                                           || GamePlan[(piece.CurrentTile + roll) % TileManager.FieldSize].GetComponent<Piece>().Color != color))
                 {
                     return true;
                 }
 
-                if (piece.TilesGone + currentRoll > TileManager.FieldSize &&
-                    tileManager.EndFields[color][(piece.TilesGone + currentRoll) % 5 - 1] == null)
+                if (piece.TilesGone + roll > TileManager.FieldSize &&
+                    tileManager.EndFields[color][(piece.TilesGone + roll) % 5 - 1] == null && !piece.hasFinished)
                 {
                     return true;
                 }
             }
 
             if (piece.CurrentTile == -1
-                && currentRoll == 6
+                && roll == 6
                 && (GamePlan[(int)color * 10] == null || GamePlan[(int)color * 10].GetComponent<Piece>().Color != color))
             {
                 return true;

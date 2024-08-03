@@ -28,7 +28,7 @@ public class Piece : MonoBehaviour
     [SerializeField] private SoundManager soundManager;
 
 
-    public int CurrentTile { get; set; } = -1;
+    public int CurrentTile = -1;
     public int TilesGone;
     public bool hasFinished = false;
 

@@ -46,7 +46,8 @@ public class TileManager : MonoBehaviour
     }
 
     public void HighlightPossibleMove(Piece piece, PieceColor color, int roll)
-    { 
+    {
+        UnselectHighlightedMoves();
         piece.Chosen.SetActive(true);
         var realIndex = (piece.CurrentTile + roll) % FieldSize;
         if (piece.TilesGone + roll > FieldSize)
