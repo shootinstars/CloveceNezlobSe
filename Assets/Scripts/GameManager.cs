@@ -23,17 +23,14 @@ public class GameManager : MonoBehaviour
     private GameObject chosenPiece;
     [SerializeField] private GameObject rollAgain;
     [SerializeField] private GameObject rollButton;
-    [SerializeField] private GameObject endTurnButton;
     [SerializeField] private GameObject skipTutorialButton;
     [SerializeField] private GameObject rollWarning;
 
     [SerializeField] private GameObject diceTutorial;
-    [SerializeField] private GameObject endTurnTutorial;
 
     [SerializeField] private GameObject diceTutorialBackground;
     [SerializeField] private GameObject pieceTutorialBackground;
     [SerializeField] private GameObject tileTutorialBackground;
-    [SerializeField] private GameObject endTurnTutorialBackground;
     [SerializeField] private GameObject tileTutorialGreyBackground;
     [SerializeField] private GameObject pauseScreen;
 
@@ -79,7 +76,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && (computerPlayer == null || !computerPlayer.isWaitingForPlayerDecision))
         {
             if (!isPaused)
             {
@@ -98,7 +95,6 @@ public class GameManager : MonoBehaviour
 
     IEnumerator StartDiceTutorial()
     {
-        endTurnButton.SetActive(false);
         tutorialPartFinished = false;
         diceTutorial.SetActive(true);
         diceTutorialBackground.SetActive(true);
@@ -130,30 +126,16 @@ public class GameManager : MonoBehaviour
         yield return new WaitUntil(() => tutorialPartFinished);
     }
 
-    IEnumerator StartEndTurnTutorial()
-    {
-        endTurnButton.SetActive(true);
-        tileTutorialGreyBackground.SetActive(false);
-        tileManager.getFieldTiles()[0].GetComponent<Button>().interactable = false;
-        TileTutorial.SetActive(false);
-        tutorialPartFinished = false;
-        endTurnTutorial.SetActive(true);
-        tileTutorialBackground.SetActive(false);
-        endTurnTutorialBackground.SetActive(true);
-        yield return new WaitUntil(() => tutorialPartFinished);
-    }
-
     public void EndTutorial()
     {
-        endTurnTutorialBackground.SetActive(false);
-        endTurnTutorial.SetActive(false);
+        tileManager.getFieldTiles()[0].GetComponent<Button>().interactable = false;
+        tileTutorialGreyBackground.SetActive(false);
         foreach (var piece in Pieces[PieceColor.Blue])
         {
             piece.GetComponent<Piece>().ResetPiece();
         }
         ChangeToDefaultButton();
         HideTutorial();
-        endTurnButton.SetActive(true);
     }
 
     public void HideTutorial()
@@ -165,7 +147,6 @@ public class GameManager : MonoBehaviour
         diceTutorialBackground.SetActive(false);
         tileTutorialBackground.SetActive(false);
         pieceTutorialBackground.SetActive(false);
-        endTurnTutorialBackground.SetActive(false);
         skipTutorialButton.SetActive(false);
     }
 
@@ -234,7 +215,7 @@ public class GameManager : MonoBehaviour
 
     public void EndRound()
     {
-        if (endTurnTutorial.activeSelf || Tutorial.activeSelf)
+        if (Tutorial.activeSelf)
         {
             tutorialPartFinished = true;
             tutorialComplete = true;
@@ -284,10 +265,6 @@ public class GameManager : MonoBehaviour
             {
                 yield return StartTileTutorial();
             }
-            if (!tutorialComplete)
-            {
-                yield return StartEndTurnTutorial();
-            }
             tutorialComplete = true;
         }
         EndTutorial();
@@ -305,8 +282,7 @@ public class GameManager : MonoBehaviour
         {
             while (!gameFinished)
             {
-                // yield return PlayRound(PieceColor.Blue);
-                yield return computerPlayer.PlayComputerRound(PieceColor.Blue);
+                yield return PlayRound(PieceColor.Blue);
                 yield return computerPlayer.PlayComputerRound(PieceColor.Red);
                 yield return computerPlayer.PlayComputerRound(PieceColor.Green);
                 yield return computerPlayer.PlayComputerRound(PieceColor.Yellow);
@@ -329,7 +305,6 @@ public class GameManager : MonoBehaviour
         ShouldRoll = true;
         rollAgain.SetActive(false);
         rollButton.GetComponent<Button>().interactable = true;
-        endTurnButton.GetComponent<Button>().interactable = true;
         currentPlayer = color;
         rollCount = 0;
         if (GetNumberOfFinished(color) == 4)
@@ -384,7 +359,7 @@ public class GameManager : MonoBehaviour
     public void HandleRollButton()
     {
         var limit = ActivePiecesCount[currentPlayer] == 0 ? 3 : 1;
-        if ((currentRoll != 6 && rollCount >= limit && limit != 3) || currentRoll == 6)
+        if (CanMove(currentPlayer, false) && ((currentRoll != 6 && rollCount >= limit && limit != 3) || currentRoll == 6))
         {
             hasToMove = true;
         }
@@ -410,7 +385,6 @@ public class GameManager : MonoBehaviour
             var roll = Random.Range(1, 7);
             rollAgain.SetActive(false);
             rollCount++;
-            endTurnButton.GetComponent<Button>().interactable = false;
             var limit = ActivePiecesCount[currentPlayer] == 0 ? 3 : 1;
             currentRoll = roll;
             if (roll != 6 && rollCount >= limit)
@@ -419,20 +393,20 @@ public class GameManager : MonoBehaviour
                 {
                     EndRound();
                 }
-                else
+                else if (!CanMove(currentPlayer, false))
                 {
-                    endTurnButton.GetComponent<Button>().interactable = !CanMove(currentPlayer, false);
+                    EndRound();
                 }
             }
 
-            if (roll == 6)
+            if (roll == 6 && !CanMove(currentPlayer, false))
             {
-                endTurnButton.GetComponent<Button>().interactable = !CanMove(currentPlayer, false);
+                EndRound(); 
+
             }
 
             if (limit == 3 && rollCount < 3 && roll != 6)
             {
-                endTurnButton.GetComponent<Button>().interactable = !CanMove(currentPlayer, false);
                 rollAgain.SetActive(true);
             }
         }
@@ -576,5 +550,15 @@ public class GameManager : MonoBehaviour
         thirdIcon.color = Pieces[finishingOrder[2]][0].GetComponent<Image>().color;
         fourthIcon.sprite = Pieces[finishingOrder[3]][0].GetComponent<Image>().sprite;
         fourthIcon.color = Pieces[finishingOrder[3]][0].GetComponent<Image>().color;
+    }
+
+    public void HideWarning()
+    {
+        rollWarning.SetActive(false);
+    }
+
+    public PieceColor getCurrentPlayer()
+    {
+        return currentPlayer;
     }
 }

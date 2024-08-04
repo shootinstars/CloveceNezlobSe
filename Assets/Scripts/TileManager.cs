@@ -16,16 +16,9 @@ public class TileManager : MonoBehaviour
     public Dictionary<PieceColor, GameObject[]> EndTiles { get; } = new Dictionary<PieceColor, GameObject[]>();
     public Dictionary<PieceColor, GameObject[]> EndFields { get; } = new Dictionary<PieceColor, GameObject[]>();
 
-    private Dictionary<PieceColor, Color> highlightColors = new Dictionary<PieceColor, Color>();
-    private Color highlightRed = new Color(253/255f, 116/255f, 116/255f);
-    private Color highlightGreen = new Color(186/255f, 1, 97/255f);
-    private Color highlightBlue = new Color(78/255f, 202/255f, 1);
-    private Color highlightYellow = new Color(1, 1, 90 / 255f);
-    private Color highlight = Color.gray;
-    private Color highlightBrown = new Color(195 / 255f, 116 / 255f, 14 / 255f);
+    private Color highlightBrown = new Color(164 / 255f, 87 / 255f, 0);
 
 
-    // Start is called before the first frame update
     void Awake()
     {
         fieldTiles = GameObject.FindGameObjectsWithTag("Board").OrderBy(x => x.GetComponent<GameTile>().Id).ToArray();
@@ -39,10 +32,6 @@ public class TileManager : MonoBehaviour
             EndTiles[color] = GameObject.FindGameObjectsWithTag($"{color}End").OrderBy(x => x.GetComponent<GameTile>().Id).ToArray();
             EndFields[color] = new GameObject[4];
         }
-        highlightColors.Add(PieceColor.Blue, highlightBlue);
-        highlightColors.Add(PieceColor.Green, highlightGreen);
-        highlightColors.Add(PieceColor.Yellow, highlightYellow);
-        highlightColors.Add(PieceColor.Red, highlightRed);
     }
 
     public void HighlightPossibleMove(Piece piece, PieceColor color, int roll)
@@ -113,6 +102,10 @@ public class TileManager : MonoBehaviour
         {
             piece.GetComponent<Piece>().TurnHighlightOff();
             piece.GetComponent<Piece>().Chosen.SetActive(false);
+            if (piece.GetComponent<Piece>().Color != gameManager.getCurrentPlayer())
+            {
+                piece.GetComponent<Button>().interactable = false;
+            }
         }
 
         foreach (var color in EndTiles.Keys)

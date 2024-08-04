@@ -8,27 +8,30 @@ using UnityEngine.SceneManagement;
 public class SceneManagement : MonoBehaviour
 {
 
-    [SerializeField] private TMP_Text menuText;
+    [SerializeField] private TMP_Text playTeamText;
+    [SerializeField] private TMP_Text playSoloText;
 
     void Start()
     {
-        if (menuText != null)
+        if (playSoloText != null)
         {
             var languageManager = FindObjectOfType<LanguageManager>();
-            if (languageManager == null)
-            {
-                Debug.Log("WHY");
-            }
             if (languageManager.LanguageId == 0)
             {
-                menuText.text = languageManager.menuTextCzech;
+                playTeamText.text = languageManager.playTeamTextCzech;
+                playSoloText.text = languageManager.playSoloTextCzech;
             }
         }
     }
 
-    public void StartGame()
+    public void StartTeamGame()
     {
-        SceneManager.LoadScene("GAME");
+        SceneManager.LoadScene("TEAM_GAME");
+    }
+
+    public void StartSoloGame()
+    {
+        SceneManager.LoadScene("SOLO_GAME");
     }
 
     public void BackToMenu()

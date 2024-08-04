@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MENU.unity
     guid: cdf7165cc1c5f7846829296ef68d03d5
   - enabled: 1
-    path: Assets/Scenes/GAME.unity
+    path: Assets/Scenes/TEAM_GAME.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/SOLO_GAME.unity
+    guid: ed33eedb5f37dd445a9542b594405f6d
   m_configObjects: {}

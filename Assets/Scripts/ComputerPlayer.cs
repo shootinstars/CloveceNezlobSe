@@ -4,6 +4,7 @@ using System.Drawing;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.Rendering.UI;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
@@ -14,24 +15,28 @@ public class ComputerPlayer : MonoBehaviour
     [SerializeField] private GameManager gameManager;
     [SerializeField] private TileManager tileManager;
     [SerializeField] private SoundManager soundManager;
+
     [SerializeField] private DiceControl diceControl;
+    [SerializeField] private Button rollButton;
+    [SerializeField] private GameObject afterPlayerWin;
     private int computerRoll;
     private int currentStart;
+    private bool canMove;
+    public bool isWaitingForPlayerDecision;
+    public bool playerFinished;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     public IEnumerator PlayComputerRound(PieceColor currentColor)
     {
+        if (gameManager.GetNumberOfFinished(PieceColor.Blue) == 4 && !playerFinished && !gameManager.AllPiecesFinished())
+        {
+            isWaitingForPlayerDecision = true;
+            afterPlayerWin.SetActive(true);
+            Time.timeScale = 0f;
+            playerFinished = true;
+        } 
+        gameManager.TurnOffRollWarning();
+        rollButton.interactable = false;
         computerRoundFinished = false;
         yield return new WaitForSeconds(0.5f);
         gameManager.CheckForNewFinisher();
@@ -50,6 +55,7 @@ public class ComputerPlayer : MonoBehaviour
         var rollLimit = gameManager.ActivePiecesCount[currentColor] == 0 ? 3 : 1;
         while (!computerRoundFinished)
         {
+            canMove = false;
             if (gameManager.ActivePiecesCount[currentColor] != 0)
             {
                 rollLimit = 1;
@@ -59,25 +65,22 @@ public class ComputerPlayer : MonoBehaviour
             yield return diceControl.RollAnimation(true);
             if (gameManager.CanMove(currentColor, true) && (gameManager.ActivePiecesCount[currentColor] != 0 || computerRoll == 6))
             {
-                Debug.Log("Mùžu se hýbat");
+                canMove = true;
                 yield return new WaitForSeconds(0.5f);
                 var movedPiece = FindBestMove(currentColor);
-                Debug.Log(movedPiece.name + " is moving");
                 var newPosition = GetNewPosition(movedPiece);
-                Debug.Log("New position: " + newPosition);
                 ComputerMove(movedPiece, newPosition);
             }
             rollLimit -= 1;
             if (rollLimit == 0)
             {
-                if (computerRoll == 6 && gameManager.CanMove(currentColor, true))
+                if (computerRoll == 6 && canMove && gameManager.GetNumberOfFinished(currentColor) != 4)
                 {
                     rollLimit = 1;
                 }
                 else
                 {
                     computerRoundFinished = true;
-                    Debug.Log("A nebo tady?");
                     yield return gameManager.EndRoundCoroutine(currentColor);
                 }
             }
@@ -96,7 +99,7 @@ public class ComputerPlayer : MonoBehaviour
                 bestOption = pieceComp;
             }
             //finishing
-            else if (CanFinish(pieceComp))
+            else if (CanFinish(pieceComp) && (!CanStart(bestOption)) || (CanFinish(pieceComp) && EnemyInProximity(pieceComp)))
             {
                 bestOption = pieceComp;
             }
@@ -109,7 +112,7 @@ public class ComputerPlayer : MonoBehaviour
                     bestOption = CompareAttacks(pieceComp, bestOption);
                 }
                 // there is no more valuable move now
-                else if (!CanFinish(bestOption))
+                else if (!CanFinish(bestOption) || CanStart(pieceComp))
                 {
                     bestOption = pieceComp;
                 }
@@ -132,6 +135,10 @@ public class ComputerPlayer : MonoBehaviour
                     {
                         bestOption = pieceComp;
                     }
+                }
+                else if (CanFinish(bestOption) && !EnemyInProximity(bestOption))
+                {
+                    bestOption = pieceComp;
                 }
             }
             else if (CanOnlyMove(pieceComp))
@@ -163,14 +170,9 @@ public class ComputerPlayer : MonoBehaviour
 
     public bool CanFinish(Piece piece)
     {
-        if (piece.TilesGone <= TileManager.FieldSize && piece.TilesGone + computerRoll > TileManager.FieldSize &&
-            tileManager.EndFields[piece.Color][(piece.TilesGone + computerRoll) % 5 - 1] == null)
-        {
-            Debug.Log(piece.name + " can finish, " + " roll is " + computerRoll + " current tile is " + piece.CurrentTile);
-            return true;
-        }
-        Debug.Log(piece.name + " cannot finish, " + " roll is " + computerRoll + " current tile is " + piece.CurrentTile);
-        return false;
+        return piece.TilesGone <= TileManager.FieldSize && piece.TilesGone + computerRoll > TileManager.FieldSize
+                                                        && piece.TilesGone + computerRoll < 45 &&
+                                                        tileManager.EndFields[piece.Color][(piece.TilesGone + computerRoll) % 5 - 1] == null;
     }
 
     public bool CanAttack(Piece piece)
@@ -179,7 +181,6 @@ public class ComputerPlayer : MonoBehaviour
         if (piece.CurrentTile == -1 && computerRoll == 6 && (gameManager.GamePlan[currentStart] != null
                                                              && gameManager.GamePlan[currentStart].GetComponent<Piece>().Color != piece.Color))
         {
-            Debug.Log(piece.name + " can attack from start, " + " roll is " + computerRoll);
             return true;
         }
         // attack from field
@@ -187,34 +188,22 @@ public class ComputerPlayer : MonoBehaviour
                                     && gameManager.GamePlan[(piece.CurrentTile + computerRoll) % TileManager.FieldSize] != null
                                     && gameManager.GamePlan[(piece.CurrentTile + computerRoll) % TileManager.FieldSize].GetComponent<Piece>().Color != piece.Color)
         {
-            Debug.Log(piece.name + " can attack from field, " + " roll is " + computerRoll);
             return true;
         }
-        Debug.Log(piece.name + " cannot attack, " + " roll is " + computerRoll);
         return false;
     }
 
     public bool CanStart(Piece piece)
     {
-        if (computerRoll == 6 && piece.CurrentTile == -1 && gameManager.GamePlan[currentStart] == null)
-        {
-            Debug.Log(piece.name + " can start, " + " roll is " + computerRoll);
-            return true;
-        }
-        Debug.Log(piece.name + " cannot start, " + " roll is " + computerRoll);
-        return false;
+        return computerRoll == 6 && piece.CurrentTile == -1 && 
+               (gameManager.GamePlan[currentStart] == null || gameManager.GamePlan[currentStart].GetComponent<Piece>().Color != piece.Color);
     }
 
     public bool CanOnlyMove(Piece piece)
     {
-        if (piece.CurrentTile != -1 && piece.TilesGone + computerRoll <= TileManager.FieldSize
-                                   && gameManager.GamePlan[(piece.CurrentTile + computerRoll) % TileManager.FieldSize] == null)
-        {
-            Debug.Log(piece.name + " can move, " + " roll is " + computerRoll + " current tile is " + piece.CurrentTile);
-            return true;
-        }
-        Debug.Log(piece.name + " cannot move, " + " roll is " + computerRoll);
-        return false;
+        return piece.CurrentTile != -1 && piece.TilesGone + computerRoll <= TileManager.FieldSize
+                                       && gameManager.GamePlan[
+                                           (piece.CurrentTile + computerRoll) % TileManager.FieldSize] == null;
     }
 
     public Piece CompareAttacks(Piece piece1, Piece piece2)
@@ -265,12 +254,13 @@ public class ComputerPlayer : MonoBehaviour
 
     public Piece CompareStartAndMove(Piece mover, Piece starter)
     {
-        return mover.TilesGone + computerRoll >= 30 ? starter : mover;
+        return mover.TilesGone + computerRoll >= 33 ? starter : mover;
     }
 
 
     public void ComputerMove(Piece piece, int newPosition)
     {
+        soundManager.PlayMoveSound();
         if ((newPosition != currentStart || piece.CurrentTile != -1) || (computerRoll == 6))
         {
             UpdateInfoBeforeComputerMove(piece);
@@ -314,6 +304,21 @@ public class ComputerPlayer : MonoBehaviour
         return piece.CurrentTile == -1 ? currentStart : (piece.CurrentTile + computerRoll) % TileManager.FieldSize;
     }
 
+    public bool EnemyInProximity(Piece piece)
+    {
+        for (int i = 1; i < 6; i++)
+        {
+            var positionBehind = piece.CurrentTile - i;
+            if (gameManager.GamePlan[positionBehind] != null && gameManager.GamePlan[positionBehind].GetComponent<Piece>().Color != piece.Color)
+            {
+                Debug.Log("enemy close behind");
+                return true;
+            }
+        }
+        Debug.Log("no enemy close behind");
+        return false;
+    }
+
     public void UpdateInfoBeforeComputerMove(Piece piece)
     {
         if (piece.CurrentTile == -1)
@@ -336,5 +341,12 @@ public class ComputerPlayer : MonoBehaviour
     public int getComputerRoll()
     {
         return computerRoll;
+    }
+
+    public void ContinueWatching()
+    {
+        Time.timeScale = 1;
+        isWaitingForPlayerDecision = false;
+        afterPlayerWin.SetActive(false);
     }
 }

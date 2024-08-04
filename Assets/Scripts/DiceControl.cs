@@ -45,13 +45,13 @@ public class DiceControl : MonoBehaviour
             elapsed += interval;
         }
 
-        gameManager.TurnPiecesOn();
         if (isComputer)
         {
             gameManager.ChangeButton(computerPlayer.getComputerRoll());
         }
         else
         {
+            gameManager.TurnPiecesOn();
             gameManager.ChangeButton(gameManager.getCurrentRoll());
         }
         gameManager.ShouldRoll = true;
