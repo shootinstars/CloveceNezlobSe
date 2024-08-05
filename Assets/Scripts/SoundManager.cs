@@ -9,7 +9,8 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioClip rollSound;
     [SerializeField] private AudioClip screamSound;
     [SerializeField] private AudioClip moveSound;
-    [SerializeField] private AudioClip clipSound;
+    [SerializeField] private AudioClip buttonSound;
+    [SerializeField] private AudioClip fanfareSound;
      
     public void PlayRollSound()
     {
@@ -31,6 +32,11 @@ public class SoundManager : MonoBehaviour
 
     public void PlayClickSound()
     {
-        menuSource.PlayOneShot(clipSound);
+        menuSource.PlayOneShot(buttonSound);
+    }
+
+    public void PlayFanfareSound()
+    {
+        Source.PlayOneShot(fanfareSound);
     }
 }

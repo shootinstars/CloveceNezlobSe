@@ -10,7 +10,17 @@ using UnityEngine.UI;
 
 public class ComputerPlayer : MonoBehaviour
 {
+    private bool canMove;
+
     public bool computerRoundFinished;
+    public bool isWaitingForPlayerDecision;
+    public bool playerFinished;
+    public bool isSoloGame;
+
+    private int computerRoll;
+    private int currentStart;
+
+    public GameObject AfterPlayerWin;
 
     [SerializeField] private GameManager gameManager;
     [SerializeField] private TileManager tileManager;
@@ -18,23 +28,39 @@ public class ComputerPlayer : MonoBehaviour
 
     [SerializeField] private DiceControl diceControl;
     [SerializeField] private Button rollButton;
-    [SerializeField] private GameObject afterPlayerWin;
-    private int computerRoll;
-    private int currentStart;
-    private bool canMove;
-    public bool isWaitingForPlayerDecision;
-    public bool playerFinished;
+    [SerializeField] private PlayerCount playerCount;
 
+
+    void Awake()
+    {
+        Time.timeScale = 1;
+        playerCount = GameObject.FindObjectOfType<PlayerCount>();
+    }
+
+    public IEnumerator StartComputerRound(PieceColor currentColor)
+    {
+        StartCoroutine(PlayComputerRound(currentColor));
+        yield return new WaitUntil(() => computerRoundFinished);
+    }
 
     public IEnumerator PlayComputerRound(PieceColor currentColor)
     {
-        if (gameManager.GetNumberOfFinished(PieceColor.Blue) == 4 && !playerFinished && !gameManager.AllPiecesFinished())
+        if (gameManager.GetNumberOfFinished(PieceColor.Blue) == 4 && !playerFinished &&
+            !gameManager.AllPiecesFinished())
         {
-            isWaitingForPlayerDecision = true;
-            afterPlayerWin.SetActive(true);
-            Time.timeScale = 0f;
-            playerFinished = true;
-        } 
+            if (isSoloGame || (!isSoloGame && playerCount.Count == 2 &&
+                               gameManager.GetNumberOfFinished(PieceColor.Red) == 4)
+                           || (!isSoloGame && playerCount.Count == 3 &&
+                               gameManager.GetNumberOfFinished(PieceColor.Red) == 4) &&
+                           gameManager.GetNumberOfFinished(PieceColor.Green) == 4)
+            {
+                isWaitingForPlayerDecision = true;
+                AfterPlayerWin.SetActive(true);
+                Time.timeScale = 0f;
+                playerFinished = true;
+                soundManager.PlayFanfareSound();
+            }
+        }
         gameManager.TurnOffRollWarning();
         rollButton.interactable = false;
         computerRoundFinished = false;
@@ -308,7 +334,7 @@ public class ComputerPlayer : MonoBehaviour
     {
         for (int i = 1; i < 6; i++)
         {
-            var positionBehind = piece.CurrentTile - i;
+            var positionBehind = piece.CurrentTile < 5 ? 40 - i : piece.CurrentTile - i;
             if (gameManager.GamePlan[positionBehind] != null && gameManager.GamePlan[positionBehind].GetComponent<Piece>().Color != piece.Color)
             {
                 Debug.Log("enemy close behind");
@@ -347,6 +373,6 @@ public class ComputerPlayer : MonoBehaviour
     {
         Time.timeScale = 1;
         isWaitingForPlayerDecision = false;
-        afterPlayerWin.SetActive(false);
+        AfterPlayerWin.SetActive(false);
     }
 }

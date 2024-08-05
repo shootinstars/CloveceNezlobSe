@@ -71,12 +71,13 @@ public class GameManager : MonoBehaviour
         rollAgain.SetActive(false);
         InitializePiecesDict();
         InitializeActiveCount();
+        computerPlayer = FindObjectOfType<ComputerPlayer>();
         StartCoroutine(PlayGame());
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && (computerPlayer == null || !computerPlayer.isWaitingForPlayerDecision))
+        if (Input.GetKeyDown(KeyCode.Escape) && !computerPlayer.AfterPlayerWin.activeSelf && !resultScreen.activeSelf)
         {
             if (!isPaused)
             {
@@ -196,7 +197,7 @@ public class GameManager : MonoBehaviour
     {
         rollButton.GetComponent<Button>().interactable = false;
         hasToMove = false;
-        if (ShouldRoll || computerPlayer != null)
+        if (ShouldRoll)
         {
             yield return new WaitForSeconds(1f);
         }
@@ -206,10 +207,7 @@ public class GameManager : MonoBehaviour
         }
         TurnPiecesOff();
         ChangeToDefaultButton();
-        if (computerPlayer != null)
-        {
-            computerPlayer.computerRoundFinished = true;
-        }
+        computerPlayer.computerRoundFinished = true;
         roundFinished = true;
     }
 
@@ -254,6 +252,8 @@ public class GameManager : MonoBehaviour
 
     IEnumerator PlayGame()
     {
+
+        var humanPlayerCount = FindObjectOfType<PlayerCount>().Count;
         while (!tutorialComplete)
         {
             yield return StartDiceTutorial();
@@ -268,14 +268,31 @@ public class GameManager : MonoBehaviour
             tutorialComplete = true;
         }
         EndTutorial();
-        if (computerPlayer == null)
+        if (!computerPlayer.isSoloGame)
         {
             while (!gameFinished)
             {
-                yield return PlayRound(PieceColor.Blue);
-                yield return PlayRound(PieceColor.Red);
-                yield return PlayRound(PieceColor.Green);
-                yield return PlayRound(PieceColor.Yellow);
+                switch (humanPlayerCount)
+                {
+                    case 2:
+                        yield return PlayRound(PieceColor.Blue);
+                        yield return PlayRound(PieceColor.Red);
+                        yield return computerPlayer.PlayComputerRound(PieceColor.Green);
+                        yield return computerPlayer.PlayComputerRound(PieceColor.Yellow);
+                        break;
+                    case 3:
+                        yield return PlayRound(PieceColor.Blue);
+                        yield return PlayRound(PieceColor.Red);
+                        yield return PlayRound(PieceColor.Green);
+                        yield return computerPlayer.PlayComputerRound(PieceColor.Yellow);
+                        break;
+                    default:
+                        yield return PlayRound(PieceColor.Blue);
+                        yield return PlayRound(PieceColor.Red);
+                        yield return PlayRound(PieceColor.Green);
+                        yield return PlayRound(PieceColor.Yellow);
+                        break;
+                }
             }
         }
         else
@@ -300,17 +317,21 @@ public class GameManager : MonoBehaviour
             gameFinished = true;
             roundFinished = true;
         }
-        CurrentPlayerImage.color = tileManager.EndTiles[color][0].GetComponent<Image>().color;
-        rollWarning.SetActive(false);
-        ShouldRoll = true;
-        rollAgain.SetActive(false);
-        rollButton.GetComponent<Button>().interactable = true;
-        currentPlayer = color;
-        rollCount = 0;
         if (GetNumberOfFinished(color) == 4)
         {
             TurnPiecesOff();
             roundFinished = true;
+        }
+
+        if (!roundFinished)
+        {
+            CurrentPlayerImage.color = tileManager.EndTiles[color][0].GetComponent<Image>().color;
+            rollWarning.SetActive(false);
+            ShouldRoll = true;
+            rollAgain.SetActive(false);
+            rollButton.GetComponent<Button>().interactable = true;
+            currentPlayer = color;
+            rollCount = 0;
         }
         yield return new WaitUntil(() => roundFinished);
     }
@@ -541,7 +562,9 @@ public class GameManager : MonoBehaviour
 
     public void EndGame()
     {
+        soundManager.PlayFanfareSound();
         resultScreen.SetActive(true);
+        computerPlayer.isWaitingForPlayerDecision = true;
         firstIcon.sprite = Pieces[finishingOrder[0]][0].GetComponent<Image>().sprite;
         firstIcon.color = Pieces[finishingOrder[0]][0].GetComponent<Image>().color;
         secondIcon.color = Pieces[finishingOrder[1]][0].GetComponent<Image>().color;

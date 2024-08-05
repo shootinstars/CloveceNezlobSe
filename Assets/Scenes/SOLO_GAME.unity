@@ -3519,7 +3519,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'CONGRATULATIONS
+  m_text: 'CONGRATULATIONS!!!
 
 
     YOU FINISHED YOUR JOURNEY!!!'
@@ -5485,7 +5485,7 @@ MonoBehaviour:
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
-  m_ScreenMatchMode: 0
+  m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
@@ -6800,10 +6800,10 @@ RectTransform:
   - {fileID: 1629286591}
   m_Father: {fileID: 444267312}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -1.5}
+  m_SizeDelta: {x: 100, y: -1129}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &550367105
 GameObject:
@@ -8863,9 +8863,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Source: {fileID: 715555429}
+  menuSource: {fileID: 0}
   rollSound: {fileID: 8300000, guid: 570e4e56f6d68a54bbcb3067919d9775, type: 3}
   screamSound: {fileID: 8300000, guid: 5c1e207402276c549a265af1b8fdb47e, type: 3}
   moveSound: {fileID: 8300000, guid: f20cd573db715574a9df83a56ac604a7, type: 3}
+  buttonSound: {fileID: 0}
+  fanfareSound: {fileID: 8300000, guid: cc064401bccea5c499fca5723793a746, type: 3}
 --- !u!82 &715555429
 AudioSource:
   m_ObjectHideFlags: 0
@@ -10377,14 +10380,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   computerRoundFinished: 0
+  isWaitingForPlayerDecision: 0
+  playerFinished: 0
+  isSoloGame: 1
+  AfterPlayerWin: {fileID: 1402576796}
   gameManager: {fileID: 1103661005}
   tileManager: {fileID: 1103661007}
   soundManager: {fileID: 715555428}
   diceControl: {fileID: 1103661009}
   rollButton: {fileID: 1879672521}
-  afterPlayerWin: {fileID: 1402576796}
-  isWaitingForPlayerDecision: 0
-  playerFinished: 0
+  playerCount: {fileID: 0}
 --- !u!1 &829018830
 GameObject:
   m_ObjectHideFlags: 0
@@ -14353,8 +14358,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cefab5afc119d4a4eb5c04525b28ee25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playTeamText: {fileID: 0}
-  playSoloText: {fileID: 0}
 --- !u!114 &1103661009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17627,7 +17630,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca80bb7c18cfec140a46c5fb495a559f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endTurnButtonText: {fileID: 0}
+  playerCounterTitleText: {fileID: 0}
+  titleText: {fileID: 0}
   skipTutorialText: {fileID: 1600675847}
   currentTurnText: {fileID: 1649709927}
   diceTutorialText: {fileID: 1714371049}
@@ -17635,7 +17639,6 @@ MonoBehaviour:
   pieceTutorialText: {fileID: 682588362}
   tileTutorialText: {fileID: 1842465198}
   rollAgainText: {fileID: 2108738119}
-  endTurnTutorialText: {fileID: 0}
   resultHeadlineText: {fileID: 649401311}
   playAgainText: {fileID: 1278617931}
   toMenuText: {fileID: 970841998}
@@ -17643,6 +17646,8 @@ MonoBehaviour:
   pausedBackToMenuText: {fileID: 612422455}
   congratulationsText: {fileID: 323073495}
   continueText: {fileID: 579476213}
+  congratulationsBackToMenuText: {fileID: 509948807}
+  congratulationsPlayAgainText: {fileID: 1969622817}
 --- !u!1 &1402049781
 GameObject:
   m_ObjectHideFlags: 0

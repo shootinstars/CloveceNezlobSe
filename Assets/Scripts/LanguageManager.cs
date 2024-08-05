@@ -6,6 +6,8 @@ public class LanguageManager : MonoBehaviour
 {
     public int LanguageId;
 
+    public string mainTitleCzech = "ÈLOVÌÈE NEZLOB SE";
+    public string playerCounterTitleCzech = "POÈET HRÁÈÙ";
     public string playTeamTextCzech = "HRÁT SPOLEÈNÌ";
     public string playSoloTextCzech = "HRÁT SÁM";
     public string skipTutorialCzech = "Pøeskoèit výuku";
@@ -22,11 +24,12 @@ public class LanguageManager : MonoBehaviour
     public string toMenuCzech = "Zpátky do menu";
     public string pauseCzech = "PAUZA";
 
-    public string congratulationsTextCzech = "GRATULACE, DOŠEL JSI NA KONEC CESTY";
+    public string congratulationsTextCzech = "GRATULACE!!!\n\nDOŠEL JSI NA KONEC CESTY!!!";
     public string continueTextCzech = "Pokraèovat ve sledování";
 
     void Start()
     {
+        congratulationsTextCzech = "GRATULACE!!!\n\nDOŠEL JSI NA KONEC CESTY!!!";
         DontDestroyOnLoad(gameObject);
     }
 

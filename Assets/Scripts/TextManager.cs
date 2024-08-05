@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class TextManager : MonoBehaviour
 {
-    [SerializeField] private TMP_Text endTurnButtonText;
+    [SerializeField] private TMP_Text playerCounterTitleText;
+    [SerializeField] private TMP_Text titleText;
     [SerializeField] private TMP_Text skipTutorialText;
     [SerializeField] private TMP_Text currentTurnText;
     [SerializeField] private TMP_Text diceTutorialText;
@@ -13,7 +14,6 @@ public class TextManager : MonoBehaviour
     [SerializeField] private TMP_Text pieceTutorialText;
     [SerializeField] private TMP_Text tileTutorialText;
     [SerializeField] private TMP_Text rollAgainText;
-    [SerializeField] private TMP_Text endTurnTutorialText;
     [SerializeField] private TMP_Text resultHeadlineText;
     [SerializeField] private TMP_Text playAgainText;
     [SerializeField] private TMP_Text toMenuText;
@@ -21,6 +21,8 @@ public class TextManager : MonoBehaviour
     [SerializeField] private TMP_Text pausedBackToMenuText;
     [SerializeField] private TMP_Text congratulationsText;
     [SerializeField] private TMP_Text continueText;
+    [SerializeField] private TMP_Text congratulationsBackToMenuText;
+    [SerializeField] private TMP_Text congratulationsPlayAgainText;
 
     // Start is called before the first frame update
     void Start()
@@ -44,6 +46,8 @@ public class TextManager : MonoBehaviour
             {
                 congratulationsText.text = languageManager.congratulationsTextCzech;
                 continueText.text = languageManager.continueTextCzech;
+                congratulationsBackToMenuText.text = languageManager.toMenuCzech;
+                congratulationsPlayAgainText.text = languageManager.playAgainCzech;
             }
         }
     }
