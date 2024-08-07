@@ -6,17 +6,18 @@ public class GameTile : MonoBehaviour
 {
     public int Id;
     [SerializeField] private GameManager gameManager;
+    [SerializeField] private TutorialScript tutorial;
     public Color BaseColor = Color.white;
 
     public void ConfirmMove()
     {
-        if (gameManager.TileTutorial.activeSelf)
+        if (tutorial.TileTutorial.activeSelf)
         {
-            gameManager.tutorialPartFinished = true;
-            gameManager.TutorialChosenPiece.transform.position = gameObject.transform.position;
+            tutorial.tutorialPartFinished = true;
+            tutorial.TutorialChosenPiece.transform.position = gameObject.transform.position;
             return;
         }
-        if (gameManager.Tutorial.activeSelf)
+        if (tutorial.TutorialScreen.activeSelf)
         {
             return;
         }

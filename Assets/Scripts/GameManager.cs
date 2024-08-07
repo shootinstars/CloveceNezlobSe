@@ -12,8 +12,6 @@ using Random = UnityEngine.Random;
 public class GameManager : MonoBehaviour
 {
     public bool ShouldRoll;
-    public bool tutorialPartFinished;
-    private bool tutorialComplete;
     public bool gameFinished;
     private bool roundFinished;
     private bool hasToMove;
@@ -22,16 +20,8 @@ public class GameManager : MonoBehaviour
 
     private GameObject chosenPiece;
     [SerializeField] private GameObject rollAgain;
-    [SerializeField] private GameObject rollButton;
-    [SerializeField] private GameObject skipTutorialButton;
     [SerializeField] private GameObject rollWarning;
 
-    [SerializeField] private GameObject diceTutorial;
-
-    [SerializeField] private GameObject diceTutorialBackground;
-    [SerializeField] private GameObject pieceTutorialBackground;
-    [SerializeField] private GameObject tileTutorialBackground;
-    [SerializeField] private GameObject tileTutorialGreyBackground;
     [SerializeField] private GameObject pauseScreen;
 
     [SerializeField] private GameObject resultScreen;
@@ -41,10 +31,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Image fourthIcon;
 
 
-    public GameObject Tutorial;
-    public GameObject PieceTutorial;
-    public GameObject TileTutorial;
-    public GameObject TutorialChosenPiece;
+    public GameObject RollButton;
 
     public Image CurrentPlayerImage;
     
@@ -54,6 +41,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private SoundManager soundManager;
     [SerializeField] private DiceControl diceControl;
     [SerializeField] private ComputerPlayer computerPlayer;
+    [SerializeField] private TutorialScript tutorial;
 
     private int rollCount;
     private int currentRoll;
@@ -92,63 +80,6 @@ public class GameManager : MonoBehaviour
                 isPaused = false;
             }
         }
-    }
-
-    IEnumerator StartDiceTutorial()
-    {
-        tutorialPartFinished = false;
-        diceTutorial.SetActive(true);
-        diceTutorialBackground.SetActive(true);
-        yield return new WaitUntil(() => tutorialPartFinished);
-    }
-
-    IEnumerator StartPieceTutorial()
-    {
-        rollButton.GetComponent<Button>().image.sprite = diceControl.DiceSprites[5];
-        ActivateBluePieces();
-        diceTutorial.SetActive(false);
-        tutorialPartFinished = false;
-        PieceTutorial.SetActive(true);
-        diceTutorialBackground.SetActive(false);
-        pieceTutorialBackground.SetActive(true);
-        yield return new WaitUntil(() => tutorialPartFinished);
-    }
-
-    IEnumerator StartTileTutorial()
-    {
-        tileTutorialGreyBackground.SetActive(true);
-        tileManager.getFieldTiles()[0].GetComponent<Button>().interactable = true;
-        DeactivateBluePieces();
-        PieceTutorial.SetActive(false);
-        tutorialPartFinished = false;
-        TileTutorial.SetActive(true);
-        pieceTutorialBackground.SetActive(false);
-        tileTutorialBackground.SetActive(true);
-        yield return new WaitUntil(() => tutorialPartFinished);
-    }
-
-    public void EndTutorial()
-    {
-        tileManager.getFieldTiles()[0].GetComponent<Button>().interactable = false;
-        tileTutorialGreyBackground.SetActive(false);
-        foreach (var piece in Pieces[PieceColor.Blue])
-        {
-            piece.GetComponent<Piece>().ResetPiece();
-        }
-        ChangeToDefaultButton();
-        HideTutorial();
-    }
-
-    public void HideTutorial()
-    {
-        diceTutorial.SetActive(false);
-        PieceTutorial.SetActive(false);
-        TileTutorial.SetActive(false);
-        Tutorial.SetActive(false);
-        diceTutorialBackground.SetActive(false);
-        tileTutorialBackground.SetActive(false);
-        pieceTutorialBackground.SetActive(false);
-        skipTutorialButton.SetActive(false);
     }
 
     public void ActivateBluePieces()
@@ -195,7 +126,7 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator EndRoundCoroutine(PieceColor color)
     {
-        rollButton.GetComponent<Button>().interactable = false;
+        RollButton.GetComponent<Button>().interactable = false;
         hasToMove = false;
         if (ShouldRoll)
         {
@@ -213,10 +144,10 @@ public class GameManager : MonoBehaviour
 
     public void EndRound()
     {
-        if (Tutorial.activeSelf)
+        if (tutorial.TutorialScreen.activeSelf)
         {
-            tutorialPartFinished = true;
-            tutorialComplete = true;
+            tutorial.tutorialPartFinished = true;
+            tutorial.tutorialComplete = true;
             return;
         }
         StartCoroutine(EndRoundCoroutine(currentPlayer));
@@ -254,20 +185,20 @@ public class GameManager : MonoBehaviour
     {
 
         var humanPlayerCount = FindObjectOfType<PlayerCount>().Count;
-        while (!tutorialComplete)
+        while (!tutorial.tutorialComplete)
         {
-            yield return StartDiceTutorial();
-            if (!tutorialComplete)
+            yield return tutorial.StartDiceTutorial();
+            if (!tutorial.tutorialComplete)
             {
-                yield return StartPieceTutorial();
+                yield return tutorial.StartPieceTutorial();
             }
-            if (!tutorialComplete)
+            if (!tutorial.tutorialComplete)
             {
-                yield return StartTileTutorial();
+                yield return tutorial.StartTileTutorial();
             }
-            tutorialComplete = true;
+            tutorial.tutorialComplete = true;
         }
-        EndTutorial();
+        tutorial.EndTutorial();
         if (!computerPlayer.isSoloGame)
         {
             while (!gameFinished)
@@ -329,7 +260,7 @@ public class GameManager : MonoBehaviour
             rollWarning.SetActive(false);
             ShouldRoll = true;
             rollAgain.SetActive(false);
-            rollButton.GetComponent<Button>().interactable = true;
+            RollButton.GetComponent<Button>().interactable = true;
             currentPlayer = color;
             rollCount = 0;
         }
@@ -364,12 +295,12 @@ public class GameManager : MonoBehaviour
 
     public void ChangeButton(int roll)
     {
-        rollButton.GetComponent<Button>().image.sprite = diceControl.DiceSprites[roll - 1];
+        RollButton.GetComponent<Button>().image.sprite = diceControl.DiceSprites[roll - 1];
     }
 
     public void ChangeToDefaultButton()
     {
-        rollButton.GetComponent<Button>().image.sprite = diceControl.DiceSprites[6];
+        RollButton.GetComponent<Button>().image.sprite = diceControl.DiceSprites[6];
     }
 
     public GameObject[] GetAllPieces()
@@ -388,12 +319,12 @@ public class GameManager : MonoBehaviour
 
     public void Roll()
     {
-        if (diceTutorial.activeSelf)
+        if (tutorial.DiceTutorial.activeSelf)
         {
-            tutorialPartFinished = true;
+            tutorial.tutorialPartFinished = true;
             return;
         }
-        if (Tutorial.activeSelf) return;
+        if (tutorial.TutorialScreen.activeSelf) return;
         if (hasToMove)
         {
             rollWarning.SetActive(true);
@@ -535,7 +466,7 @@ public class GameManager : MonoBehaviour
             EndRound();
         } else
         {
-            rollButton.GetComponent<Button>().interactable = true;
+            RollButton.GetComponent<Button>().interactable = true;
             rollAgain.SetActive(true);
         }
     }

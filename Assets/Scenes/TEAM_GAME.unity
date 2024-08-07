@@ -123,6 +123,100 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &8302171
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8302172}
+  - component: {fileID: 8302173}
+  m_Layer: 0
+  m_Name: TutorialManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8302172
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8302171}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8601325}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8302173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8302171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b67c5ca070cd8248a38325ec4570b16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TutorialScreen: {fileID: 1120935616}
+  PieceTutorial: {fileID: 1530412806}
+  TileTutorial: {fileID: 225122710}
+  TutorialChosenPiece: {fileID: 0}
+  DiceTutorial: {fileID: 723949968}
+  tutorialPartFinished: 0
+  tutorialComplete: 0
+  diceTutorialBackground: {fileID: 431972006}
+  pieceTutorialBackground: {fileID: 730830077}
+  tileTutorialBackground: {fileID: 943403282}
+  tileTutorialGreyBackground: {fileID: 489055005}
+  skipTutorialButton: {fileID: 561548290}
+  gameManager: {fileID: 1103661005}
+  diceControl: {fileID: 1103661009}
+  tileManager: {fileID: 1103661007}
+--- !u!1 &8601324
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8601325}
+  m_Layer: 0
+  m_Name: Managers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8601325
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8601324}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.7294219, y: -0.24122652, z: 1911.2943}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 715555427}
+  - {fileID: 8302172}
+  - {fileID: 1399857914}
+  - {fileID: 1103661006}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &13745296
 GameObject:
   m_ObjectHideFlags: 0
@@ -289,6 +383,7 @@ MonoBehaviour:
   gameManager: {fileID: 1103661005}
   tileManager: {fileID: 1103661007}
   soundManager: {fileID: 715555428}
+  tutorial: {fileID: 8302173}
   CurrentTile: -1
   TilesGone: 0
   hasFinished: 0
@@ -838,6 +933,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 5
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 8302173}
   BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &53189386
 GameObject:
@@ -986,6 +1082,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 2
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 8302173}
   BaseColor: {r: 0.9960785, g: 0, b: 0, a: 1}
 --- !u!1 &56912759
 GameObject:
@@ -1303,6 +1400,7 @@ MonoBehaviour:
   gameManager: {fileID: 1103661005}
   tileManager: {fileID: 1103661007}
   soundManager: {fileID: 715555428}
+  tutorial: {fileID: 8302173}
   CurrentTile: -1
   TilesGone: 0
   hasFinished: 0
@@ -1528,6 +1626,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 30
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 8302173}
   BaseColor: {r: 0.9960785, g: 0.8078432, b: 0, a: 1}
 --- !u!1 &105751458
 GameObject:
@@ -2203,6 +2302,7 @@ MonoBehaviour:
   gameManager: {fileID: 1103661005}
   tileManager: {fileID: 1103661007}
   soundManager: {fileID: 715555428}
+  tutorial: {fileID: 8302173}
   CurrentTile: -1
   TilesGone: 0
   hasFinished: 0
@@ -2353,6 +2453,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 25
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 8302173}
   BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &164662889
 GameObject:
@@ -2671,6 +2772,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 3
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 8302173}
   BaseColor: {r: 0.9960785, g: 0, b: 0, a: 1}
 --- !u!1 &225122710
 GameObject:
@@ -3224,6 +3326,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 0
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 0}
   BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &247217244
 GameObject:
@@ -3447,6 +3550,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 0
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 8302173}
   BaseColor: {r: 0.19215688, g: 0.76470596, b: 0, a: 1}
 --- !u!1 &317967323
 GameObject:
@@ -3595,6 +3699,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 1
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 8302173}
   BaseColor: {r: 0.19215688, g: 0.76470596, b: 0, a: 1}
 --- !u!1 &319891913
 GameObject:
@@ -3731,6 +3836,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 0
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 0}
   BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &332868873
 GameObject:
@@ -3879,6 +3985,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 2
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 8302173}
   BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &332989387
 GameObject:
@@ -4310,6 +4417,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 1
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 8302173}
   BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &353088550
 GameObject:
@@ -4533,6 +4641,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 7
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 8302173}
   BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &372340776
 GameObject:
@@ -4669,6 +4778,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 0
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 0}
   BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &378058380
 GameObject:
@@ -4892,6 +5002,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 3
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 8302173}
   BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &390903090
 GameObject:
@@ -5059,6 +5170,7 @@ MonoBehaviour:
   gameManager: {fileID: 1103661005}
   tileManager: {fileID: 1103661007}
   soundManager: {fileID: 715555428}
+  tutorial: {fileID: 8302173}
   CurrentTile: -1
   TilesGone: 0
   hasFinished: 0
@@ -5248,6 +5360,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 3
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 8302173}
   BaseColor: {r: 0.19215688, g: 0.76470596, b: 0, a: 1}
 --- !u!1 &424799550
 GameObject:
@@ -5886,6 +5999,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 33
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 8302173}
   BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &447702773
 GameObject:
@@ -6053,6 +6167,7 @@ MonoBehaviour:
   gameManager: {fileID: 1103661005}
   tileManager: {fileID: 1103661007}
   soundManager: {fileID: 715555428}
+  tutorial: {fileID: 8302173}
   CurrentTile: -1
   TilesGone: 0
   hasFinished: 0
@@ -6353,6 +6468,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 34
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 8302173}
   BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &451560468
 GameObject:
@@ -6687,6 +6803,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 18
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 8302173}
   BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &519420028
 GameObject:
@@ -6998,6 +7115,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 0
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 0}
   BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &554387108
 GameObject:
@@ -7354,6 +7472,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 4
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 8302173}
   BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &608789353
 GameObject:
@@ -7851,6 +7970,7 @@ MonoBehaviour:
   gameManager: {fileID: 1103661005}
   tileManager: {fileID: 1103661007}
   soundManager: {fileID: 715555428}
+  tutorial: {fileID: 8302173}
   CurrentTile: -1
   TilesGone: 0
   hasFinished: 0
@@ -8344,6 +8464,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 2
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 8302173}
   BaseColor: {r: 0.19215688, g: 0.76470596, b: 0, a: 1}
 --- !u!1 &682588360
 GameObject:
@@ -8740,6 +8861,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 35
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 8302173}
   BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &715555426
 GameObject:
@@ -8768,12 +8890,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 715555426}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.933303, y: 1.2685871, z: 2.138625}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.7961189, y: 1.5098137, z: -1909.1556}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 8601325}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &715555428
 MonoBehaviour:
@@ -9206,6 +9328,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 28
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 8302173}
   BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &730830077
 GameObject:
@@ -9507,6 +9630,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 0
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 8302173}
   BaseColor: {r: 0.9960785, g: 0, b: 0, a: 1}
 --- !u!1 &768586777
 GameObject:
@@ -9806,6 +9930,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 6
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 8302173}
   BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &803448714
 GameObject:
@@ -9973,6 +10098,7 @@ MonoBehaviour:
   gameManager: {fileID: 1103661005}
   tileManager: {fileID: 1103661007}
   soundManager: {fileID: 715555428}
+  tutorial: {fileID: 8302173}
   CurrentTile: -1
   TilesGone: 0
   hasFinished: 0
@@ -10111,6 +10237,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 0
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 0}
   BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &808532689
 GameObject:
@@ -10259,6 +10386,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 37
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 8302173}
   BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &829018830
 GameObject:
@@ -10407,6 +10535,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 20
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 8302173}
   BaseColor: {r: 0.19215688, g: 0.76470596, b: 0, a: 1}
 --- !u!1 &831101647
 GameObject:
@@ -10630,6 +10759,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 0
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 8302173}
   BaseColor: {r: 0.98823535, g: 0.8235295, b: 0, a: 1}
 --- !u!1 &855206052
 GameObject:
@@ -10778,6 +10908,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 32
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 8302173}
   BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &875452629
 GameObject:
@@ -11210,6 +11341,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 36
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 8302173}
   BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &882490878
 GameObject:
@@ -11377,6 +11509,7 @@ MonoBehaviour:
   gameManager: {fileID: 1103661005}
   tileManager: {fileID: 1103661007}
   soundManager: {fileID: 715555428}
+  tutorial: {fileID: 8302173}
   CurrentTile: -1
   TilesGone: 0
   hasFinished: 0
@@ -11789,6 +11922,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 11
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 8302173}
   BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &938200847
 GameObject:
@@ -11937,6 +12071,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 26
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 8302173}
   BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &943403282
 GameObject:
@@ -12333,6 +12468,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 10
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 8302173}
   BaseColor: {r: 0.9960785, g: 0, b: 0, a: 1}
 --- !u!1 &960987221
 GameObject:
@@ -12575,6 +12711,7 @@ MonoBehaviour:
   gameManager: {fileID: 1103661005}
   tileManager: {fileID: 1103661007}
   soundManager: {fileID: 715555428}
+  tutorial: {fileID: 8302173}
   CurrentTile: -1
   TilesGone: 0
   hasFinished: 0
@@ -12725,6 +12862,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 31
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 8302173}
   BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &970841996
 GameObject:
@@ -13493,6 +13631,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 27
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 8302173}
   BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1037077519
 GameObject:
@@ -13705,6 +13844,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 0
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 0}
   BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1058250642
 GameObject:
@@ -13853,6 +13993,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 8
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 8302173}
   BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1058668996
 GameObject:
@@ -14001,6 +14142,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 1
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 8302173}
   BaseColor: {r: 0.98823535, g: 0.8235295, b: 0, a: 1}
 --- !u!1 &1065932171
 GameObject:
@@ -14149,6 +14291,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 13
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 8302173}
   BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1075122662
 GameObject:
@@ -14294,33 +14437,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShouldRoll: 0
-  tutorialPartFinished: 0
   gameFinished: 0
   rollAgain: {fileID: 2108738117}
-  rollButton: {fileID: 1879672519}
-  skipTutorialButton: {fileID: 561548290}
   rollWarning: {fileID: 238241966}
-  diceTutorial: {fileID: 723949968}
-  diceTutorialBackground: {fileID: 431972006}
-  pieceTutorialBackground: {fileID: 730830077}
-  tileTutorialBackground: {fileID: 943403282}
-  tileTutorialGreyBackground: {fileID: 489055005}
   pauseScreen: {fileID: 1829348654}
   resultScreen: {fileID: 1427332111}
   firstIcon: {fileID: 131617087}
   secondIcon: {fileID: 875452631}
   thirdIcon: {fileID: 2130438278}
   fourthIcon: {fileID: 128829003}
-  Tutorial: {fileID: 1120935616}
-  PieceTutorial: {fileID: 1530412806}
-  TileTutorial: {fileID: 225122710}
-  TutorialChosenPiece: {fileID: 0}
+  RollButton: {fileID: 1879672519}
   CurrentPlayerImage: {fileID: 247217248}
   currentPlayer: 0
   tileManager: {fileID: 1103661007}
   soundManager: {fileID: 715555428}
   diceControl: {fileID: 1103661009}
-  computerPlayer: {fileID: 0}
+  computerPlayer: {fileID: 1585703193}
+  tutorial: {fileID: 8302173}
 --- !u!4 &1103661006
 Transform:
   m_ObjectHideFlags: 0
@@ -14329,12 +14462,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1103661004}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.7294219, y: 0.24122652, z: -1911.2943}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 8601325}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1103661007
 MonoBehaviour:
@@ -14522,6 +14655,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 9
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 8302173}
   BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1120935616
 GameObject:
@@ -14552,7 +14686,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2005685738}
   - {fileID: 431972007}
   - {fileID: 723949969}
   - {fileID: 1530412807}
@@ -14706,6 +14839,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 0
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 8302173}
   BaseColor: {r: 0.050980397, g: 0.3921569, b: 0.85098046, a: 1}
 --- !u!1 &1140432042
 GameObject:
@@ -14854,6 +14988,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 14
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 8302173}
   BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1141953029
 GameObject:
@@ -15145,6 +15280,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 17
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 8302173}
   BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1171856109
 GameObject:
@@ -15577,6 +15713,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 1
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 8302173}
   BaseColor: {r: 0.050980397, g: 0.3921569, b: 0.85098046, a: 1}
 --- !u!1 &1206924525
 GameObject:
@@ -15877,6 +16014,7 @@ MonoBehaviour:
   gameManager: {fileID: 1103661005}
   tileManager: {fileID: 1103661007}
   soundManager: {fileID: 715555428}
+  tutorial: {fileID: 8302173}
   CurrentTile: -1
   TilesGone: 0
   hasFinished: 0
@@ -16395,6 +16533,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 0
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 0}
   BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1292035837
 GameObject:
@@ -16826,6 +16965,7 @@ MonoBehaviour:
   gameManager: {fileID: 1103661005}
   tileManager: {fileID: 1103661007}
   soundManager: {fileID: 715555428}
+  tutorial: {fileID: 8302173}
   CurrentTile: -1
   TilesGone: 0
   hasFinished: 0
@@ -16995,6 +17135,7 @@ MonoBehaviour:
   gameManager: {fileID: 1103661005}
   tileManager: {fileID: 1103661007}
   soundManager: {fileID: 715555428}
+  tutorial: {fileID: 8302173}
   CurrentTile: -1
   TilesGone: 0
   hasFinished: 0
@@ -17145,6 +17286,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 2
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 8302173}
   BaseColor: {r: 0.050980397, g: 0.3921569, b: 0.85098046, a: 1}
 --- !u!1 &1367519709
 GameObject:
@@ -17293,6 +17435,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 3
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 8302173}
   BaseColor: {r: 0.98823535, g: 0.8235295, b: 0, a: 1}
 --- !u!1 &1372878642
 GameObject:
@@ -17516,6 +17659,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 24
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 8302173}
   BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1399102244
 GameObject:
@@ -17664,6 +17808,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 1
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 8302173}
   BaseColor: {r: 0.9960785, g: 0, b: 0, a: 1}
 --- !u!1 &1399857913
 GameObject:
@@ -17690,12 +17835,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1399857913}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.7205517, y: 1.820611, z: 2441.9802}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -4.4499736, y: 2.0618374, z: 530.6859}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 8601325}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1399857915
 MonoBehaviour:
@@ -17911,6 +18056,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 21
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 8302173}
   BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1427163603
 GameObject:
@@ -18150,6 +18296,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 19
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 8302173}
   BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1472078870
 GameObject:
@@ -18317,6 +18464,7 @@ MonoBehaviour:
   gameManager: {fileID: 1103661005}
   tileManager: {fileID: 1103661007}
   soundManager: {fileID: 715555428}
+  tutorial: {fileID: 8302173}
   CurrentTile: -1
   TilesGone: 0
   hasFinished: 0
@@ -18530,6 +18678,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 0
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 0}
   BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1504839238
 GameObject:
@@ -18678,6 +18827,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 16
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 8302173}
   BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1530412806
 GameObject:
@@ -18848,6 +18998,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 0
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 0}
   BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1542580859
 GameObject:
@@ -19174,6 +19325,7 @@ MonoBehaviour:
   gameManager: {fileID: 1103661005}
   tileManager: {fileID: 1103661007}
   soundManager: {fileID: 715555428}
+  tutorial: {fileID: 8302173}
   CurrentTile: -1
   TilesGone: 0
   hasFinished: 0
@@ -19647,6 +19799,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 29
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 8302173}
   BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1628617137
 GameObject:
@@ -19783,6 +19936,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 0
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 0}
   BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1629286590
 GameObject:
@@ -20216,6 +20370,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 3
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 8302173}
   BaseColor: {r: 0.050980397, g: 0.3921569, b: 0.85098046, a: 1}
 --- !u!1 &1671453717
 GameObject:
@@ -21109,6 +21264,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 0
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 0}
   BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1776907579
 GameObject:
@@ -21888,6 +22044,7 @@ MonoBehaviour:
   gameManager: {fileID: 1103661005}
   tileManager: {fileID: 1103661007}
   soundManager: {fileID: 715555428}
+  tutorial: {fileID: 8302173}
   CurrentTile: -1
   TilesGone: 0
   hasFinished: 0
@@ -22170,6 +22327,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 39
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 8302173}
   BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1903295528
 GameObject:
@@ -22318,6 +22476,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 12
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 8302173}
   BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1921912690
 GameObject:
@@ -22636,6 +22795,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 38
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 8302173}
   BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1982532148
 GameObject:
@@ -22772,6 +22932,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 0
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 0}
   BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1982963671
 GameObject:
@@ -22920,6 +23081,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 23
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 8302173}
   BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1987329347
 GameObject:
@@ -23056,6 +23218,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 0
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 0}
   BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &2003207513
 GameObject:
@@ -23094,81 +23257,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &2005685737
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2005685738}
-  - component: {fileID: 2005685740}
-  - component: {fileID: 2005685739}
-  m_Layer: 5
-  m_Name: EndTurnIntroBackground
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!224 &2005685738
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2005685737}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1120935617}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 4.85, y: -0.000061035}
-  m_SizeDelta: {x: 1929.7, y: 1080}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2005685739
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2005685737}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.78431374}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &2005685740
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2005685737}
-  m_CullTransparentMesh: 1
 --- !u!1 &2010021110
 GameObject:
   m_ObjectHideFlags: 0
@@ -23391,6 +23479,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 22
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 8302173}
   BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &2027856992
 GameObject:
@@ -23539,6 +23628,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 0
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 8302173}
   BaseColor: {r: 0, g: 0.39607847, b: 0.8941177, a: 1}
 --- !u!1 &2063425806
 GameObject:
@@ -23687,6 +23777,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 15
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 8302173}
   BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &2069338227
 GameObject:
@@ -23823,6 +23914,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 0
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 0}
   BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &2075916163
 GameObject:
@@ -24046,6 +24138,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 2
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 8302173}
   BaseColor: {r: 0.98823535, g: 0.8235295, b: 0, a: 1}
 --- !u!1 &2079967281
 GameObject:
@@ -24332,6 +24425,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 0
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 0}
   BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &2101317104
 GameObject:
@@ -24677,6 +24771,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 0
   gameManager: {fileID: 1103661005}
+  tutorial: {fileID: 0}
   BaseColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &2125621135
 GameObject:
@@ -24994,6 +25089,7 @@ MonoBehaviour:
   gameManager: {fileID: 1103661005}
   tileManager: {fileID: 1103661007}
   soundManager: {fileID: 715555428}
+  tutorial: {fileID: 8302173}
   CurrentTile: -1
   TilesGone: 0
   hasFinished: 0
@@ -25002,10 +25098,8 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 519420032}
-  - {fileID: 715555427}
+  - {fileID: 8601325}
   - {fileID: 1585703192}
   - {fileID: 619394802}
-  - {fileID: 1399857914}
-  - {fileID: 1103661006}
   - {fileID: 1165351038}
   - {fileID: 444267312}

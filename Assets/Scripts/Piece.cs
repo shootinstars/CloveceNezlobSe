@@ -26,7 +26,7 @@ public class Piece : MonoBehaviour
     [SerializeField] private GameManager gameManager;
     [SerializeField] private TileManager tileManager;
     [SerializeField] private SoundManager soundManager;
-
+    [SerializeField] private TutorialScript tutorial;
 
     public int CurrentTile = -1;
     public int TilesGone;
@@ -69,14 +69,14 @@ public class Piece : MonoBehaviour
 
     public void AttemptMove()
     {
-        if (gameManager.PieceTutorial.activeSelf)
+        if (tutorial.PieceTutorial.activeSelf)
         {
-            gameManager.TutorialChosenPiece = gameObject;
-            gameManager.tutorialPartFinished = true;
+            tutorial.TutorialChosenPiece = gameObject;
+            tutorial.tutorialPartFinished = true;
             return;
         }
 
-        if (gameManager.Tutorial.activeSelf)
+        if (tutorial.TutorialScreen.activeSelf)
         {
             return;
         }
