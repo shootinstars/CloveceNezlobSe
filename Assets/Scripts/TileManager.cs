@@ -102,7 +102,7 @@ public class TileManager : MonoBehaviour
         {
             piece.GetComponent<Piece>().TurnHighlightOff();
             piece.GetComponent<Piece>().Chosen.SetActive(false);
-            if (piece.GetComponent<Piece>().Color != gameManager.getCurrentPlayer())
+            if (piece.GetComponent<Piece>().Color != gameManager.CurrentPlayer)
             {
                 piece.GetComponent<Button>().interactable = false;
             }

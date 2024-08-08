@@ -1,10 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
-using TMPro;
 using UnityEngine;
-using UnityEngine.Rendering;
 using UnityEngine.UI;
 using Button = UnityEngine.UI.Button;
 using Random = UnityEngine.Random;
@@ -34,9 +33,9 @@ public class GameManager : MonoBehaviour
     public GameObject RollButton;
 
     public Image CurrentPlayerImage;
-    
 
-    [SerializeField] private PieceColor currentPlayer;
+    public PieceColor CurrentPlayer;
+
     [SerializeField] private TileManager tileManager;
     [SerializeField] private SoundManager soundManager;
     [SerializeField] private DiceControl diceControl;
@@ -44,8 +43,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TutorialScript tutorial;
 
     private int rollCount;
-    private int currentRoll;
-    private int lastFinished = 0;
+    public int CurrentRoll;
+    private int lastFinished;
 
     public Dictionary<PieceColor, GameObject[]> Pieces { get; } = new();
     public Dictionary<PieceColor, int> ActivePiecesCount = new();
@@ -108,7 +107,7 @@ public class GameManager : MonoBehaviour
 
     public void TurnPiecesOn()
     {
-        foreach (var piece in Pieces[currentPlayer])
+        foreach (var piece in Pieces[CurrentPlayer])
         {
 
             piece.GetComponent<Button>().interactable = !piece.GetComponent<Piece>().hasFinished;
@@ -117,7 +116,7 @@ public class GameManager : MonoBehaviour
 
     private void TurnPiecesOff()
     {
-        foreach (var piece in Pieces[currentPlayer])
+        foreach (var piece in Pieces[CurrentPlayer])
         {
             piece.GetComponent<Button>().interactable = false;
             piece.GetComponent<Piece>().Chosen.SetActive(false);
@@ -150,7 +149,7 @@ public class GameManager : MonoBehaviour
             tutorial.tutorialComplete = true;
             return;
         }
-        StartCoroutine(EndRoundCoroutine(currentPlayer));
+        StartCoroutine(EndRoundCoroutine(CurrentPlayer));
     }
 
     public void InitializeActiveCount()
@@ -169,11 +168,6 @@ public class GameManager : MonoBehaviour
     public void TurnOffRollWarning()
     {
         rollWarning.SetActive(false);
-    }
-
-    public int getCurrentRoll()
-    {
-        return currentRoll;
     }
 
     public void DecreaseActivePieces(PieceColor color)
@@ -261,7 +255,7 @@ public class GameManager : MonoBehaviour
             ShouldRoll = true;
             rollAgain.SetActive(false);
             RollButton.GetComponent<Button>().interactable = true;
-            currentPlayer = color;
+            CurrentPlayer = color;
             rollCount = 0;
         }
         yield return new WaitUntil(() => roundFinished);
@@ -310,8 +304,8 @@ public class GameManager : MonoBehaviour
 
     public void HandleRollButton()
     {
-        var limit = ActivePiecesCount[currentPlayer] == 0 ? 3 : 1;
-        if (CanMove(currentPlayer, false) && ((currentRoll != 6 && rollCount >= limit && limit != 3) || currentRoll == 6))
+        var limit = ActivePiecesCount[CurrentPlayer] == 0 ? 3 : 1;
+        if (CanMove(CurrentPlayer, false) && ((CurrentRoll != 6 && rollCount >= limit && limit != 3) || CurrentRoll == 6))
         {
             hasToMove = true;
         }
@@ -337,21 +331,21 @@ public class GameManager : MonoBehaviour
             var roll = Random.Range(1, 7);
             rollAgain.SetActive(false);
             rollCount++;
-            var limit = ActivePiecesCount[currentPlayer] == 0 ? 3 : 1;
-            currentRoll = roll;
+            var limit = ActivePiecesCount[CurrentPlayer] == 0 ? 3 : 1;
+            CurrentRoll = roll;
             if (roll != 6 && rollCount >= limit)
             {
                 if (limit == 3)
                 {
                     EndRound();
                 }
-                else if (!CanMove(currentPlayer, false))
+                else if (!CanMove(CurrentPlayer, false) && !HasNotStarted(CurrentPlayer))
                 {
                     EndRound();
                 }
             }
 
-            if (roll == 6 && !CanMove(currentPlayer, false))
+            if (roll == 6 && !CanMove(CurrentPlayer, false))
             {
                 EndRound(); 
 
@@ -391,7 +385,7 @@ public class GameManager : MonoBehaviour
 
     public Boolean CanMove(PieceColor color, bool isComputer)
     {
-        var roll = isComputer ? computerPlayer.getComputerRoll() : currentRoll;
+        var roll = CurrentRoll;
         foreach (var pieceObject in Pieces[color])
         {
             Piece piece = pieceObject.GetComponent<Piece>();
@@ -416,13 +410,13 @@ public class GameManager : MonoBehaviour
             {
                 return true;
             }
-
-            if (ActivePiecesCount[color] == 0)
-            {
-                return true;
-            }
         }
         return false;
+    }
+
+    public bool HasNotStarted(PieceColor color)
+    {
+        return ActivePiecesCount[color] == 0;
     }
 
     public void UpdateInfoBeforeMove(Piece piece)
@@ -435,12 +429,12 @@ public class GameManager : MonoBehaviour
         else if (piece.TilesGone > TileManager.FieldSize)
         {
             tileManager.EndFields[piece.Color][piece.TilesGone % 5 - 1] = null;
-            piece.TilesGone += currentRoll;
+            piece.TilesGone += CurrentRoll;
         }
         else
         {
             GamePlan[piece.CurrentTile] = null;
-            piece.TilesGone += currentRoll;
+            piece.TilesGone += CurrentRoll;
         }
     }
 
@@ -461,7 +455,7 @@ public class GameManager : MonoBehaviour
             MoveOnBoard(pieceComp, newPosition);
         }
         tileManager.UnselectHighlightedMoves();
-        if (currentRoll != 6 && (ActivePiecesCount[pieceComp.Color] != 0))
+        if ((CurrentRoll != 6 && (ActivePiecesCount[pieceComp.Color] != 0)) || GetNumberOfFinished(CurrentPlayer) == 4)
         {
             EndRound();
         } else
@@ -473,22 +467,28 @@ public class GameManager : MonoBehaviour
 
     public void MoveOnBoard(Piece piece, int newPosition)
     {
-        piece.CurrentTile = newPosition;
-        if (GamePlan[newPosition] != null)
+        if (piece.CurrentTile != -1 || CurrentRoll == 6)
         {
-            soundManager.PlayScreamSound();
-            GamePlan[newPosition].GetComponent<Piece>().ReturnHome();
+            piece.CurrentTile = newPosition;
+            if (GamePlan[newPosition] != null)
+            {
+                soundManager.PlayScreamSound();
+                GamePlan[newPosition].GetComponent<Piece>().ReturnHome();
+            }
+            piece.gameObject.transform.position = tileManager.getFieldTiles()[newPosition].transform.position;
+            GamePlan[newPosition] = piece.gameObject;
         }
-        piece.gameObject.transform.position = tileManager.getFieldTiles()[newPosition].transform.position;
-        GamePlan[newPosition] = chosenPiece;
     }
 
     public void MoveToEnd(Piece piece, int endPosition)
     {
-        piece.hasFinished = true;
-        piece.CurrentTile = piece.TilesGone + endPosition;
-        tileManager.EndFields[piece.Color][endPosition] = chosenPiece;
-        piece.gameObject.transform.position = tileManager.EndTiles[piece.Color][endPosition].transform.position;
+        if (endPosition >= 0 && endPosition <= 3)
+        {
+            piece.hasFinished = true;
+            piece.CurrentTile = piece.TilesGone + endPosition;
+            tileManager.EndFields[piece.Color][endPosition] = chosenPiece;
+            piece.gameObject.transform.position = tileManager.EndTiles[piece.Color][endPosition].transform.position;
+        }
     }
 
     public void EndGame()
@@ -504,15 +504,5 @@ public class GameManager : MonoBehaviour
         thirdIcon.color = Pieces[finishingOrder[2]][0].GetComponent<Image>().color;
         fourthIcon.sprite = Pieces[finishingOrder[3]][0].GetComponent<Image>().sprite;
         fourthIcon.color = Pieces[finishingOrder[3]][0].GetComponent<Image>().color;
-    }
-
-    public void HideWarning()
-    {
-        rollWarning.SetActive(false);
-    }
-
-    public PieceColor getCurrentPlayer()
-    {
-        return currentPlayer;
     }
 }

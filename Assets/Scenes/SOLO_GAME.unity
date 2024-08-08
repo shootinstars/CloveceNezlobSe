@@ -290,6 +290,7 @@ MonoBehaviour:
   tileManager: {fileID: 1103661007}
   soundManager: {fileID: 715555428}
   tutorial: {fileID: 1267469327}
+  pieceManager: {fileID: 2087505898}
   CurrentTile: -1
   TilesGone: 0
   hasFinished: 0
@@ -1170,6 +1171,7 @@ MonoBehaviour:
   tileManager: {fileID: 1103661007}
   soundManager: {fileID: 715555428}
   tutorial: {fileID: 1267469327}
+  pieceManager: {fileID: 2087505898}
   CurrentTile: -1
   TilesGone: 0
   hasFinished: 0
@@ -2072,6 +2074,7 @@ MonoBehaviour:
   tileManager: {fileID: 1103661007}
   soundManager: {fileID: 715555428}
   tutorial: {fileID: 1267469327}
+  pieceManager: {fileID: 2087505898}
   CurrentTile: -1
   TilesGone: 0
   hasFinished: 0
@@ -4886,6 +4889,7 @@ MonoBehaviour:
   tileManager: {fileID: 1103661007}
   soundManager: {fileID: 715555428}
   tutorial: {fileID: 1267469327}
+  pieceManager: {fileID: 2087505898}
   CurrentTile: -1
   TilesGone: 0
   hasFinished: 0
@@ -5883,6 +5887,7 @@ MonoBehaviour:
   tileManager: {fileID: 1103661007}
   soundManager: {fileID: 715555428}
   tutorial: {fileID: 1267469327}
+  pieceManager: {fileID: 2087505898}
   CurrentTile: -1
   TilesGone: 0
   hasFinished: 0
@@ -7954,6 +7959,7 @@ MonoBehaviour:
   tileManager: {fileID: 1103661007}
   soundManager: {fileID: 715555428}
   tutorial: {fileID: 1267469327}
+  pieceManager: {fileID: 2087505898}
   CurrentTile: -1
   TilesGone: 0
   hasFinished: 0
@@ -10081,6 +10087,7 @@ MonoBehaviour:
   tileManager: {fileID: 1103661007}
   soundManager: {fileID: 715555428}
   tutorial: {fileID: 1267469327}
+  pieceManager: {fileID: 2087505898}
   CurrentTile: -1
   TilesGone: 0
   hasFinished: 0
@@ -10422,6 +10429,7 @@ MonoBehaviour:
   gameManager: {fileID: 1103661005}
   tileManager: {fileID: 1103661007}
   soundManager: {fileID: 715555428}
+  pieceManager: {fileID: 2087505898}
   diceControl: {fileID: 1103661009}
   rollButton: {fileID: 1879672521}
   playerCount: {fileID: 0}
@@ -11413,6 +11421,7 @@ MonoBehaviour:
   tileManager: {fileID: 1103661007}
   soundManager: {fileID: 715555428}
   tutorial: {fileID: 1267469327}
+  pieceManager: {fileID: 2087505898}
   CurrentTile: -1
   TilesGone: 0
   hasFinished: 0
@@ -12615,6 +12624,7 @@ MonoBehaviour:
   tileManager: {fileID: 1103661007}
   soundManager: {fileID: 715555428}
   tutorial: {fileID: 1267469327}
+  pieceManager: {fileID: 2087505898}
   CurrentTile: -1
   TilesGone: 0
   hasFinished: 0
@@ -14351,12 +14361,14 @@ MonoBehaviour:
   fourthIcon: {fileID: 128829003}
   RollButton: {fileID: 1879672519}
   CurrentPlayerImage: {fileID: 247217248}
-  currentPlayer: 0
+  CurrentPlayer: 0
   tileManager: {fileID: 1103661007}
   soundManager: {fileID: 715555428}
   diceControl: {fileID: 1103661009}
   computerPlayer: {fileID: 809755099}
   tutorial: {fileID: 1267469327}
+  pieceManager: {fileID: 2087505898}
+  CurrentRoll: 0
 --- !u!4 &1103661006
 Transform:
   m_ObjectHideFlags: 0
@@ -14385,6 +14397,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1103661005}
+  pieceManager: {fileID: 2087505898}
   fieldTiles: []
 --- !u!114 &1103661008
 MonoBehaviour:
@@ -14411,6 +14424,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   computerPlayer: {fileID: 809755099}
+  pieceManager: {fileID: 2087505898}
 --- !u!1 &1107147577
 GameObject:
   m_ObjectHideFlags: 0
@@ -15843,6 +15857,7 @@ MonoBehaviour:
   tileManager: {fileID: 1103661007}
   soundManager: {fileID: 715555428}
   tutorial: {fileID: 1267469327}
+  pieceManager: {fileID: 2087505898}
   CurrentTile: -1
   TilesGone: 0
   hasFinished: 0
@@ -16017,6 +16032,7 @@ MonoBehaviour:
   gameManager: {fileID: 1103661005}
   diceControl: {fileID: 1103661009}
   tileManager: {fileID: 1103661007}
+  pieceManager: {fileID: 2087505898}
 --- !u!1 &1270453706
 GameObject:
   m_ObjectHideFlags: 0
@@ -16853,6 +16869,7 @@ MonoBehaviour:
   tileManager: {fileID: 1103661007}
   soundManager: {fileID: 715555428}
   tutorial: {fileID: 1267469327}
+  pieceManager: {fileID: 2087505898}
   CurrentTile: -1
   TilesGone: 0
   hasFinished: 0
@@ -17023,6 +17040,7 @@ MonoBehaviour:
   tileManager: {fileID: 1103661007}
   soundManager: {fileID: 715555428}
   tutorial: {fileID: 1267469327}
+  pieceManager: {fileID: 2087505898}
   CurrentTile: -1
   TilesGone: 0
   hasFinished: 0
@@ -18401,6 +18419,7 @@ MonoBehaviour:
   tileManager: {fileID: 1103661007}
   soundManager: {fileID: 715555428}
   tutorial: {fileID: 1267469327}
+  pieceManager: {fileID: 2087505898}
   CurrentTile: -1
   TilesGone: 0
   hasFinished: 0
@@ -19262,6 +19281,7 @@ MonoBehaviour:
   tileManager: {fileID: 1103661007}
   soundManager: {fileID: 715555428}
   tutorial: {fileID: 1267469327}
+  pieceManager: {fileID: 2087505898}
   CurrentTile: -1
   TilesGone: 0
   hasFinished: 0
@@ -21876,6 +21896,7 @@ MonoBehaviour:
   tileManager: {fileID: 1103661007}
   soundManager: {fileID: 715555428}
   tutorial: {fileID: 1267469327}
+  pieceManager: {fileID: 2087505898}
   CurrentTile: -1
   TilesGone: 0
   hasFinished: 0
@@ -24180,6 +24201,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2079967281}
   m_CullTransparentMesh: 1
+--- !u!1 &2087505896
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2087505897}
+  - component: {fileID: 2087505898}
+  m_Layer: 0
+  m_Name: PieceManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2087505897
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2087505896}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.5074086, y: 0.011939973, z: -504.2074}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2117605116}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2087505898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2087505896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0cbccf4e8f45134ab4983cc76425a8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FinishingOrder: 00000000000000000000000000000000
+  gameManager: {fileID: 1103661005}
 --- !u!1 &2092489249
 GameObject:
   m_ObjectHideFlags: 0
@@ -24771,6 +24838,7 @@ Transform:
   - {fileID: 1399857914}
   - {fileID: 1103661006}
   - {fileID: 1267469326}
+  - {fileID: 2087505897}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2125621135
@@ -25090,6 +25158,7 @@ MonoBehaviour:
   tileManager: {fileID: 1103661007}
   soundManager: {fileID: 715555428}
   tutorial: {fileID: 1267469327}
+  pieceManager: {fileID: 2087505898}
   CurrentTile: -1
   TilesGone: 0
   hasFinished: 0

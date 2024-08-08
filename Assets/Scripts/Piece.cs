@@ -85,7 +85,7 @@ public class Piece : MonoBehaviour
             gameManager.TurnOffRollWarning();
             gameManager.SetChosenPiece(gameObject);
             tileManager.UnselectHighlightedMoves();
-            tileManager.HighlightPossibleMove(this, Color, gameManager.getCurrentRoll());
+            tileManager.HighlightPossibleMove(this, Color, gameManager.CurrentRoll);
         }
     }
 
