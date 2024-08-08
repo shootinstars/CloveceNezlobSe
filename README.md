@@ -4,4 +4,4 @@ Enjoy 2-4 players hot-seat mode or take on the AI oponents in Solo mode. Don't g
 
 Game contains both Czech and English.
 
-Play the game: LINK TO BE ADDED AFTER RELEASE
+Play the game: https://martin-horak.itch.io/clovece
